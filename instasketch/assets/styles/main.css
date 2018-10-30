@@ -105,3 +105,7 @@ nav {
 main{
     padding: 20px;
 }
+
+.reset-size{
+    font-size: 1em;
+}

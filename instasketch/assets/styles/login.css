@@ -9,6 +9,11 @@ span {
 
 .login {
   margin-bottom: 10px;
+  
+}
+
+.login input {
+  margin: auto 10px;
 }
 
 .pw {
