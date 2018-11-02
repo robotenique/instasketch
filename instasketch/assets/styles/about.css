@@ -1,14 +1,21 @@
-.container {
-  margin-left:100px;
-  margin-right: 100px;
+.about {
+  margin-left:auto;
+  margin-right: auto;
   width: 1400px;
 }
 
-a.button{
- background-color:#fff5e4;
- border:1px solid #660000;
- border-radius:5px;
- color: black;
- margin: 0 auto;
- padding:10px 10px 10px 10px;
+h1 {
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+}
+
+.functionality {
+  margin-left: 35%;
+}
+
+.signup {
+  text-align: center;
 }
