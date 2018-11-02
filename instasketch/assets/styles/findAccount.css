@@ -1,0 +1,20 @@
+main {
+    margin-top: 150px;
+}
+
+form {
+  text-align: center;
+}
+
+span {
+  display: inline-block;
+}
+
+.find {
+  margin-bottom: 10px;
+
+}
+
+.find input {
+  margin: auto 10px;
+}
