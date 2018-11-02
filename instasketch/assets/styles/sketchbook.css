@@ -1,3 +1,10 @@
+#canvas {
+    border: solid 1px grey;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
 #colorpicker > button.color, button.eraser{
     border-radius: 50%;
     border-style: solid;
