@@ -1,0 +1,72 @@
+- do some planning this weekend.
+- figure out your attributes, methods, queries 
+
+
+- use github branches 
+- structure of our app 
+- a number of html and js files 
+
+- use api or open source code for drawing app
+
+- login page 
+- about us 
+- signup page 
+- main page : dashboard 
+- view for teachers 
+- view for students 
+
+- one shared sidebar regardless of features -> main view 
+- two main files for teacher and student 
+- set up common features first and then work on the details 
+- main menu bar -> header and footer same for all files 
+- start with common elements -> header/footer for everyone 
+- two people doing canvas first 
+- two people on professor side -> the most important -> session and submission 
+
+- student front-end will have nothing to do with professor front-end for now 
+- so we can put some student object file on JS and then professor js can read the files 
+- ex: student JSON file 
+
+- Roles 
+- header/footer 
+- no 'my drawings' but only 'my submissions'
+
+- bootstrap, canvas  
+- sunmin: login and registration 
+- juliano: profiles
+- fork the repo github branches 
+- keep the master repo clean 
+
+login / registration page -> due next week 
+ 
+- Discord 
+- one html page for each view 
+- functionality of saving and loading 
+- our own library 
+- attributes of students / methods to use 
+- our own api - what you need from other pages 
+
+- database will be inside some folder instead of webpage 
+
+- python library for mocking databases 
+
+- JQuery? 
+	- DOM manipulation 
+- Boostrap 
+- we will pretend we have a student/server and we will read the file (JSON).
+- request a session/ join a session 
+- is session created by professor? 
+- professor gives them a code and students type in 
+- code for joining the session 
+- once student is inside a sessoion, they can open it and submit there.
+
+- (eaier) or making their drawing and submit by typing the code. 
+	- no need to track which student is inside a session 
+
+- once a session is over, no one can submit there anymore.
+- database mock -> a bunch of json files 
+
+ 
+  
+
+ 
