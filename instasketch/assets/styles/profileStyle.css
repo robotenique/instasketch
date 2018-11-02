@@ -1,0 +1,126 @@
+/*  Color Palette: https://www.colorcombos.com/combotester.html?color0=333333&color1=FF9900&color2=fff5e4&color3=666666&show_text */
+
+/* Definition of the colors */
+
+.light-orange-bg {
+    background-color: #fff5e4;
+}
+.light-orange {
+    color: #fff5e4;
+}
+
+.orange-bg {
+background-color:#FF9900;
+}
+
+.orange {
+    color: #FF9900;
+}
+
+.dark-gray-bg{
+    background-color: #333333;
+}
+
+.dark-gray{
+    color: #333333;
+}
+
+.gray-bg{
+    background-color: #f2f2f2;
+}
+
+.gray{
+    color:#f2f2f2;
+}
+
+.light-rose {
+    color: #FB5C5B;
+}
+
+.light-rose-bg {
+    background-color: #FB5C5B;
+}
+
+/* ------------------------------------------------------------ */
+html {
+  position: relative;
+  min-height: 100%;
+}
+/* Change the font to Roboto */
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    min-width: 960px;
+
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px;
+    min-width: 1200px;
+}
+
+.profile {
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.pImg {
+	border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav {
+    min-width: 1200px;
+}
+
+.footer-logo {
+    font-size: 2.2em;
+}
+
+.footer-logo2 {
+    font-size: 1.6em;
+    color: black;
+}
+
+.border-3 {
+    border-width: 3px !important;
+    border-color: #333333 !important;
+}
+
+/* Increases container width */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1500px;
+    }
+}
+
+.navbar .nav-link {
+    color: black;
+    font-weight: bold;
+    font-size: 1.7em !important;
+}
+.navbar  .nav-link:hover {
+    color: #FB5C5B;
+}
+
+.active-link{
+    color: #FB5C5B !important;
+}
+
+main{
+    padding: 20px;
+}
+
+.reset-size{
+    font-size: 1em;
+}
