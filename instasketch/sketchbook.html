@@ -46,22 +46,43 @@
 
     <!--  The main content goes here -->
     <main role="main" class="container gray-bg">
-        <div class="row" style="padding-left:30px">
-            <canvas id="canvas" width="1366" height="700" class="canvas"></canvas>
-            <div id="colorpicker">
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="color"></button>
-                <button class="eraser" value="#ffffff"></button>
-                <button class="clear-sketch btn-light btn-lg">Clear Sketch</button>
+        <div class="row">
+            <div class="col-11">
+                <canvas id="canvas" width="1366" height="700" class="canvas"></canvas>
             </div>
-            <div id="tools">
-                <button id="undo"></button>
+            <div class="col-1">
+                <div id="colorpicker">
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="color"></button>
+                    <button class="eraser" value="#ffffff"></button>
+                </div>
+            </div>
+        </div>
+        <div id="toolRow" class="row">
+            <div id="tools" class="col-3">
+                <button id="undo" class="tool"></button>
+                <button id="redo" class="tool"></button>
+                <button class="clear-sketch btn-light btn-lg">Clear</button>
+            </div>
+            <div id="submitSketch" class="col-7">
+                <div class="row">
+                    <div class="dropup col-4">
+                        <button class="btn-light btn-lg dropdown-toggle col-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Active Sessions
+                        </button>
+                        <div id="availableSessions" class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button id="submitSketch" class="btn-light btn-lg btn-submit col-12">Submit</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

@@ -5,7 +5,7 @@
     display: inline-block;
 }
 
-#colorpicker > button.color, button.eraser, #tools > button{
+#colorpicker > button.color, button.eraser, #tools > button.tool{
     border-radius: 50%;
     border-style: solid;
     border-color: #fffff0;
@@ -23,16 +23,44 @@
     background-position: center;
 }
 
+
+/* Tools row styles */
+#tools > button.tool {
+    margin: auto;
+}
+#toolRow {
+    margin-top: 10px;
+}
+
+#tools {
+    margin-left: 10px;
+}
 #tools > button {
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+#toolRow>#tools button.clear-sketch {
+    margin-left: 8px;
+    position: relative;
+    top: -14px;
+}
+
 #tools > button#undo {
-background-image: url("../images/sketchbook/undo.png");
+    background-image: url("../images/sketchbook/undo.png");
 }
 #tools > button#redo {
-background-image: url("../images/sketchbook/redo.png");
+    background-image: url("../images/sketchbook/redo.png");
+}
+
+.btn-submit{
+    background-color: #ffb0af;
+}
+
+
+/* TODO: REMOVE */
+div {
+    border: 1px solid black !important;
 }
 
