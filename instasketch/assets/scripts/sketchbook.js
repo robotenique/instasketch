@@ -2,8 +2,10 @@
 
 // The canvas of the sketchbook itself
 let canvas;
-// Queue to hold the paths in the canvas (undo + redo functionality)
-let pathQueue = [];
+/* Queue to hold the paths in the canvas (undo + redo functionality)
+   MAX items = 30 actions
+*/
+let pathStack = [];
 
 const defaultColor = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00",
                         "#0000FF", "#4B0082", "#9400D3", "#000000"]
@@ -38,7 +40,15 @@ $(function () {
     canvas.freeDrawingBrush.color = "red";
     canvas.freeDrawingBrush.width = 10;
     canvas.renderAll();
-
+    canvas.on("path:created", function (e) {
+        console.log('e', e);
+        e.path.id = fabric.Object.__uid++
+        e.id = e.path.id
+        pathStack.push(e);
+        console.log("ADICIONADO PATH DE ID: ", e.id)
+        console.log('pathQueue', pathStack);
+        console.log('pathQueue.length', pathStack.length);
+     });
     document.getElementById('colorpicker').addEventListener('click', function (e) {
         //console.log(e.target.value);
         if (e.target.classList.contains("eraser")) {
@@ -54,15 +64,15 @@ $(function () {
             canvas.renderAll();
         }
         else if(e.target.id === "undo"){
-            console.log(pathQueue);
-            const lastPath = pathQueue.shift();
-            //console.dir(lastPath.id);
-            //console.log(lastPath);
+            /* console.log('pathQueue', pathQueue);
+            console.log('pathQueue.length', pathQueue.length); */
+            const lastPath = pathStack.pop();
             if (lastPath != undefined) {
+                console.log('lastPath', lastPath.path);
                 canvas.getObjects('path').forEach((path) => {
-                    console.log(path.id);
                     if (path.id === lastPath.id) {
-                        console.log(path.id);
+                        canvas.remove(path);
+                        console.log("Undone action!");
                     }
                 });
             }
@@ -70,24 +80,7 @@ $(function () {
 
         //console.log(canvas.freeDrawingBrush.color);
     });
-    canvas.on("path:created", function (e) {
-        console.log('path:created');
-        console.log(e);
-        e.path.id = fabric.Object.__uid++
-        e.id = e.path.id
-        pathQueue.push(e);
-        console.log("ADICIONADO PATH DE ID: ", e.id)
-        console.log(pathQueue);
-    });
 });
-
-
-
-
-
-
-
-
 
 
 
