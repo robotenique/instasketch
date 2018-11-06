@@ -9,8 +9,8 @@
     crossorigin="anonymous">
     <!-- Roboto Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <!-- Favicon 
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">-->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!-- Our own css -->
     <link rel="stylesheet" href="assets/styles/profileStyle.css">
     
@@ -43,41 +43,60 @@
     <!--  The main content goes here -->
     <main role="main" class="container gray-bg">
 		<div class="profile" id="profile">
-			<div class="row">
-				<img class="pImg" src="https://dummyimage.com/323x200/ffc163/040838.png" />
+			<div class="row" id="profilePic">
+				<img class="pImg" src="" />
 				<br>
 			</div>
 			<div class="row entry">
-				<div class="col-8">
-					<strong>Name: </strong><span> Amrit </span>
+				<div class="col-8" id="firstName">
+					<strong id="firstNameText">First Name: </strong><span>  </span>
 				</div>
 				<div class="col-4 text-right">
 					<button class="editButton"> Edit </button>
 				</div>
 			</div>
 			<div class="row entry">
-				<div class="col-8">
-					<strong>Address: </strong><span> UofT </span>
+				<div class="col-8" id="lastName">
+					<strong id="lastNameText">Last Name: </strong><span>  </span>
 				</div>
 				<div class="col-4 text-right">
 					<button class="editButton"> Edit </button>
 				</div>
 			</div>
 			<div class="row entry">
-				<div class="col-8">
-					<strong>Class: </strong><span> CSC309 </span>
+				<div class="col-8" id="school">
+					<strong id="schoolText">School: </strong><span>  </span>
 				</div>
 				<div class="col-4 text-right">
 					<button class="editButton"> Edit </button>
 				</div>
 			</div>
 			<div class="row entry">
-				<div class="col-8">
-					<strong>E-mail: </strong><span> amritpal.aujla@mail.utoronto.ca </span>
+				<div class="col-8" id="email">
+					<strong id="emailText">E-mail: </strong><span>  </span>
 				</div>
 				<div class="col-4 text-right">
 					<button class="editButton"> Edit </button>
 				</div>
+			</div>
+			<div class="row entry">
+				<div class="col-8" id="teacher">
+					<strong id="teacherText">Teacher: </strong><span>  </span>
+				</div>
+				<div class="col-4 text-right">
+					<button class="editButton"> Edit </button>
+				</div>
+			</div>
+			<div class="row entry">
+				<div class="col-8" id="province">
+					<strong id="provinceText">Province: </strong><span>  </span>
+				</div>
+				<div class="col-4 text-right">
+					<button class="editButton"> Edit </button>
+				</div>
+			</div>
+			<div class="row">
+				<br>
 			</div>
 		</div>
     </main>
@@ -105,12 +124,12 @@
             <!-- Footer -->
         </body>
         <!-- Boostrap scripts-->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 		<!-- Other scripts -->
-		<script type="text/javascript" src="assets/scripts/profile.js"></script>
+		<script type="text/javascript" src="assets/scripts/studentProfile.js"></script>
         </html>
