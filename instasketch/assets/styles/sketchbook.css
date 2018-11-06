@@ -5,7 +5,7 @@
     display: inline-block;
 }
 
-#colorpicker > button.color, button.eraser{
+#colorpicker > button.color, button.eraser, #tools > button{
     border-radius: 50%;
     border-style: solid;
     border-color: #fffff0;
@@ -22,3 +22,17 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+#tools > button {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#tools > button#undo {
+background-image: url("../images/sketchbook/undo.png");
+}
+#tools > button#redo {
+background-image: url("../images/sketchbook/redo.png");
+}
+
