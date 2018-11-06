@@ -34,12 +34,10 @@ $(document).ready(function() {
     // direct the page to teacher/student version accordingly.
     if (user.userName == "albus.dumbledore@utoronto.ca" && user.password == "dumble123") {
       console.log("Teacher is logging in.");
-      let url = "file:///Users/pigletwithcurls/Desktop/uoft/csc309/ph1_my/instasketch/teacherIndex.html";
-      window.location.href = url;
+      window.location.href = "teacherIndex.html";
     } else if (user.userName == "student@mail.utoronto.ca" && user.password =="student123") {
       console.log("Student is logging in.");
-      let url = "file:///Users/pigletwithcurls/Desktop/uoft/csc309/ph1_my/instasketch/studentIndex.html";
-      window.location.href = url;
+      window.location.href = "studentIndex.html";
     } else {
       alert("Please enter correct username and password.");
     }

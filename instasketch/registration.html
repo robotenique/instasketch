@@ -48,12 +48,12 @@
           <h1>Welcome to <span class="footer-logo light-rose reset-size">Insta</span><span class="footer-logo2 reset-size">Sketch</span></h1>
           <hr>
           <!-- Email address and password -->
-          <input type="text" placeholder="Email Address" name="email" required>
-          <input type="password" placeholder="Password" name="pw" required>
+          <input id="email" type="text" placeholder="Email Address" name="email" required>
+          <input id="pw" type="password" placeholder="Password" name="pw" required>
           <br>
           <!-- First and last names -->
-          <input type="text" placeholder="First Name" name="email" required>
-          <input type="password" placeholder="Last Name" name="pw" required>
+          <input id="firstName" type="text" placeholder="First Name" name="email" required>
+          <input id="lastName" type="password" placeholder="Last Name" name="pw" required>
           <br>
           <!-- Choose province -->
           <select id="province">
@@ -75,11 +75,11 @@
           <!-- Choose school -->
           <select id="school">
             <option value="#">Choose your school</option>
-            <option value="#">UofT Primary School</option>
-            <option value="#">Ryerson Primary School</option>
-            <option value="#">York Primary School</option>
-            <option value="#">George Brown Primary School</option>
-            <option value="#">Ontario Art Primary School</option>
+            <option value="UofT">UofT Primary School</option>
+            <option value="Ryerson">Ryerson Primary School</option>
+            <option value="York">York Primary School</option>
+            <option value="GeorgeBrown">George Brown Primary School</option>
+            <option value="OntArt">Ontario Art Primary School</option>
           </select>
           <br><br>
           <h3>Are you a teacher or a student?</h3>
@@ -91,18 +91,18 @@
           </label>
           <br>
           <!-- If the new user is a teacher -->
-          <input id="teachercode" type="text" placeholder="Enter your teacher code" name="email" required>
+          <input id="teachercode" type="text" placeholder="Enter your teacher code" name="tcode" required>
           <!-- If the new user is a student -->
           <select id="teachers">
             <option value="#">Choose your teacher</option>
-            <option value="#">Mark Kazakevich</option>
-            <option value="#">Albus Dumbledore</option>
-            <option value="#">Minerva McGonagall</option>
-            <option value="#">Severus Snape</option>
+            <option value="Mark_Kazakevich">Mark Kazakevich</option>
+            <option value="Albus_Dumbledore">Albus Dumbledore</option>
+            <option value="Minerva_McGonagall">Minerva McGonagall</option>
+            <option value="Severus_Snape">Severus Snape</option>
           </select>
           <br>
           <!-- Submit button -->
-          <button class="btn-light btn-lg" type="submit">Submit</button>
+          <button id="btn1" class="btn-light btn-lg" type="reset">Submit</button>
         </div>
       </form>
     </main>
