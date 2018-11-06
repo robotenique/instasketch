@@ -1,6 +1,13 @@
 /* Javascript code for the Sketchbook view */
 
-var canvas;
+// The canvas of the sketchbook itself
+let canvas;
+/* Srack to hold the paths in the canvas (undo + redo functionality)
+   MAX items = 30 actions
+*/
+let pathStack = [];
+
+
 const defaultColor = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00",
                         "#0000FF", "#4B0082", "#9400D3", "#000000"]
 $("#colorpicker > button.color").each(function(index) {
@@ -21,10 +28,12 @@ $("#colorpicker > .clear-sketch").on("click", function (e) {
     canvas.freeDrawingCursor = "crosshair";
     canvas.freeDrawingBrush.color = "red";
     canvas.freeDrawingBrush.width = 10;
+    pathQueue = []
     updateColorButtonBorder($("#colorpicker button:first-child"))
     canvas.renderAll();
 })
 
+/* Main canvas: Colors, Tools and other event listeners */
 $(function () {
     canvas = window._canvas = new fabric.Canvas('canvas');
     canvas.backgroundColor = '#ffffff';
@@ -33,22 +42,53 @@ $(function () {
     canvas.freeDrawingBrush.color = "red";
     canvas.freeDrawingBrush.width = 10;
     canvas.renderAll();
-
-    document.getElementById('colorpicker').addEventListener('click', function (e) {
-        console.log(e.target.value);
-        if (e.target.classList.contains("eraser")) {
-            canvas.freeDrawingBrush.width = 20;
+    /* Add a path to the stack when you draw */
+    canvas.on("path:created", function (e) {
+        e.path.id = fabric.Object.__uid++
+        e.id = e.path.id
+        pathStack.push(e);
+     });
+    /* Eraser functionality */
+    $("#colorpicker").on("click", ".eraser", function (e) {
+        console.log("Eraser selected!");
+        canvas.freeDrawingBrush.width = 20;
+        canvas.freeDrawingBrush.color = "#ffffff";
+        updateColorButtonBorder(e.target);
+    });
+    /* Color selection functionality */
+    $("#colorpicker").on("click", ".color", function (e) {
+        console.log("Color selected!");
+        canvas.freeDrawingBrush.width = 10;
+        updateColorButtonBorder(e.target);
+        canvas.freeDrawingBrush.color = e.target.value;
+        canvas.renderAll();
+    });
+    /* Undo tool functionality */
+    $("#tools").on("click", "#undo", function (e) {
+        const lastPath = pathStack.pop();
+        if (lastPath != undefined) {
+            canvas.getObjects('path').forEach((path) => {
+                if (path.id === lastPath.id) {
+                    canvas.remove(path);
+                }
+            });
         }
-        else if(e.target.classList.contains("color")) {
-            canvas.freeDrawingBrush.width = 10;
-            updateColorButtonBorder(e.target)
-            canvas.freeDrawingBrush.color = e.target.value;
-            canvas.renderAll();
+    });
+    $("#tools").on("click", "#redo", function (e) {
+        const lastPath = pathStack.pop();
+        if (lastPath != undefined) {
+            canvas.getObjects('path').forEach((path) => {
+                if (path.id === lastPath.id) {
+                    canvas.remove(path);
+                }
+            });
         }
-
-        console.log(canvas.freeDrawingBrush.color);
     });
 });
+
+
+
+
 
 /* updateColorButtonBorder: Given a new colorButton, this
    function changes the old button style back to normal,

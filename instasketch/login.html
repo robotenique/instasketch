@@ -43,15 +43,15 @@
 
     <!--  The main content goes here -->
     <main role="main" class="container">
-      <form action="">
+      <form name="loginForm" action="" onsubmit="return validateForm()">
         <h1>Welcome to <span class="footer-logo light-rose reset-size">Insta</span><span class="footer-logo2 reset-size">Sketch</span></h1>
         <hr>
         <div class="login">
           <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
+          <input type="text" placeholder="Enter Username" name="uname" id="uname" >
           <label for="pw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="pw" required>
-          <button class="btn-light btn-lg" type="submit">Login</button>
+          <input type="password" placeholder="Enter Password" name="pw" id="pw" >
+          <button id="btn1" class="btn-light btn-lg" type="reset">Login</button>
         </div>
         <div class="forgot">
           <span class="registr"><a href="registration.html">Create an account</a></span>
@@ -82,13 +82,14 @@
     </footer>
             <!-- Footer -->
     </body>
-    <script type="text/javascript" src="assets/scripts/login.js"></script>
+
     <!-- Boostrap scripts-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/scripts/login.js"></script>
 
     </html>
