@@ -1,0 +1,32 @@
+
+table, td, th {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+td, th {
+	min-width: 200px;
+}
+
+
+#bookInfo p {
+	font-weight: bold;
+}
+
+#bookInfo span {
+	font-weight: normal;
+	color: black;
+}
+
+h1 {
+  text-align: center;
+}
+
+#studentTable {
+  margin: auto;
+  text-align: center;
+}
+
+#add {
+  margin-left: 75%;
+}
