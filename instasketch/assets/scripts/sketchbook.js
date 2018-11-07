@@ -6,6 +6,7 @@ let canvas;
 /* Stack to hold the paths in the canvas (undo + redo functionality)
    MAX items = 30 actions */
 let pathStack = [];
+let undonePathStack = [];
 
 
 const defaultColor = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00",
@@ -37,6 +38,8 @@ $(function () {
         e.path.id = fabric.Object.__uid++
         e.id = e.path.id
         pathStack.push(e);
+        // Clear the stack for the 'redo' action
+        undonePathStack = [];
      });
     /* Eraser functionality */
     $("#colorpicker").on("click", ".eraser", function (e) {
@@ -60,12 +63,18 @@ $(function () {
             canvas.getObjects('path').forEach((path) => {
                 if (path.id === lastPath.id) {
                     canvas.remove(path);
+                    undonePathStack.push(lastPath);
                 }
             });
         }
     });
     /* Redo tool functionality */
     $("#tools").on("click", "#redo", function (e) {
+        const lastUndonePath = undonePathStack.pop();
+        if (lastUndonePath != undefined) {
+            canvas.add(lastUndonePath.path);
+            pathStack.push(lastUndonePath);
+        }
         console.log("Redone!");
     });
     /* Clear sketch button functionality */
@@ -120,7 +129,7 @@ $(function () {
         }
     });
     $("#submitSketch").on("click", function () {
-        // How to get the original object??
+        // TODO: How to get the original object??
     })
 });
 
