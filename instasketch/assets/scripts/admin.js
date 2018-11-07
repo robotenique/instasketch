@@ -2,7 +2,7 @@
 
 /* Global counts and arrays */
 let numberOfStudents = 0; // total number of students
-const studentOnRecord = []; // Array of students on the database
+let studentOnRecord = []; // Array of students on the database
 
 /* Student object */
 class Student {
@@ -24,17 +24,53 @@ addPart.addEventListener("click", addStudent);
 studentTable.addEventListener("click", removeStudent);
 studentTable.addEventListener("click", modifyStudent);
 
+/* Set table of students for default */
+function init() {
+  const addPart = document.querySelector("#add");
+  const addBtn = document.createElement("button");
+  addBtn.className = "add";
+  addBtn.appendChild(document.createTextNode("Add"));
+  addPart.appendChild(addBtn);
+  const studentTable = document.querySelector("#studentTable");
+  const tableRow = document.createElement("tr");
+  const headId= document.createElement("th");
+  const headLastName = document.createElement("th");
+  const headFirstName = document.createElement("th");
+  const headButton = document.createElement("th");
+  headId.appendChild(document.createTextNode("Student Id"));
+  headLastName.appendChild(document.createTextNode("Last Name"));
+  headFirstName.appendChild(document.createTextNode("First Name"));
+  headButton.appendChild(document.createTextNode("Add/Modify/Remove"));
+  tableRow.appendChild(headId);
+  tableRow.appendChild(headLastName);
+  tableRow.appendChild(headFirstName);
+  tableRow.appendChild(headButton);
+  studentTable.appendChild(tableRow);
+  addStudentToTable(student1);
+  addStudentToTable(student2);
+  addStudentToTable(student3);
+}
+init();
+
 function addStudent(e) {
   e.preventDefault();
   if (e.target.className === "add") {
     // Find the row that the button is existing.
     console.log("new student");
-    // Reigstration page. 
+    // addStudent page.
+    window.location.href="addStudent.html";
   }
-
 }
 
-/* Add students onto the table */
+// After adding student, see a new student object added
+if (document.referrer === "addStudent.html") {
+  /* Pretend a new student object added */
+  //  const newStudent = new Student("123", "newStudent", "Hello");
+  //  addStudentToTable(newStudent);
+  alert("back from adding");
+}
+
+/* Add students onto the table after retrieving data from  */
 function addStudentToTable(student) {
   const studentTable = document.querySelector("#studentTable");
   const tableRow = document.createElement("tr");
@@ -62,20 +98,18 @@ function addStudentToTable(student) {
   numberOfStudents += 1;
 }
 
+/* Direct admin to the modifyStudent.html */
 function modifyStudent(e) {
   e.preventDefault();
   if (e.target.className === "modify") {
     console.log("modify");
     // modifyStudentToTable(student);
+    window.location.href = "modifyStudent.html";
   }
 }
 
-/* Modify students' profiles */
-function modifyStudentToTable(student) {
 
-}
-
-/* Remove student*/
+/* Remove student from the table and object list */
 function removeStudent(e) {
   e.preventDefault();
   // Find if the remove button was clicked
@@ -89,30 +123,3 @@ function removeStudent(e) {
     console.log(studentOnRecord);
   }
 }
-
-/* Set table of students for default */
-$(document).ready(function() {
-  const addPart = document.querySelector("#add");
-  const addBtn = document.createElement("button");
-  addBtn.className = "add";
-  addBtn.appendChild(document.createTextNode("Add"));
-  addPart.appendChild(addBtn);
-  const studentTable = document.querySelector("#studentTable");
-  const tableRow = document.createElement("tr");
-  const headId= document.createElement("th");
-  const headLastName = document.createElement("th");
-  const headFirstName = document.createElement("th");
-  const headButton = document.createElement("th");
-  headId.appendChild(document.createTextNode("Student Id"));
-  headLastName.appendChild(document.createTextNode("Last Name"));
-  headFirstName.appendChild(document.createTextNode("First Name"));
-  headButton.appendChild(document.createTextNode("Add/Modify/Remove"));
-  tableRow.appendChild(headId);
-  tableRow.appendChild(headLastName);
-  tableRow.appendChild(headFirstName);
-  tableRow.appendChild(headButton);
-  studentTable.appendChild(tableRow);
-  addStudentToTable(student1);
-  addStudentToTable(student2);
-  addStudentToTable(student3);
-});
