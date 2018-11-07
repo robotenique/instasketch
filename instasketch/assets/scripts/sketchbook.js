@@ -61,7 +61,7 @@ $(function () {
         undonePathStack = [];
      });
     /* Eraser functionality */
-    $("#colorpicker").on("click", ".eraser", function (e) {
+    $("#miscellaneous").on("click", ".eraser", function (e) {
         console.log("Eraser selected!");
         canvas.freeDrawingBrush.width = parseInt($(lastWidthBtnClicked).val());
         canvas.freeDrawingBrush.color = "#ffffff";
@@ -184,8 +184,6 @@ $(function () {
         // Reset title of the drawing
         $("#drawingTitle").val("");
     });
-
-
 
 });
 

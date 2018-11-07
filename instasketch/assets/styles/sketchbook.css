@@ -6,6 +6,10 @@
     z-index: -1;
 }
 
+#canvasDiv {
+    padding-left: 5px;
+}
+
 #canvas {
     border: solid 1px grey;
     width: 100%;
@@ -23,16 +27,16 @@
     display: inline-block;
     margin: 5px;
 }
-/* Colorpicker styles */
 
-#colorpicker > button.eraser {
+
+/* Miscellaneous styles */
+
+#miscellaneous>button.eraser {
     background-image: url("../images/sketchbook/eraser.svg");
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
 }
-
-/* Miscellaneous styles */
 
 #smallWidthBrush {
     background-image: url("../images/sketchbook/smallthick.png");
@@ -49,6 +53,11 @@
 #largeWidthBrush {
     background-image: url("../images/sketchbook/bigthick.png");
     background-size: 150%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#extralargeWidthBrush {
+    background-image: url("../images/sketchbook/bigthick.png");
     background-repeat: no-repeat;
     background-position: center;
 }
