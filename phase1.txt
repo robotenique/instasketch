@@ -1,1 +1,73 @@
 # team07 phase1.txt
+
+### Login credentials
+
+- For the student, the login credentials are:
+
+    - Email: amritpal.aujla@mail.utoronto.ca
+    - Password: blah
+
+- For the teacher (admin) the login credentials are:
+
+    - Email: albus.dumbledore@utoronto.ca
+    - Password: dumble123
+
+### Functionalities
+
+#### Student
+
+- Sketchbook (sketchbook.html):
+
+This is the first view a student can see when logged in. The sketchbook is the basis of our
+application, where the student can do his/her sketches. The functionalities of our sketchbook
+are to choose between 8 predefined colors, 4 different thickness for the brush, an eraser,
+undo and redo function and clear the Sketchbook (all done in the javascript).
+
+The student can draw, give a title to the sketch, choose a session if he/she wants to, and
+click on submit, which will prompt a confirmation to save the new drawing. The drawing is saved
+as an SVG image.
+
+- Profile (studentProfile.html):
+
+The profile page for the student gives the student the option to check his own profile, as well
+as modify his own info. By clicking in each attribute, the student can edit the information.
+
+- My Drawings (mydrawings.html):
+
+Shows the student the latest drawings he made, where he/she can click on the drawing and open the
+image in a new tab. This page also shows whether the drawing was submitted (sent to a session) or
+is a free drawing (not submitted).
+
+- Submissions (mysubmissions.html):
+
+(...)
+
+#### Teacher
+
+- Profile (teacherProfile.html):
+
+The profile page for the teacher gives the teacher the option to check his own profile, as well
+as modify his own info. By clicking in each attribute, the teacher can edit the information.
+
+- My sessions (mysessions.html):
+
+Shows a list of the sessions that the teacher opened. Clicking in the sessions page will lead the
+teacher to the drawings of that session, which in turn makes ....
+
+(...)
+
+- Submissions (teacherSubmissions.html)
+
+(...)
+
+- Administration (admin.html):
+
+Shows the current students registered in a table, with the basic information. The teacher can then:
+    - delete a student (Clicking on the option 'Remove' in the respective student)
+    - Modify a student: This opens a new page (modifyStudent.html), where the teacher can modify the attributes
+                        of the selected student (currently it's a mocked student)
+    - Add a new student: The teacher can add new students directly too, which opens the page addStudent.html
+
+
+
+

@@ -109,3 +109,16 @@ main{
 .reset-size{
     font-size: 1em;
 }
+
+
+/* If the footer has the 'logout' link */
+
+.footer .col-6 a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.footer .col-6 a:hover {
+    color: #FB5C5B;
+}
