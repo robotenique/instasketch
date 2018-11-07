@@ -70,17 +70,43 @@
                 <button id="redo" class="tool"></button>
                 <button class="clear-sketch btn-light btn-lg">Clear</button>
             </div>
-            <div id="submitSketch" class="col-7">
+            <div id="submitSketch" class="col-8">
                 <div class="row">
+                    <div class="col-4">
+                        <input type="text" class="form-control-lg col-12" id="drawingTitle" placeholder="Your drawing title">
+                    </div>
                     <div class="dropup col-4">
                         <button class="btn-light btn-lg dropdown-toggle col-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Active Sessions
+                            No session
                         </button>
                         <div id="availableSessions" class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton">
+                            <a id="noSessionItem" class="dropdown-item active" href="javascript:void(0)">No session</a>
                         </div>
                     </div>
                     <div class="col-4">
-                        <button id="submitSketch" class="btn-light btn-lg btn-submit col-12">Submit</button>
+                        <button id="submitSketchButton" class="btn-light btn-lg btn-submit col-12" data-toggle="modal" data-target="#submissionConfirmModal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    MODAL DIV (for when the user submits the sketches) -->
+<div class="modal fade" id="submissionConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Are sure you want to submit your sketch?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        This will save your current sketch to your drawings, send to the session if you have choosen one,
+                        and <strong>Clear</strong> your Sketchbook!
+                    </div>
+                    <div class="modal-footer">
+                        <button id="submitAccept"type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
