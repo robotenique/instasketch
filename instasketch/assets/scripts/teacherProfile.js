@@ -84,7 +84,11 @@ function editAttribute(e){
 
 //change the profile picture
 function changePicture(e){
-	console.log("change picture here");
+	if (this.files && this.files[0]) {
+		const imgURL = URL.createObjectURL(this.files[0]);
+		profilePic.firstElementChild.src = imgURL;
+		setProfilePicURL(imgURL);
+    }
 }
 
 //confirm the change of an attribute and manipulate the DOM accordingly
