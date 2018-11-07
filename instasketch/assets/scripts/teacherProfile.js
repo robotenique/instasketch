@@ -49,7 +49,8 @@ let teacher = {
     email: "albus.dumbledore@utoronto.ca",
     school: "Hogwarts",
     province: "REDACTED",
-	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png"
+	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png",
+	password: "blah"
 }
 
 //load in initial values

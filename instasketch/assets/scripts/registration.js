@@ -54,7 +54,7 @@ $(document).ready(function() {
     const teacher = "TBA";
     const teacherCode = "TBA";
 
-    // create user account.
+    // create user account - This should send the account to the server
     const account = new UserAccount(email, password, firstName, lastName, province, school, position, teacherCode, teacher);
 
     // Get value of the radio button for teacher or student

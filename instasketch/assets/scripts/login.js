@@ -2,9 +2,10 @@
 
 // User object
 class User {
-  constructor (userName, password) {
-    this.userName = userName;
+  constructor(email, password, isteacher=false) {
+    this.email = email;
     this.password = password;
+    this.isteacher = isteacher;
   }
 }
 
@@ -22,24 +23,29 @@ function validateForm() {
   }
 }
 
+
+const validStudent = new User("amritpal.aujla@mail.utoronto.ca", "blah");
+const validTeacher = new User("albus.dumbledore@utoronto.ca", "dumble123", true);
+
 // When login button is clicked:
 // user object is created (user input: username and password)
 $(document).ready(function() {
   $("#btn1").click(function() {
-    const userName = $("#uname").val();
+    const email = $("#uname").val();
     const password = $("#pw").val();
-    const user = new User(userName, password);
+    const user = new User(email, password);
 
     // Decide if it's student or teacher and
     // direct the page to teacher/student version accordingly.
-    if (user.userName == "albus.dumbledore@utoronto.ca" && user.password == "dumble123") {
+    // This validation would be done in the server, with encription in the password ofc
+    if (user.email === validTeacher.email && user.password === validTeacher.password) {
       console.log("Teacher is logging in.");
-      window.location.href = "teacherIndex.html";
-    } else if (user.userName == "student@mail.utoronto.ca" && user.password =="student123") {
+      window.location.href = "mysessions.html";
+    } else if (user.email === validStudent.email && user.password === validStudent.password) {
       console.log("Student is logging in.");
-      window.location.href = "studentIndex.html";
+      window.location.href = "sketchbook.html";
     } else {
-      alert("Please enter correct username and password.");
+      alert("Please enter correct email and password.");
     }
 
     console.log(user);
