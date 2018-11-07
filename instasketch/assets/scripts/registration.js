@@ -78,6 +78,6 @@ $(document).ready(function() {
     // Here we would send the new account to the server
     console.log(account);
 
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   });
 });
