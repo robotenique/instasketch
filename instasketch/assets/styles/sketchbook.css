@@ -1,3 +1,11 @@
+.nopad {
+    padding: 0;
+}
+
+.lowzindex {
+    z-index: -1;
+}
+
 #canvas {
     border: solid 1px grey;
     width: 100%;
@@ -5,7 +13,7 @@
     display: inline-block;
 }
 
-#colorpicker > button.color, button.eraser, #tools > button.tool{
+#colorpicker > button.color, button.eraser, #tools > button.tool, #miscellaneous > button {
     border-radius: 50%;
     border-style: solid;
     border-color: #fffff0;
@@ -15,6 +23,7 @@
     display: inline-block;
     margin: 5px;
 }
+/* Colorpicker styles */
 
 #colorpicker > button.eraser {
     background-image: url("../images/sketchbook/eraser.svg");
@@ -23,6 +32,26 @@
     background-position: center;
 }
 
+/* Miscellaneous styles */
+
+#smallWidthBrush {
+    background-image: url("../images/sketchbook/smallthick.png");
+    background-size: 300%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#medWidthBrush {
+    background-image: url("../images/sketchbook/bigthick.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#largeWidthBrush {
+    background-image: url("../images/sketchbook/bigthick.png");
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 /* Tools row styles */
 #tools > button.tool {
@@ -58,7 +87,9 @@
     background-color: #ffb0af;
 }
 
+
 /* div {
     border: 1px solid black !important;
 }
+
  */

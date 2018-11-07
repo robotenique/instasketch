@@ -25,6 +25,7 @@ let undonePathStack = [];
 const defaultColor = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00",
                         "#0000FF", "#4B0082", "#9400D3", "#000000"]
 
+                        // Set color values to buttons
 $("#colorpicker > button.color").each(function(index) {
     this.value = defaultColor[index];
     $(this).css("background-color", defaultColor[index]);
@@ -32,6 +33,11 @@ $("#colorpicker > button.color").each(function(index) {
 
 let lastColorBtnClicked = $("#colorpicker button:first-child");
 $("#colorpicker button:first-child")
+    .css("border-color", "#000000")
+    .css("border-width", "3px");
+
+let lastWidthBtnClicked = $("#miscellaneous #medWidthBrush");
+$("#miscellaneous #medWidthBrush")
     .css("border-color", "#000000")
     .css("border-width", "3px");
 
@@ -57,16 +63,24 @@ $(function () {
     /* Eraser functionality */
     $("#colorpicker").on("click", ".eraser", function (e) {
         console.log("Eraser selected!");
-        canvas.freeDrawingBrush.width = 20;
+        canvas.freeDrawingBrush.width = parseInt($(lastWidthBtnClicked).val());
         canvas.freeDrawingBrush.color = "#ffffff";
         updateColorButtonBorder(e.target);
     });
     /* Color selection functionality */
     $("#colorpicker").on("click", ".color", function (e) {
         console.log("Color selected!");
-        canvas.freeDrawingBrush.width = 10;
+        canvas.freeDrawingBrush.width = parseInt($(lastWidthBtnClicked).val());
         updateColorButtonBorder(e.target);
         canvas.freeDrawingBrush.color = e.target.value;
+        canvas.renderAll();
+    });
+    /* Width selection functionality */
+    $("#miscellaneous").on("click", ".widthSelector", function (e) {
+        console.log("Width selected!");
+        canvas.freeDrawingBrush.width = parseInt($(this).val());
+        updateWidthButtonBorder(e.target);
+        console.log('canvas.freeDrawingBrush.width', canvas.freeDrawingBrush.width);
         canvas.renderAll();
     });
     /* Undo tool functionality */
@@ -101,7 +115,8 @@ $(function () {
         // Reset here the thickness slider
         pathStack = []
         undonePathStack = []
-        updateColorButtonBorder($("#colorpicker button:first-child"))
+        updateColorButtonBorder($("#colorpicker button:first-child"));
+        updateWidthButtonBorder($("#miscellaneous #medWidthBrush"));
         canvas.renderAll();
 
     });
@@ -168,7 +183,10 @@ $(function () {
         $("#tools .clear-sketch").trigger("click");
         // Reset title of the drawing
         $("#drawingTitle").val("");
-    })
+    });
+
+
+
 });
 
 /* ------------------------ AUXILIAR FUNCTIONS ------------------------ */
@@ -187,4 +205,17 @@ function updateColorButtonBorder(newColorButton) {
         .css("border-color", "#000000")
         .css("border-width", "3px");
     lastColorBtnClicked = $(newColorButton);
+}
+
+function updateWidthButtonBorder(newWidthButton) {
+    /* Don't need to do anything if they're equal */
+    if (newWidthButton === lastWidthBtnClicked)
+        return;
+    lastWidthBtnClicked
+        .css("border-color", "#fffff0")
+        .css("border-width", "2px");
+    $(newWidthButton)
+        .css("border-color", "#000000")
+        .css("border-width", "3px");
+    lastWidthBtnClicked = $(newWidthButton);
 }

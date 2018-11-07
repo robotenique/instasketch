@@ -47,20 +47,28 @@
     <!--  The main content goes here -->
     <main role="main" class="container gray-bg">
         <div class="row">
-            <div class="col-11">
+            <div class="col-10 nopad">
                 <canvas id="canvas" width="1366" height="700" class="canvas"></canvas>
             </div>
+            <div class="col-1 lowzindex"></div>
             <div class="col-1">
-                <div id="colorpicker">
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="color"></button>
-                    <button class="eraser" value="#ffffff"></button>
+                <div class="row">
+                    <div id="colorpicker" class="col-6 nopad">
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="eraser" value="#ffffff"></button>
+                    </div>
+                    <div id="miscellaneous" class="col-6 nopad">
+                        <button value="3"  id="smallWidthBrush" class="widthSelector"></button>
+                        <button value="10" id="medWidthBrush" class="widthSelector"></button>
+                        <button value="20" id="largeWidthBrush" class="widthSelector"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,8 +98,7 @@
             </div>
         </div>
         <!--    MODAL DIV (for when the user submits the sketches) -->
-<div class="modal fade" id="submissionConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-    aria-hidden="true">
+        <div class="modal fade" id="submissionConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
