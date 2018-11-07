@@ -65,17 +65,17 @@ $(document).ready(function() {
     }
 
     if (account.position == "teacher") {
-      alert('teacher');
+      alert('Registered Teacher');
       const teacherCodeVal = $("#teachercode").val();
       account.teacherCode = teacherCodeVal;
       account.teacher = "None";
     } else if (account.position == "student") {
-      alert('student');
+      alert('Registered Student');
       const teacherVal = $("#teachers").val();
       account.teacher = teacherVal;
       account.teacherCode = "None";
     }
-
+    // Here we would send the new account to the server
     console.log(account);
 
     window.location.href = "login.html";
