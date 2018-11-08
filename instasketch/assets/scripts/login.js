@@ -23,7 +23,9 @@ function validateForm() {
   }
 }
 
-
+/** Mock data for valid users for teacher and student.
+  * Supposed to check the input data with the database on the server.
+  */
 const validStudent = new User("amritpal.aujla@mail.utoronto.ca", "blah");
 const validTeacher = new User("albus.dumbledore@utoronto.ca", "dumble123", true);
 
@@ -35,9 +37,10 @@ $(document).ready(function() {
     const password = $("#pw").val();
     const user = new User(email, password);
 
-    // Decide if it's student or teacher and
-    // direct the page to teacher/student version accordingly.
-    // This validation would be done in the server, with encription in the password ofc
+    /** Decide if it's student or teacher and
+      * direct the page to teacher/student version accordingly.
+      * This validation would be done in the server, with encription in the password ofc
+      */
     if (user.email === validTeacher.email && user.password === validTeacher.password) {
       console.log("Teacher is logging in.");
       window.location.href = "mysessions.html";

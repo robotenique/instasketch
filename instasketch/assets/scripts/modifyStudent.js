@@ -4,7 +4,11 @@ const finishButton = document.querySelector("#btn1");
 
 finishButton.addEventListener("click", goBack);
 
-/* After finish button, user goes back to admin page */
+/** After finish button, user goes back to admin page.
+  * Modification needs to happen in this file.
+  * goBack(e) should apply the changes that user made on the page
+  * and bring those modified data to the database on the server.
+  */
 function goBack(e) {
   e.preventDefault;
   if (e.target.type === "submit") {

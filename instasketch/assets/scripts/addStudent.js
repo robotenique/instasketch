@@ -21,6 +21,11 @@ const button = document.querySelector("#btn1");
 
 button.addEventListener("click", register);
 
+/** Register function that adds a new student object
+  * to the database on the server. This is a mock example.
+  * For phase 1, admin_after_add.html will reflect
+  * the newly added student object on the table by hardcoded data.
+  */
 function register(e) {
   e.preventDefault;
   if (e.target.id === "btn1") {

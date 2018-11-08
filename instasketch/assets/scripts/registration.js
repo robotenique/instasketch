@@ -54,7 +54,9 @@ $(document).ready(function() {
     const teacher = "TBA";
     const teacherCode = "TBA";
 
-    // create user account - This should send the account to the server
+    /** Supposed to create a new UserAccount object and add it
+      * onto the database on the server. This is a mock example.
+      */
     const account = new UserAccount(email, password, firstName, lastName, province, school, position, teacherCode, teacher);
 
     // Get value of the radio button for teacher or student
@@ -78,6 +80,7 @@ $(document).ready(function() {
     // Here we would send the new account to the server
     console.log(account);
 
+    /* Mock example of going back to index page after registration.*/
     window.location.href = "index.html";
   });
 });

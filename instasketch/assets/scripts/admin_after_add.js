@@ -13,18 +13,25 @@ class Student {
   }
 }
 
-/* Default data for students */
+/** Default data for students
+  * Supposed to retrieve Student data from the server
+  */
 const student1 = new Student("ab1", "Smith", "Joe");
 const student2 = new Student("cd2", "Mckenzie", "Dorothy");
 const student3 = new Student("ef3", "Amrit", "Aujla");
-
+/** StudentTable represents the student database from the server.
+  * Supposed to retrieve Student database from the server
+  */
 const studentTable = document.querySelector("#studentTable");
 const addPart = document.querySelector("#add");
 addPart.addEventListener("click", addStudent);
 studentTable.addEventListener("click", removeStudent);
 studentTable.addEventListener("click", modifyStudent);
 
-/* Set table of students for default */
+/** Set table of students for default
+  * Mock data of initial student database.
+  * Need to retrieve real database from the server later.
+  */
 function init() {
   const addPart = document.querySelector("#add");
   const addBtn = document.createElement("button");
@@ -62,7 +69,10 @@ function addStudent(e) {
   }
 }
 
-// After adding student, see a new student object added
+/** After adding student, see a new student object added
+  * Need to use backend later to update the student database
+  * accordingly after adding a new student.
+  */
 if (document.referrer === "addStudent.html") {
   /* Pretend a new student object added */
   //  const newStudent = new Student("123", "newStudent", "Hello");
@@ -108,7 +118,6 @@ function modifyStudent(e) {
   }
 }
 
-
 /* Remove student from the table and object list */
 function removeStudent(e) {
   e.preventDefault();
@@ -124,6 +133,10 @@ function removeStudent(e) {
   }
 }
 
-/* Add a new student */
+/** Add a new student
+  * Mock example of adding a student.
+  * For phase 2, need to add a new student onto the real database
+  * to the server.
+  */
 const newStudent = new Student("canada123", "Harry", "Potter");
 addStudentToTable(newStudent);
