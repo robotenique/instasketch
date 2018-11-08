@@ -67,6 +67,7 @@ for(let submission of sessionSubmissions){
 	submissionTitle.appendChild(document.createTextNode(drawing.title));
 	
 	const submissionId = document.createElement("small");
+	submissionId.className = "hiddenId";
 	submissionId.appendChild(document.createTextNode(drawing.drawing_id));
 	
 	const submissionAuthor = document.createElement("p");

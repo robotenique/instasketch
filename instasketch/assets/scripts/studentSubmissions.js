@@ -65,9 +65,6 @@ for(let submission of studentSubmissions){
 	submissionTitle.className = "card-title";
 	submissionTitle.appendChild(document.createTextNode(drawing.title));
 	
-	const submissionId = document.createElement("small");
-	submissionId.appendChild(document.createTextNode(drawing.drawing_id));
-	
 	const submissionSession = document.createElement("p");
 	const sessionName = getSession(submission.session_id).title;
 	submissionSession.appendChild(document.createTextNode(sessionName));
@@ -83,7 +80,6 @@ for(let submission of studentSubmissions){
 	const cardBody = document.createElement("div");
 	cardBody.className = "card-body";
 	cardBody.appendChild(submissionTitle);
-	cardBody.appendChild(submissionId);
 	cardBody.appendChild(submissionSession);
 	cardBody.appendChild(textArea);
 	
