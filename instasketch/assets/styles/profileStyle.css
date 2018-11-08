@@ -18,3 +18,10 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.editText {
+	margin-top: 2px;
+	margin-left: 15px;
+	margin-right: 10px;
+	color: gray;
+}
