@@ -13,6 +13,25 @@ const btn = document.getElementById("search");
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
+const context = document.getElementById("context");
+
+btn.addEventListener("click", notify);
+
+
+function notify(e) {
+  e.preventDefault();
+  let email = document.getElementsByTagName("input")[0];
+  if (e.target.id === "search") {
+    if (email.value === "") {
+      alert("Email address must be filled out.");
+      return False;
+    } else {
+    context.innerHTML = "Your password has been sent to your email."
+    }
+  }
+}
+
+/*
 // When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
@@ -29,3 +48,4 @@ window.onclick = function(e) {
     modal.style.display = "none";
   }
 }
+*/
