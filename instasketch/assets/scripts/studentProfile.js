@@ -136,6 +136,7 @@ function confirmChange(e){
 			break;
 		case 'teacherText':
 			if(!isTeacherValid(changedValue)){
+				alert("You can only change your teacher to another existing teacher");
 				return;
 			}
 			setProfileTeacher(changedValue);
