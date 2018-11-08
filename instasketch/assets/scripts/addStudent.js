@@ -37,6 +37,6 @@ function register(e) {
     studentOnRecord[numOfStudents] = newStudent;
     console.log(studentOnRecord[numOfStudents]);
     // window.location.href="admin.html";
-    window.history.back();
+    window.location.href = "admin_after_add.html";
   }
 }
