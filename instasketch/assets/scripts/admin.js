@@ -16,8 +16,8 @@ class Student {
 /** Default data for students
   * Supposed to retrieve Student data from the server
   */
-const student1 = new Student("ab1", "Smith", "Joe");
-const student2 = new Student("cd2", "Mckenzie", "Dorothy");
+const student1 = new Student("ab1", "Joe", "Smith");
+const student2 = new Student("cd2", "Dorothy", "Mckenzie");
 const student3 = new Student("ef3", "Harrison", "Matt");
 
 /** StudentTable represents the student database from the server.
