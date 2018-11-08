@@ -115,6 +115,10 @@ for(let submission of sessionSubmissions){
 function submitComment(e){
 	const submissionId = e.target.parentElement.children[1].textContent;
 	setSubmissionComments(submissionId, e.target.previousElementSibling.value);
+	
+	//hiding the card afterwards
+	const card = e.target.parentElement.parentElement;
+	card.id = "hide";
 }
 
 //getting the appropriate students and drawings based on their id's
