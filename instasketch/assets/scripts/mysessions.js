@@ -7,7 +7,6 @@ let sessions = [
      teacher_id: '1123',
      title: 'Shapes',
      date: 'Friday, October 5, 2018',
-     submissions_page: 'teacherSubmissions.html',
      marked_submissions: 30,
      total_submissions: 30,
      open: false},
@@ -15,7 +14,6 @@ let sessions = [
      teacher_id: '1123',
      title: 'Logos',
      date: 'Monday, October 8, 2018',
-     submissions_page: 'teacherSubmissions.html',
      marked_submissions: 20,
      total_submissions: 20,
      open: false},
@@ -23,7 +21,6 @@ let sessions = [
      teacher_id: '1123',
      title: 'Plants',
      date: 'Tuesday, October 9, 2018',
-     submissions_page: 'teacherSubmissions.html',
      marked_submissions: 40,
      total_submissions: 40,
      open: false},
@@ -31,7 +28,6 @@ let sessions = [
      teacher_id: '1123',
      title: 'Automobiles',
      date: 'Wednesday, October 10, 2018',
-     submissions_page: 'teacherSubmissions.html',
      marked_submissions: 20,
      total_submissions: 20,
      open: false},
@@ -39,7 +35,6 @@ let sessions = [
      teacher_id: '1123',
      title: 'Trains',
      date: 'Thursday, October 11, 2018',
-     submissions_page: 'teacherSubmissions.html',
      marked_submissions: 30,
      total_submissions: 30,
      open: true},
@@ -47,7 +42,6 @@ let sessions = [
      teacher_id: '1123',
      title: 'Animals',
      date: 'Friday, October 12, 2018',
-     submissions_page: 'teacherSubmissions.html',
      marked_submissions: 0,
      total_submissions: 3,
      open: true}
@@ -64,13 +58,12 @@ for (let i = 0; i < sessions.length; ++i)
 function addSession() {
     let newSessionName = prompt('Please enter a name for the new session:', 'New Session');
     if (newSessionName != null && newSessionName != '') {
-        // In Phase 2, IDs, date and submissions page link will be generated dynamically
+        // In Phase 2, IDs and date will be generated dynamically
         const session = {
             session_id: '106',
             teacher_id: '1123',
             title: newSessionName,
             date: 'Wednesday, November 7, 2018',
-            submissions_page: 'teacherSubmissions.html',
             marked_submissions: 0,
             total_submissions: 0,
             open: true
@@ -91,14 +84,10 @@ function addSessionToDOM(session) {
     const body = document.createElement('div');
     body.className = 'card-body';
 
-    const titleLink = document.createElement('a');
-    titleLink.setAttribute('target', '_blank');
-    titleLink.setAttribute('href', session.submissions_page);
     const titleHeader = document.createElement('h5');
     titleHeader.className = 'card-title';
     titleHeader.appendChild(document.createTextNode(session.title));
-    titleLink.appendChild(titleHeader);
-    body.appendChild(titleLink);
+    body.appendChild(titleHeader);
 
     const date = document.createElement('p');
     date.className = 'card-text';
