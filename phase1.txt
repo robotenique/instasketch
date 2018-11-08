@@ -124,7 +124,8 @@ Finally, the teacher can click on the Administration link in the navigation bar 
 This page shows the current students registered in a table, with the basic information. The teacher can then:
     - Delete a student (Clicking on the option 'Remove' in the respective student)
     - Modify a student: This opens a new page (modifyStudent.html), where the teacher can modify the attributes
-                        of the selected student just as if it were the student itself doing so. Making these changes
+                        of the selected student just as if it were the student itself doing so. Click the Modify button on 
+						the first student. It takes you to his profile where you can change things.Making these changes
 						will not affect anything since the information is not carrying over between pages with servers.
     - Add a new student: The teacher can add new students directly too. After clicking on the Add button, it opens a page
 						like the registration page where you can enter the following information:
