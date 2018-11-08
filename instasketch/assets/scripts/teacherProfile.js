@@ -13,6 +13,9 @@ const profileProvince = document.querySelector("#province");
 const formRow = document.createElement('div');
 formRow.classList.add("row");
 formRow.classList.add("newForm");
+const editText = document.createElement('span');
+editText.className = "editText";
+formRow.appendChild(editText);
 const editForm = document.createElement('form');
 editForm.id = "form";
 const inputField = document.createElement('input');
@@ -74,6 +77,8 @@ function editAttribute(e){
 	if(e.target.classList.contains('editButton')){
 		attribute = e.target.parentElement.parentElement.firstElementChild;
 		textToChange = attribute.lastElementChild;
+		const attributeName = attribute.firstElementChild.textContent.substring(0, attribute.firstElementChild.textContent.length - 2);
+		editText.textContent = "Editing " + attributeName;
 		if(!profile.lastElementChild.classList.contains('newForm')){
 			profile.appendChild(formRow);
 		}
