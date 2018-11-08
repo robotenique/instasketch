@@ -1,0 +1,11 @@
+main {
+  margin-top: 100px;
+}
+
+form {
+  text-align: center;
+}
+
+form .container > input, select, label{
+	margin: 10px 10px;
+}

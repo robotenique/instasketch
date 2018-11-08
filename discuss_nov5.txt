@@ -1,0 +1,133 @@
+login -> registration -> login 
+- lead user to teacher/student page 
+
+teacher profile: admin
+- able to remove / add students to a sesion
+- create a session 
+
+functions to change info of profile 
+- like 'database'
+
+view for having a list of their students and click on the students 
+change their profile 
+
+
+field for id for students (immutable) - no need to show them students 
+
+
+both can do registration
+but teachers can add students  
+
+
+teachers can see all the list of students and add/delete students 
+
+My Drawing:
+
+
+My Sessions:
+- mark and put a comment 
+- mark : no number, just 'cool, or 'good' 
+- 12 out of 20 submissions have been marked --> same for all submissions marked 
+
+When you open 'automobile' 
+- you can look at drawing and mark it 
+- message to click 
+- five buttons: 'cool', 'pretty good', 'nice' etc 
+
+every page should have javascript 
+
+create dom with javascript 
+
+using jquery might be easier 
+
+
+stuff that should change is in javascript 
+stuff that doesn't change is in html 
+
+registration: 'welcome to instasketch' things like this is in html 
+but everything 
+
+sketchbook:
+- will do undo/re-do 
+- 'save' sketch function as a rgb file 
+- 2, 3 different brushes
+
+Navbar 
+- direct student to sketchbook as default page 
+- direct teacher to my sessions as default page 
+
+student : profile, my drawing, my submission(actually has comments), sketchbook 
+teacher: profile, submissions, sessions(create/close session), sketchbook, admin  
+- admin:
+	- look at students list 
+	- modifying / creating / deleting students 
+	- table  - each row has a minus icon 
+	- plus button to add students
+	- plus: registration page to add students 
+	- delete, create, modify students 
+	- when they click on student, edit their information, done, how do they go back? 
+	- how many students have? 
+		- fisrt, last, name, school, teacher, email, province 
+		- put a table in the admin page 
+		- dom manipulated 
+		- modify profile page 
+		- by html will be the same
+		- js will change the data 
+	- modify profile page.
+	
+ 
+
+
+can teacher send message for students? 
+- No 
+
+students wil put in the session's code to join the session 
+
+my session: open the session buttons 
+- plus button (session, sessionid)
+- new page to let students know the session id, and name (current session) 
+- redirect from mysessions page 
+- prof will show the session id in big text in new page 
+ 
+
+Two different users 
+- given user category, the text html is fixed 
+
+
+links- html or js?
+
+
+
+Consistent Data:
+- Student:
+	
+
+- Teacher:
+
+teacher = {	
+	firstName: `Albus`,
+	lastName: `Dumbledore`, 
+	email: "albus.dumbledore@utoronto.ca", 
+	school: "UofT",
+	province: "ON"
+	id: '4k23ilm'} 
+	 
+
+login/registration
+array of users where each 
+
+if login:
+- if the info is in users object, 
+if it's teacher -> direct to teacher page
+else: student page 
+
+
+Where should we store password?
+- password in objects as well along with username 
+
+
+
+index page will be login page. 
+
+
+
