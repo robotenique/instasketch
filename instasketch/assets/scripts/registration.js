@@ -17,8 +17,8 @@ class UserAccount {
     this.province = province;
     this.school = school;
     this.position = position;
-    // this.teachercode = "";
-    // this.teacher = "";
+    this.teachercode = "";
+    this.teacher = "";
   }
 }
 
