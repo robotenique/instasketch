@@ -97,8 +97,8 @@ the credentials given above.
 
 This is the page a teacher starts off at after logging in. It shows a list of the sessions that the teacher opened.
 The session boxes show whether a session is currently open. If so, the teacher has the ability to close it. You can close
-the Animals session. There is also a button to make a new session. You can click it and enter anything to make an open session.
-The new session can be seen in a new tab as well as in the sessions page.
+the Animals session. There is also a button to make a new session (the blue +). You can click it and enter a new session name
+of Planes to create a new open session. The new session can be seen in a new tab as well as in the My Sessions page.
 
 Click the submissions page to see the submissions from the students and mark them.
 
