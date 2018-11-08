@@ -1,5 +1,9 @@
 'use strict';
 
+/** findAccount.js: Supposed to match a user input with the database on the server
+  * and then send the password to the user's email address, once matched.
+  */
+
 // Get the modal
 const modal = document.getElementById('myModal');
 
