@@ -29,7 +29,7 @@ let sessions = [
      open: false},
     {session_id: '103',
      teacher_id: '1123',
-     title: 'Animals',
+     title: 'Automobiles',
      date: 'Wednesday, October 10, 2018',
      submissions_page: 'teacherSubmissions.html',
      marked_submissions: 20,
@@ -45,11 +45,11 @@ let sessions = [
      open: true},
     {session_id: '105',
      teacher_id: '1123',
-     title: 'Automobiles',
+     title: 'Animals',
      date: 'Friday, October 12, 2018',
      submissions_page: 'teacherSubmissions.html',
-     marked_submissions: 12,
-     total_submissions: 20,
+     marked_submissions: 0,
+     total_submissions: 3,
      open: true}
 ];
 
