@@ -55,15 +55,28 @@ let student = {
 	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png"
 }
 
-//the teacher object for the student's teacher - supposed to be populated from the server
-let teacher = {
+//the teacher objects for the student's teacher - supposed to be populated from the server
+let teacher1 = {
     id: "albus1",
     firstName: "Albus",
     lastName: "Dumbledore",
     email: "albus.dumbledore@utoronto.ca",
-    school: "UofT",
-    province: "Ontario"
+    school: "Hogwarts",
+    province: "REDACTED",
+	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png",
+	password: "blah"
 }
+let teacher2 = {
+	id: "marky1",
+	firstName: "Mark",
+	lastName: "Kazakevich",
+	email: "csc309-2018-09@cs.toronto.edu",
+	school: "UofT",
+	province: "Ontario",
+	pictureURL: "https://www.teach.cs.toronto.edu/~csc309h/fall/static/img/people/mark.jpg",
+	password: "password"
+}
+let teachers = [teacher1, teacher2];
 
 //load in initial values
 document.addEventListener('DOMContentLoaded', function() {
@@ -110,7 +123,6 @@ function changePicture(e){
 function confirmChange(e){
 	e.preventDefault();
 	const changedValue = document.querySelector("#entryInput").value;
-	textToChange.innerText = changedValue;
 	
 	switch(attribute.firstElementChild.id){
 		case 'firstNameText':
@@ -123,6 +135,9 @@ function confirmChange(e){
 			setProfileSchool(changedValue);
 			break;
 		case 'teacherText':
+			if(!isTeacherValid(changedValue)){
+				return;
+			}
 			setProfileTeacher(changedValue);
 			break;
 		case 'emailText':
@@ -133,10 +148,26 @@ function confirmChange(e){
 			break;
 	}
 	
+	textToChange.innerText = changedValue;
 	profile.removeChild(profile.lastChild);
 	inputField.value = '';
 }
 
+
+//checks if the name entered in teacher space is valid
+function isTeacherValid(newName){
+	for(let teacher of teachers){
+		if(makeLean(teacher.firstName + teacher.lastName) === makeLean(newName)){
+			return true;
+		}
+	}
+	return false;
+}
+
+//makes str into a string without spaces and all characters lowercase
+function makeLean(str){
+	return (str.replace(/\s/g, '')).toLowerCase().trim();
+}
 
 //Code below requires server calls
 function getProfilePicURL(){
@@ -156,8 +187,10 @@ function getProfileSchool(){
 }
 
 function getProfileTeacher(){
-	if(teacher.id === student.teacherId){
-	return teacher.firstName + ' ' + teacher.lastName;
+	for (let teacher of teachers){
+		if(teacher.id === student.teacherId){
+			return teacher.firstName + ' ' + teacher.lastName;
+		}
 	}
 }
 
@@ -185,8 +218,12 @@ function setProfileSchool(school){
 	student.school = firstName;
 }
 
-function setProfileTeacher(teacher){
-	jfdassfdjk
+function setProfileTeacher(teacherName){
+	for (let teacher of teachers){
+		if(makeLean(teacher.firstName + teacher.lastName) === makeLean(teacherName)){
+			student.teacherId = teacher.id;
+		}
+	}
 }
 
 function setProfileEmail(email){
