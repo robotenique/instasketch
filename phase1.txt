@@ -12,7 +12,35 @@
     - Email: albus.dumbledore@utoronto.ca
     - Password: dumble123
 
-### Functionalities
+### Instructions and Functionality
+
+The first page to be seen after opening index.html is the login page. This page is where you can use
+the credentials above to log in as a student or teacher. The page also has a create account and forgot
+id/password link. 
+
+Clicking 'Create Account' takes you to the registration page. This page has the space for you to register
+on InstaSketch. You can input the following values to create your accounts.
+
+Student:
+	- First Name: Amritpal
+	- Last Name: Aujla
+	- E-mail: amritpal.aujla@mail.utoronto.ca
+	- Password: blah
+	- School: UofT
+	- Province: Ontario
+	- Teacher: Albus Dumbledore
+Teacher: 
+	- First Name: Albus
+	- Last Name: Dumbledore
+	- E-mail: albus.dumbledore@utoronto.ca
+	- Password: dumble123
+	- School: Hogwarts
+	- Province: Unknown
+
+Clicking the submit button registers the user and takes you back to the login page.
+
+Clicking the 'Forgot ID/Password' link takes you to a page where you can enter your e-mail and a message is
+meant to be sent to the email with the password. Currently it does not send a mail (no server interaction).
 
 #### Student
 
@@ -21,52 +49,89 @@
 This is the first view a student can see when logged in. The sketchbook is the basis of our
 application, where the student can do his/her sketches. The functionalities of our sketchbook
 are to choose between 8 predefined colors, 4 different thickness for the brush, an eraser,
-undo and redo function and clear the Sketchbook (all done in the javascript).
+undo and redo function and clear the Sketchbook (all done in the javascript). Each item can be
+clicked on to be selected. The sketchpad is the white area where you can click and drag to use 
+the currently selected brush to draw.
 
-The student can draw, give a title to the sketch, choose a session if he/she wants to, and
-click on submit, which will prompt a confirmation to save the new drawing. The drawing is saved
-as an SVG image.
+The student can give a title to the sketch in a text box below the sketchpad. They can choose a 
+session from a drop down list if he/she wants to, and click on submit, which will prompt
+a confirmation to save the new drawing. The drawing is saved as an SVG image and the sketchpad is
+cleared so the student can start again.
+
+The pages have a navigation bad at the top with a few options. The final one at the far right, highlighted,
+is the one currently active (sketchbook). You can click on the others to go to the relevant pages. Click on
+the profile on the navbar to view the student's profile.
 
 - Profile (studentProfile.html):
 
 The profile page for the student gives the student the option to check his own profile, as well
-as modify his own info. By clicking in each attribute, the student can edit the information.
+as modify his own info. By clicking the edit button beside each attribute, the student can edit the 
+information stored about themselves. They can modify all attributes freely except for their teacher. Since their
+teacher has to be one from the school, the new teacher can only be one that already exists. So when changing the teacher's name,
+you can write either Dumbledore's name or Mark's name, but none others will work. The profile picture can also 
+be changed by clicking on the picture and selecting a new one locally. It is stored as a link in the javascript but
+that is meant to be simulating what will likely happen with the picture's retreival from the server.
+
+You can click then click on the My Drawings link on the navigation bar to see the drawings from this student.
 
 - My Drawings (mydrawings.html):
 
-Shows the student the latest drawings he made, where he/she can click on the drawing and open the
+This page shows the student the latest drawings they made, where they can click on the drawing and open the
 image in a new tab. This page also shows whether the drawing was submitted (sent to a session) or
 is a free drawing (not submitted).
 
+You can then click on the Submissions link on the navigation bar to see the submissions from this student.
+
 - Submissions (mysubmissions.html):
 
-(...)
+The submissions page has all of the submissions made by this student. It contains the submitted drawings, the name
+of the session that the student submitted the drawing to, and the teacher's comments on the drawings. If the
+teacher commented something, the text is there. If they did not, there is an empty box.
+
+That's the web experience from the student side. Click Logout in the footer of the page and log in as a teacher using
+the credentials given above.
 
 #### Teacher
 
-- Profile (teacherProfile.html):
-
-The profile page for the teacher gives the teacher the option to check his own profile, as well
-as modify his own info. By clicking in each attribute, the teacher can edit the information.
-
 - My sessions (mysessions.html):
 
-Shows a list of the sessions that the teacher opened. Clicking in the sessions page will lead the
-teacher to the drawings of that session, which in turn makes ....
+This is the page a teacher starts off at after logging in. It shows a list of the sessions that the teacher opened. 
+The session boxes show whether a session is currently open. If so, the teacher has the ability to close it. You can close
+the Animals session. There is also a button to make a new session. You can click it and enter anything to make an open session. 
+The new session can be seen in a new tab as well as in the sessions page.
 
-(...)
+Click the submissions page to see the submissions from the students and mark them. 
 
 - Submissions (teacherSubmissions.html)
 
-(...)
+The submissions page has all the submissions from the students. The teacher can click on each image to view the drawings. The
+submissions show the name of the student that submitted the drawing and a box for the teacher to give feedback. The teacher can\
+simply write in the boxes and press the submit button to record their changes to the student's submissions.
+Feel free to write as you will in the submissions boxes.
+
+Click on the Profile link in the navigation bar to see the teacher's profile.
+
+- Profile (teacherProfile.html):
+
+The profile page for the teacher shows their own profile, as and lets them modify their own info, in the same way a student can.
+The teacher does not have the 'teacher' field that a student profile does and thus no restrictions on how they are able to modify
+their attributes.
+
+Finally, the teacher can click on the Administration link in the navigation bar to manage their students.
 
 - Administration (admin.html):
 
-Shows the current students registered in a table, with the basic information. The teacher can then:
-    - delete a student (Clicking on the option 'Remove' in the respective student)
+This page shows the current students registered in a table, with the basic information. The teacher can then:
+    - Delete a student (Clicking on the option 'Remove' in the respective student)
     - Modify a student: This opens a new page (modifyStudent.html), where the teacher can modify the attributes
-                        of the selected student (currently it's a mocked student)
-    - Add a new student: The teacher can add new students directly too, which opens the page addStudent.html
+                        of the selected student just as if it were the student itself doing so. Making these changes
+						will not affect anything since the information is not carrying over between pages with servers.
+    - Add a new student: The teacher can add new students directly too. After clicking on the Add button, it opens a page
+						like the registration page where you can enter the following information:
+						First Name: Harry		Last Name: Potter			Rest of the information: Any possible values
+						Click the Finish button and then see the new student on the list (duplicated admin page).
+						
+You can click the About Us link in the footer to see a summary of what InstaSketch can do for both students and teachers.
 
 
 
