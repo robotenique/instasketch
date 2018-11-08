@@ -71,7 +71,9 @@ function addSession() {
 
         addSessionToDOM(session);
 
-        const fullUrl = `newsession.html?id=${session.session_id}&title=${session.title}`;
+        /* In Phase 2, the ID and title will be passed in to the New Session page via the URL. */
+        // const fullUrl = `newsession.html?id=${session.session_id}&title=${session.title}`;
+        const fullUrl = 'newsession.html';
         window.open(fullUrl, '_blank');
     }
 }
