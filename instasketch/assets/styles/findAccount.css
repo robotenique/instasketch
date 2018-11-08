@@ -18,3 +18,7 @@ span {
 .find input {
   margin: auto 10px;
 }
+
+#context {
+  text-align: center;
+}
