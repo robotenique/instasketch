@@ -1,0 +1,45 @@
+.btn-circle {
+    border-radius: 50%;
+    border: 2px solid black;
+    height: 80px;
+    width: 80px;
+
+    position: absolute;
+    bottom: 105px;
+    right: 50px;
+
+    font-size: 200%;
+}
+
+.card {
+    height: 195px;
+    width: 320px;
+    
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-bottom: 40px;
+    
+    border-color: black;
+}
+
+.card:hover {
+    box-shadow: 0 0 2px 1px skyblue;
+}
+
+.card a {
+    text-decoration: none;
+    color: black;
+}
+
+.row {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.status-bar p {
+    float: left;
+}
+
+.status-bar button {
+    float: right;
+}

@@ -1,0 +1,104 @@
+.nopad {
+    padding: 0;
+}
+
+.lowzindex {
+    z-index: -1;
+}
+
+#canvasDiv {
+    padding-left: 5px;
+}
+
+#canvas {
+    border: solid 1px grey;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+#colorpicker > button.color, button.eraser, #tools > button.tool, #miscellaneous > button {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #fffff0;
+    border-width: 2px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: 5px;
+}
+
+
+/* Miscellaneous styles */
+
+#miscellaneous>button.eraser {
+    background-image: url("../images/sketchbook/eraser.svg");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#smallWidthBrush {
+    background-image: url("../images/sketchbook/smallthick.png");
+    background-size: 300%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#medWidthBrush {
+    background-image: url("../images/sketchbook/bigthick.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#largeWidthBrush {
+    background-image: url("../images/sketchbook/bigthick.png");
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#extralargeWidthBrush {
+    background-image: url("../images/sketchbook/bigthick.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Tools row styles */
+#tools > button.tool {
+    margin: auto;
+}
+#toolRow {
+    margin-top: 10px;
+}
+
+#tools {
+    margin-left: 10px;
+}
+#tools > button {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#toolRow>#tools button.clear-sketch {
+    margin-left: 8px;
+    position: relative;
+    top: -14px;
+}
+
+#tools > button#undo {
+    background-image: url("../images/sketchbook/undo.png");
+}
+#tools > button#redo {
+    background-image: url("../images/sketchbook/redo.png");
+}
+
+.btn-submit{
+    background-color: #ffb0af;
+}
+
+
+/* div {
+    border: 1px solid black !important;
+}
+
+ */

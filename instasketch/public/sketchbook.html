@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- Roboto Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Our own css -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/sketchbook.css">
+
+
+
+    <title>InstaSketch</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark light-orange-bg mb-4 border-bottom border-3">
+        <a href="javascript:void(0)" class="navbar-brand"><span class="footer-logo light-rose">Insta</span><span class="footer-logo2">Sketch</span></a>
+        <div class="container-fluid">
+            <div class="col-xs text-center">
+                <a href="studentProfile.html" class="nav-link">My Profile</a>
+            </div>
+            <div class="col-xs text-center">
+                <a href="mydrawings.html" class="nav-link">My Drawings</a>
+            </div>
+            <div class="col-xs text-center">
+                <a href="studentSubmissions.html" class="nav-link">Submissions</a>
+            </div>
+            <div class="col-xs text-center">
+                <a href="javascript:void(0)" class="nav-link active-link">Sketchbook</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!--  The main content goes here -->
+    <main role="main" class="container gray-bg">
+        <div class="row">
+            <div id="canvasDiv" class="col-10">
+                <canvas id="canvas" width="1366" height="700" class="canvas"></canvas>
+            </div>
+            <div class="col-1 lowzindex"></div>
+            <div class="col-1">
+                <div class="row">
+                    <div id="colorpicker" class="col-6 nopad">
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                        <button class="color"></button>
+                    </div>
+                    <div id="miscellaneous" class="col-6 nopad">
+                        <button value="3"  id="smallWidthBrush" class="widthSelector"></button>
+                        <button value="10" id="medWidthBrush" class="widthSelector"></button>
+                        <button value="20" id="largeWidthBrush" class="widthSelector"></button>
+                        <button value="100" id="extralargeWidthBrush" class="widthSelector"></button>
+                        <button class="eraser" value="#ffffff"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="toolRow" class="row">
+            <div id="tools" class="col-3">
+                <button id="undo" class="tool"></button>
+                <button id="redo" class="tool"></button>
+                <button class="clear-sketch btn-light btn-lg">Clear</button>
+            </div>
+            <div id="submitSketch" class="col-8">
+                <div class="row">
+                    <div class="col-4">
+                        <input type="text" class="form-control-lg col-12" id="drawingTitle" placeholder="Your drawing title">
+                    </div>
+                    <div class="dropup col-4">
+                        <button class="btn-light btn-lg dropdown-toggle col-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            No session
+                        </button>
+                        <div id="availableSessions" class="dropdown-menu col-12" aria-labelledby="dropdownMenuButton">
+                            <a id="noSessionItem" class="dropdown-item active" href="javascript:void(0)">No session</a>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button id="submitSketchButton" class="btn-light btn-lg btn-submit col-12" data-toggle="modal" data-target="#submissionConfirmModal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    MODAL DIV (for when the user submits the sketches) -->
+        <div class="modal fade" id="submissionConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Are sure you want to submit your sketch?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        This will save your current sketch to your drawings, send to the session if you have choosen one,
+                        and <strong>Clear</strong> your Sketchbook!
+                    </div>
+                    <div class="modal-footer">
+                        <button id="submitAccept"type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End of main content -->
+
+    <!-- Footer -->
+    <footer class="footer light-orange-bg border-top border-3">
+        <div class="container-fluid light-orange-bg">
+            <div class="row">
+                <div class="col-sm text-center">
+                    <span class="footer-logo light-rose">Insta</span><span class="footer-logo2">Sketch</span>
+                </div>
+                <div class="col-sm">
+                </div>
+                <div class="col-sm text-center">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="footer-logo2"><a href="about.html">About Us</a></span>
+                    </div>
+                    <div class="col-6">
+                        <span class="footer-logo2"><a href="index.html">Logout</a></span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- <span class="text-muted">Place sticky footer content here.</span> -->
+            <!-- <div class="text-center">© 2018 InstaSketch:
+                        <span class="font-weight-bold"> The platform for imagination</span>
+                    </div> -->
+        </div>
+    </footer>
+    <!-- Footer -->
+</body>
+<!-- Boostrap scripts-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+<!-- Fabric.js library -->
+<script src="assets/scripts/bower_components/fabric.js/dist/fabric.js"></script>
+
+<!-- Our own scripts -->
+<script src="assets/scripts/sketchbook.js"></script>
+
+</html>
