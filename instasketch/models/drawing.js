@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Drawing = mongoose.model('Drawing', {
 	student_id: {
-		type: ObjectID
+		type: mongoose.Schema.Types.ObjectId
 	},
 	title: {
 		type: String

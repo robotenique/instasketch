@@ -11,7 +11,7 @@ const Student = mongoose.model('Student', {
 		type: String
 	},
 	teacher_id: {
-		type: ObjectID
+		type: mongoose.Schema.Types.ObjectId
 	},
 	email: {
 		type: String

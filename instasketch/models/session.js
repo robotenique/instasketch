@@ -5,7 +5,7 @@ const Session = mongoose.model('Session', {
 		type: Number
 	},
 	teacher_id: {
-		type: ObjectID
+		type: mongoose.Schema.Types.ObjectId
 	},
 	title: {
 		type: String
