@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 const Submission = mongoose.model('Submission', {
 	session_id: {
-		type: ObjectID
-	}
+		type: String //for now
+	},
 	drawing_id: {
-		type: ObjectID
-	}
+		type: String //for now
+	},
 	comments: {
 		type: String
 	}
