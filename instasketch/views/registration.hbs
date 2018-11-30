@@ -1,0 +1,68 @@
+<!--  The main content goes here -->
+<main role="main" class="container gray-bg">
+  <form action="">
+    <div class="container">
+      <h1>Welcome to <span class="footer-logo light-rose reset-size">Insta</span><span class="footer-logo2 reset-size">Sketch</span></h1>
+      <hr>
+      <!-- Email address and password -->
+      <input id="email" type="text" placeholder="Email Address" name="email" required>
+      <input id="pw" type="password" placeholder="Password" name="pw" required>
+      <br>
+      <!-- First and last names -->
+      <input id="firstName" type="text" placeholder="First Name" name="firstName" required>
+      <input id="lastName" type="text" placeholder="Last Name" name="lastName" required>
+      <br>
+      <!-- Choose province -->
+      <select id="province">
+        <option value="#">Choose your province</option>
+        <option value="Unknown">Unknown</option>
+        <option value="Alberta">Alberta</option>
+        <option value="British Columbia">British Columbia</option>
+        <option value="Manitoba">Manitoba</option>
+        <option value="New Brunswick">New Brunswick</option>
+        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+        <option value="Northwest Territories">Northwest Territories</option>
+        <option value="Nova Scotia">Nova Scotia</option>
+        <option value="Nunavut">Nunavut</option>
+        <option value="Ontario">Ontario</option>
+        <option value="Prince Edward Island">Prince Edward Island</option>
+        <option value="Quebec">Quebec</option>
+        <option value="Saskatchewan">Saskatchewan</option>
+        <option value="Yukon">Yukon</option>
+      </select>
+      <!-- Choose school -->
+      <select id="school">
+        <option value="#">Choose your school</option>
+        <option value="Hogwarts">Hogwarts</option>
+        <option value="UofT">UofT Primary School</option>
+        <option value="Ryerson">Ryerson Primary School</option>
+        <option value="York">York Primary School</option>
+        <option value="GeorgeBrown">George Brown Primary School</option>
+        <option value="OntArt">Ontario Art Primary School</option>
+      </select>
+      <br><br>
+      <h3>Are you a teacher or a student?</h3>
+      <label>
+        <input type="radio" name="typeuser" value="teacher" id="typeuser1">Teacher
+      </label>
+      <label>
+        <input type="radio" name="typeuser" value="student" id="typeuser2" checked>Student
+      </label>
+      <br>
+      <!-- If the new user is a teacher -->
+      <input id="teachercode" type="text" placeholder="Enter your teacher code" name="tcode" required>
+      <!-- If the new user is a student -->
+      <select id="teachers">
+        <option value="#">Choose your teacher</option>
+        <option value="Mark_Kazakevich">Mark Kazakevich</option>
+        <option value="Albus_Dumbledore">Albus Dumbledore</option>
+        <option value="Minerva_McGonagall">Minerva McGonagall</option>
+        <option value="Severus_Snape">Severus Snape</option>
+      </select>
+      <br>
+      <!-- Submit button -->
+      <button id="btn1" class="btn-light btn-lg" type="reset">Submit</button>
+    </div>
+  </form>
+</main>
+<!-- End of main content -->
