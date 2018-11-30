@@ -8,7 +8,7 @@ router = express.Router();
 //router.get('/', authenticateStudent, (req, res) => {})
 
 router.get('/', (req, res) => {
-	res.sendFile(path.resolve('../instasketch/public/sketchbook.html'));
+	res.render("sketchbook", {layout: 'studentLayout', title: 'Instasketch - Sketchbook'});
 })
 // This is the route: localhost:3000/tests/new-user
 router.post('/', (req, res) => {

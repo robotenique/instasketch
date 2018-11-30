@@ -5,6 +5,7 @@ const express = require('express');
 const port = process.env.PORT || 3000;
 const session = require('express-session'); // To store user sessions
 const bodyParser = require('body-parser'); // middleware for parsing HTTP body from client
+const exphbs = require('express-handlebars'); // Handle the views
 const { ObjectID } = require('mongodb');
 
 // Import our mongoose connection
@@ -24,6 +25,16 @@ app.use(session({
         httpOnly: true
     }
 }));
+// Register Handlebars view engine
+app.engine('hbs', exphbs({
+    layoutsDir: __dirname + '/views/layouts/',
+    partialsDir: __dirname + '/views/partials/',
+    extname: '.hbs'
+}));
+// Use Handlebars view engine
+app.set('view engine', 'hbs');
+
+
 
 // Add middleware to check for logged-in users
 const sessionChecker = (req, res, next) => {
