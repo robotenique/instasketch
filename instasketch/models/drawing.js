@@ -14,10 +14,9 @@ const Drawing = mongoose.model('Drawing', {
 	min_since_edit: {
 		type: Number
 	},
-	drawing_svg: {
+	svg: {
 		type: String,
 		required: true
-
 	}
 })
 

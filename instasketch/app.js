@@ -14,6 +14,9 @@ const { mongoose } = require('./models/mongoose');
 
 const app = express();
 // body-parser middleware setup.  Will parse the JSON and convert to object
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 // Add express sesssion middleware
 app.use(session({
@@ -79,11 +82,11 @@ app.use('/sketchbook', sketchbookRoutes);
 */
 app.use("/newstudent", (req, res) => {
     const sampleStudent = new Student({
-        first_name: "Harry",
-        last_name: "Potter",
+        first_name: "Luna",
+        last_name: "Lovegood",
         school: "Hogwarts",
         teacher_id: "5c00964013cffc2289167eef",
-        email: "harry.potter@hogwarts.com",
+        email: "luna.lovegood@hogwarts.com",
         password: "12345",
         province: "London",
         path: "",
