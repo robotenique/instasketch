@@ -22,6 +22,7 @@ const Teacher = mongoose.model('Teacher', {
 	path: {
 		type: String
 	}
+
 })
 
 module.exports = { Teacher }
