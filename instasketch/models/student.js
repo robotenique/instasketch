@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+// TODO: Add the validators, and mark whenever an attribute is required or must be unique
 const Student = mongoose.model('Student', {
 	first_name: {
 		type: String

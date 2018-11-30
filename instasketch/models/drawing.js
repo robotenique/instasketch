@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const Drawing = mongoose.model('Drawing', {
 	student_id: {
-		type: mongoose.Schema.Types.ObjectId
+		type: mongoose.Schema.Types.ObjectId,
+		required: true
 	},
 	title: {
 		type: String
@@ -13,8 +14,9 @@ const Drawing = mongoose.model('Drawing', {
 	min_since_edit: {
 		type: Number
 	},
-	path: {
-		type: String
+	svg: {
+		type: String,
+		required: true
 	}
 })
 

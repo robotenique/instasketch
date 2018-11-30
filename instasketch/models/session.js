@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
 
 const Session = mongoose.model('Session', {
-	session_id: {
-		type: Number
-	},
 	teacher_id: {
-		type: mongoose.Schema.Types.ObjectId
+		type: mongoose.Schema.Types.ObjectId,
+		required: true
 	},
 	title: {
-		type: String
+		type: String,
+		required: true
 	},
 	date: {
 		type: Date
@@ -20,7 +19,8 @@ const Session = mongoose.model('Session', {
 		type: Number
 	},
 	open: {
-		type: Boolean
+		type: Boolean,
+		required: true
 	}
 })
 
