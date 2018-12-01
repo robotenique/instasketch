@@ -1,16 +1,23 @@
 const express = require('express');
+const authenticateTeacher = require('./sessionAuth').authenticateTeacher;
 // Import the models
 const { Teacher } = require('../models/teacher');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
 
 // Add a binding to handle '/teacher-profile'
-router.get('/', (req, res) => {
+router.get('/', authenticateTeacher, (req, res) => {
 	res.render("teacherProfile", {layout: 'teacherProfileLayout'});
 })
 
+//get currently logged in teacher
+router.get('/teacher/', authenticateTeacher, (req, res) => {
+	const teacherId = req.session.user;
+	res.redirect('/' + teacherId);
+})
+
 //find a teacher by its id
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 
 	// Good practise is to validate the id
@@ -31,7 +38,7 @@ router.get('/:id', (req, res) => {
 })
 
 //change a specific teacher using its id
-router.post('/:id', (req, res) => {
+router.post('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	const teacher = req.body;
 
