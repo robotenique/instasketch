@@ -1,28 +1,15 @@
 const express = require('express');
-const path = require('path');
 // Import the models
-const { Student } = require('../models/student');
 const { Teacher } = require('../models/teacher');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
 
-// Add a binding to handle '/student-profile'
+// Add a binding to handle '/teacher-profile'
 router.get('/', (req, res) => {
-	res.render("studentProfile", {layout: 'studentProfileLayout'});
+	res.render("teacherProfile", {layout: 'teacherProfileLayout'});
 })
 
-//get all the teachers
-router.get('/teachers', (req, res) => {
-	Teacher.find().then((result) => {
-		res.send({ result })
-	}, (error) => {
-		res.status(400).send(error)
-	}).catch((error) => {
-		res.status(400).send(error)
-	})
-})
-
-//find a student by its id
+//find a teacher by its id
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
 
@@ -32,7 +19,7 @@ router.get('/:id', (req, res) => {
 	}
 
 	// Otheriwse, findById
-	Student.findById(id).then((result) => {
+	Teacher.findById(id).then((result) => {
 		if (!result) {
 			res.status(404).send()
 		} else {
@@ -43,10 +30,10 @@ router.get('/:id', (req, res) => {
 	})
 })
 
-//change a specific student using its id
+//change a specific teacher using its id
 router.post('/:id', (req, res) => {
 	const id = req.params.id;
-	const student = req.body;
+	const teacher = req.body;
 
 	// Good practice is to validate the id
 	if (!ObjectID.isValid(id)) {
@@ -54,15 +41,14 @@ router.post('/:id', (req, res) => {
 	}
 
 	// Otheriwse, findById
-	Student.findByIdAndUpdate(id, {$set: {
-		first_name: student.first_name,
-		last_name: student.last_name,
-		school: student.school,
-		email: student.email,
-		province: student.province,
-		teacher_id: student.teacher_id,
-		password: student.password,
-		path: student.path
+	Teacher.findByIdAndUpdate(id, {$set: {
+		first_name: teacher.first_name,
+		last_name: teacher.last_name,
+		school: teacher.school,
+		email: teacher.email,
+		province: teacher.province,
+		password: teacher.password,
+		path: teacher.path
 	}}).then((result) => {
 		if (!result) {
 			res.status(404).send()
