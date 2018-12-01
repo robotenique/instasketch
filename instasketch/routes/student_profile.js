@@ -8,7 +8,7 @@ router = express.Router();
 
 // Add a binding to handle '/test'
 router.get('/', (req, res) => {
-	res.sendFile(path.resolve('../instasketch/public/studentProfile.html'));
+	res.sendFile(path.resolve('../phase2_1/public/studentProfile.html'));
 })
 
 // This is the route: localhost:3000/tests/new-user
@@ -42,7 +42,7 @@ router.post('/new-student', (req, res) => {
 
 //get all the teachers
 router.get('/teachers', (req, res) => {
-	Student.find().then((result) => {
+	Teacher.find().then((result) => {
 		res.send({ result })
 	}, (error) => {
 		res.status(400).send(error)
@@ -54,7 +54,7 @@ router.get('/teachers', (req, res) => {
 //find a student by its id
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
-	
+
 	// Good practise is to validate the id
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send()
@@ -76,7 +76,7 @@ router.get('/:id', (req, res) => {
 router.post('/:id', (req, res) => {
 	const id = req.params.id;
 	const student = req.body;
-	
+
 	// Good practice is to validate the id
 	if (!ObjectID.isValid(id)) {
 		return res.status(404).send()
@@ -98,11 +98,10 @@ router.post('/:id', (req, res) => {
 		} else {
 			res.send({ result })
 		}
-		
+
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
 })
 
 module.exports = router;
-
