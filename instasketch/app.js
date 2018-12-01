@@ -78,6 +78,12 @@ app.use('/registration', registrationRoutes);
 app.use('/sketchbook', sketchbookRoutes);
 app.use('/student-profile', studentProfileRoutes);
 
+/* TODO: 
+*  Remove duplicate code from teacher/student submissions
+*  Partition collection get routes into their own files
+*/
+
+
 /* Example try:
 * Sample student object created to add to the db
 * so that we can check our database exists and works.
