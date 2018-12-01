@@ -14,12 +14,6 @@ router.post('/', (req, res) => {
   // Create new User
   console.log(req.body);
 
-  // Hashing the password (Encrpytion)
-  let data = {
-    password: req.body.password,
-  };
-  const token_jwt = jwt.sign(data, 'csc309');
-
   if (req.body.position === "student") {
     const newStudent = new Student({
       first_name: req.body.firstName,
@@ -28,7 +22,7 @@ router.post('/', (req, res) => {
       teacher_id: req.body.teacher_id, // How can we retrieve teacher_id?
       teacher_code: req.body.teacher_code,
       email: req.body.email,
-      password: token_jwt,
+      password: req.body.password,
       province: req.body.province,
       path: "",
     });
@@ -46,7 +40,7 @@ router.post('/', (req, res) => {
       school: req.body.school,
       teacher_code: req.body.teacher_code,
       email: req.body.email,
-      password: token_jwt,
+      password: req.body.password,
       province: req.body.province,
       path: "",
     });

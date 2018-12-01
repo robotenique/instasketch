@@ -43,7 +43,7 @@ $("#miscellaneous #medWidthBrush")
 
 /* Main jquery context */
 
-$(function () {
+$.getJSON("/sketchbook/opensessions", function (sessionsResult) {
     /* ------------ Prepare canvas for the first time ------------ */
     canvas = window._canvas = new fabric.Canvas('canvas');
     canvas.backgroundColor = '#ffffff';
@@ -122,14 +122,6 @@ $(function () {
     });
     /* ------------ Avaliable sessions Dropdown functionality ------------ */
     // Get sessions below from server (require server call)
-    const sessions = [{
-        session_id: "1",
-        session_name: "Automobiles"
-    }, {
-        session_id: "2",
-        session_name: "Animals"
-    }];
-
     let newSketches = [];
 
     let sessionsDropdown = $("#availableSessions");
@@ -137,15 +129,18 @@ $(function () {
     let dropdownList = [];
     // The element of the dropdown list with the 'active' class
     let activeSession = undefined;
-
-    for (const [idx, s] of sessions.entries()) {
-        const currOption = $("<a>", {
-            'class': "dropdown-item",
-            'href': "javascript:void(0)",
-            'id' : s.session_id // the session_id is set as the id of the link!
-        }).append(s.session_name);
-        dropdownList.push(currOption);
-        currOption.appendTo(sessionsDropdown);
+    // TODO: Test the sessions
+    console.log("SESSION RESULT: ", sessionsResult);
+    if(sessionsResult.length !== 0) {
+        for (const [idx, s] of sessionsResult.entries()) {
+            const currOption = $("<a>", {
+                'class': "dropdown-item",
+                'href': "javascript:void(0)",
+                'id' : s.session_id // the session_id is set as the id of the link!
+            }).append(s.session_name);
+            dropdownList.push(currOption);
+            currOption.appendTo(sessionsDropdown);
+        }
     }
 
     $(sessionsDropdown).on("click", ".dropdown-item", function (e) {

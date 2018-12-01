@@ -26,6 +26,7 @@ const TeacherSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 1,
+		unique: true,
 		validate: {
 			validator: validator.isEmail,
 			message: 'Not valid email.'
@@ -46,6 +47,47 @@ const TeacherSchema = new mongoose.Schema({
 	}
 
 });
+
+// This function runs before saving teacher to database
+TeacherSchema.pre('save', function (next) {
+	const student = this;
+
+	// check to make sure we don't hash again
+	if (student.isModified('password')) {
+		bcrypt.genSalt(10, (error, salt) => {
+			bcrypt.hash(student.password, salt, (error, hash) => {
+				student.password = hash;
+				next()
+			})
+		})
+	} else {
+		next();
+	}
+});
+
+// created the find method: Given email (unique), compare the passwords
+TeacherSchema.statics.findByEmailPassword = function (email, password) {
+	const Teacher = this // We need to use fucntion here
+
+	return Teacher.findOne({
+		email: email
+	}).then((teacher) => {
+		if (!teacher) {
+			return Promise.reject();
+		}
+
+		return new Promise((resolve, reject) => {
+			bcrypt.compare(password, teacher.password, (error, result) => {
+				if (result) {
+					resolve(teacher);
+				} else {
+					reject();
+				}
+			})
+		})
+
+	})
+}
 
 const Teacher = mongoose.model('Teacher', TeacherSchema);
 
