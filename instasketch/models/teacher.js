@@ -10,6 +10,12 @@ const Teacher = mongoose.model('Teacher', {
 	school: {
 		type: String
 	},
+	teacher_id: {
+		type: mongoose.Schema.Types.ObjectId
+	},
+	teacher_code: {
+		type: String
+	},
 	email: {
 		type: String
 	},
