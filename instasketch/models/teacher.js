@@ -17,10 +17,6 @@ const TeacherSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1,
 	},
-	teacher_id: {
-		type: mongoose.Schema.Types.ObjectId,
-		minlength: 1,
-	},
 	teacher_code: {
 		type: String,
 		required: true,
