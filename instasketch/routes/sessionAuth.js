@@ -26,7 +26,7 @@ module.exports.authenticateStudent = (req, res, next) => {
             if (!student) {
                 return Promise.reject();
             } else {
-                req.user = student;
+                req.user = student._id;
                 next();
             }
         }).catch((error) => {
@@ -43,7 +43,7 @@ module.exports.authenticateTeacher = (req, res, next) => {
             if (!teacher) {
                 return Promise.reject();
             } else {
-                req.user = teacher;
+                req.user = teacher._id;
                 next();
             }
         }).catch((error) => {
