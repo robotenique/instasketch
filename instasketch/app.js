@@ -64,6 +64,7 @@ const loginRoutes = require('./routes/login');
 const adminRoutes = require('./routes/admin');
 const registrationRoutes = require('./routes/registration');
 const sketchbookRoutes = require('./routes/sketchbookRoutes.js');
+const studentProfileRoutes = require('./routes/student_profile.js');
 
 // static assets directory
 app.use("/assets", express.static(__dirname + '/public/assets'));
@@ -75,6 +76,7 @@ app.use('/login', loginRoutes);
 app.use('/admin', adminRoutes);
 app.use('/registration', registrationRoutes);
 app.use('/sketchbook', sketchbookRoutes);
+app.use('/student-profile', studentProfileRoutes);
 
 /* Example try:
 * Sample student object created to add to the db
