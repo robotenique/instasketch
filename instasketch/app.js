@@ -89,7 +89,7 @@ app.use("/newstudent", (req, res) => {
         school: "Hogwarts",
         teacher_id: "5c00964013cffc2289167eef",
         email: "luna.lovegood@hogwarts.com",
-        password: "12345",
+        password: "1234567",
         province: "London",
         path: "",
     });
@@ -106,8 +106,9 @@ app.use("/newteacher", (req, res) => {
         last_name: "Dumbledore",
         school: "Hogwarts",
         email: "albus@hogwarts.com",
-        password: "12345",
+        password: "1234567",
         province: "London",
+        teacher_code: "hellothere",
         path: "",
     });
     sampleTeacher.save().then((result) => {
