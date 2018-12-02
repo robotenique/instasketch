@@ -15,29 +15,23 @@ router.post('/', sessionChecker, (req, res) => {
     // find the user with this email and password
     // IMPORTANT: Find by student FIRST, then if not successful, by teacher
     Student.findByEmailPassword(email, password).then((student) => {
-        if (!student) { // If not student, check if it's a teacher
-            console.log("STUDENT NOT FOUND");
-            Teacher.findByEmailPassword(email, password).then((teacher) => {
-                if(!teacher) {
-                    res.status(403).send();
-                }
-                else{
-                    // Add to the session cookie
-                    req.session.user = teacher._id;
-                    req.session.isTeacher = true;
-                    res.status(200).send();
-                }
-            });
-        } else {
-            console.log(student);
-            console.log("RESOLVED STUDENT");
-            // Add to the session cookie
-            req.session.user = student._id;
-            req.session.isTeacher = false;
-            res.status(200).send();
-        }
+		console.log(student);
+		console.log("RESOLVED STUDENT");
+		// Add to the session cookie
+		req.session.user = student._id;
+		req.session.isTeacher = false;
+		res.status(200).send();
     }).catch((error) => {
-        res.status(400).send();
+		console.log("STUDENT NOT FOUND");
+		Teacher.findByEmailPassword(email, password).then((teacher) => {
+			// Add to the session cookie
+			req.session.user = teacher._id;
+			req.session.isTeacher = true;
+			res.status(200).send();
+			console.log("RESOLVED TEACHER");
+		}).catch((error) => {
+			res.status(400).send();
+		});
     });
 });
 // the route /login/logout

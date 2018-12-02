@@ -121,7 +121,9 @@ app.use("/newteacher", (req, res) => {
     });
 });
 
-
+app.get("/", (req, res) => {
+	res.redirect("/login");
+});
 
 app.listen(port, () => {
     log(`Listening on port ${port}...`)
