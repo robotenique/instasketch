@@ -33,9 +33,9 @@ h1 {
 }
 
 button {
-	background-color: lightGrey;
+	background-color: #FFD700;
 	color: black;
-	padding: 15px 15px;
+	padding: 5px 5px;
 	margin: 0 2px;
 	text-aling: center;
 	font-size: 16px;
