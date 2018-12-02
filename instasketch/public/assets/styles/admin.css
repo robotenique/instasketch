@@ -31,3 +31,12 @@ h1 {
   margin: auto;
 	padding-left: 1030px;
 }
+
+button {
+	background-color: lightGrey;
+	color: black;
+	padding: 15px 15px;
+	margin: 0 2px;
+	text-aling: center;
+	font-size: 16px;
+}
