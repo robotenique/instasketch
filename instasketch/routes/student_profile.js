@@ -13,7 +13,7 @@ router.get('/', authenticateStudent, (req, res) => {
 })
 
 //get all the teachers
-router.get('/teachers', authenticateStudent, (req, res) => {
+router.get('/teachers', (req, res) => {
 	Teacher.find().then((result) => {
 		res.send({ result })
 	}, (error) => {
