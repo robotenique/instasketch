@@ -46,40 +46,9 @@ let textToChange;
 profile.addEventListener('click', editAttribute);
 
 //the student object whose profile is displayed and changing - supposed to be populated from the server
-let student = {
-	id: "123",
-	firstName: "Amritpal",
-	lastName: "Aujla",
-	school: "UofT",
-	teacherId: "albus1",
-	email: "amritpal.aujla@mail.utoronto.ca",
-	password: "blah",
-	province: "Ontario",
-	path: "https://dummyimage.com/323x200/ffc163/040838.png"
-}
-
-//the teacher objects for the student's teacher - supposed to be populated from the server
-let teacher1 = {
-    id: "albus1",
-    firstName: "Albus",
-    lastName: "Dumbledore",
-    email: "albus.dumbledore@utoronto.ca",
-    school: "Hogwarts",
-    province: "REDACTED",
-	path: "https://dummyimage.com/323x200/ffc163/040838.png",
-	password: "blah"
-}
-let teacher2 = {
-	id: "marky1",
-	firstName: "Mark",
-	lastName: "Kazakevich",
-	email: "csc309-2018-09@cs.toronto.edu",
-	school: "UofT",
-	province: "Ontario",
-	path: "https://www.teach.cs.toronto.edu/~csc309h/fall/static/img/people/mark.jpg",
-	password: "password"
-}
-let teachers = [teacher1, teacher2];
+let student = {};
+//all possible teachers for this student
+let teachers = [];
 
 //load in initial values
 document.addEventListener('DOMContentLoaded', function() {
@@ -102,8 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		profileLastName.lastElementChild.appendChild(lastName);
 		const school = document.createTextNode(getProfileSchool());
 		profileSchool.lastElementChild.appendChild(school);
-		const teacher = document.createTextNode(getProfileTeacher());
-		profileTeacher.lastElementChild.appendChild(teacher);
+		getProfileTeacher();
 		const email = document.createTextNode(getProfileEmail());
 		profileEmail.lastElementChild.appendChild(email);
 		const province = document.createTextNode(getProfileProvince());
@@ -138,6 +106,7 @@ function changePicture(e){
 		profilePic.firstElementChild.src = imgURL;
 		setProfilePicURL(imgURL);
     }
+	confirmNewAttributes();
 }
 
 //confirm the change of an attribute and manipulate the DOM accordingly
@@ -173,8 +142,34 @@ function confirmChange(e){
 	textToChange.innerText = changedValue;
 	profile.removeChild(profile.lastChild);
 	inputField.value = '';
+	confirmNewAttributes();
 }
 
+//sends the updated student to the server
+function confirmNewAttributes(){
+	const url = '/student-profile/' + student._id;
+    // Create our request constructor with all the parameters we need
+    const request = new Request(url, {
+        method: 'post', 
+        body: JSON.stringify(student),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+    // Fetch AJAX call
+    fetch(request)
+    .then(function(res) {
+        // Handle response we get from the API
+        // Usually check the error codes to see what happened
+        if (res.status === 200) {
+            console.log('Changed student');  
+        }
+        console.log(res)
+    }).catch((error) => {
+        console.log(error)
+    })
+}
 
 //checks if the name entered in teacher space is valid
 function isTeacherValid(newName){
@@ -191,7 +186,7 @@ function makeLean(str){
 	return (str.replace(/\s/g, '')).toLowerCase().trim();
 }
 
-//Code below requires server calls
+//Getter and setters for the student and teacher objects
 function getProfilePicURL(){
 	return student.path;
 }
@@ -220,13 +215,11 @@ function getProfileTeacher(){
        }                
     })
     .then((json) => {
-		console.log(json);
-        for(teacher of json){
-			if(teacher._id === student.teacher_id){
-				return teacher.first_name + ' ' + teacher.last_name;
-			}
-			else{
-				console.log(teacher.first_name + ' ' + teacher._id)
+		teachers = json.result;
+		for(let i = 0; i < teachers.length; i++){
+			if(teachers[i]._id === student.teacher_id){
+				const teacher = document.createTextNode(teachers[i].first_name + ' ' + teachers[i].last_name);
+				profileTeacher.lastElementChild.appendChild(teacher);
 			}
 		}
     }).catch((error) => {
@@ -247,11 +240,11 @@ function setProfilePicURL(picURL){
 }
 
 function setProfileFirstName(firstName){
-	student.firstName = firstName;
+	student.first_name = firstName;
 }
 
 function setProfileLastName(lastName){
-	student.lastName = lastName;
+	student.last_name = lastName;
 }
 
 function setProfileSchool(school){
@@ -261,7 +254,7 @@ function setProfileSchool(school){
 function setProfileTeacher(teacherName){
 	for (let teacher of teachers){
 		if(makeLean(teacher.firstName + teacher.lastName) === makeLean(teacherName)){
-			student.teacherId = teacher.id;
+			student.teacher_id = teacher._id;
 		}
 	}
 }
