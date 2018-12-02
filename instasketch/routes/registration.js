@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 
     // Save newStudent to the database
     newStudent.save().then((newstudent) => {
-      res.redirect("login");
+      res.redirect("/login");
     }, (error) => {
       res.status(400).send(error); // 400 for bad request
     })
