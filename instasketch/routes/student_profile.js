@@ -26,7 +26,7 @@ router.get('/teachers', authenticateStudent, (req, res) => {
 //get currently logged in student
 router.get('/student/', authenticateStudent, (req, res) => {
 	const studentID = req.session.user;
-	res.redirect(studentID);
+	res.redirect('student/'+studentID);
 })
 
 //find a student by its id

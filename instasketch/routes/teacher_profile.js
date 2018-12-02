@@ -13,7 +13,7 @@ router.get('/', authenticateTeacher, (req, res) => {
 //get currently logged in teacher
 router.get('/teacher/', authenticateTeacher, (req, res) => {
 	const teacherId = req.session.user;
-	res.redirect(teacherId);
+	res.redirect('teacher/' + teacherId);
 })
 
 //find a teacher by its id
@@ -30,6 +30,7 @@ router.get('/teacher/:id', authenticateTeacher, (req, res) => {
 		if (!result) {
 			res.status(404).send()
 		} else {
+			log(result)
 			res.send({ result })
 		}
 	}).catch((error) => {

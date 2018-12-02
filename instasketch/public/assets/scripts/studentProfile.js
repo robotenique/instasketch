@@ -55,7 +55,7 @@ let student = {
 	email: "amritpal.aujla@mail.utoronto.ca",
 	password: "blah",
 	province: "Ontario",
-	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png"
+	path: "https://dummyimage.com/323x200/ffc163/040838.png"
 }
 
 //the teacher objects for the student's teacher - supposed to be populated from the server
@@ -66,7 +66,7 @@ let teacher1 = {
     email: "albus.dumbledore@utoronto.ca",
     school: "Hogwarts",
     province: "REDACTED",
-	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png",
+	path: "https://dummyimage.com/323x200/ffc163/040838.png",
 	password: "blah"
 }
 let teacher2 = {
@@ -76,31 +76,47 @@ let teacher2 = {
 	email: "csc309-2018-09@cs.toronto.edu",
 	school: "UofT",
 	province: "Ontario",
-	pictureURL: "https://www.teach.cs.toronto.edu/~csc309h/fall/static/img/people/mark.jpg",
+	path: "https://www.teach.cs.toronto.edu/~csc309h/fall/static/img/people/mark.jpg",
 	password: "password"
 }
 let teachers = [teacher1, teacher2];
 
 //load in initial values
 document.addEventListener('DOMContentLoaded', function() {
-	profilePic.firstElementChild.setAttribute('src', getProfilePicURL());
-	const firstName = document.createTextNode(getProfileFirstName());
-	profileFirstName.lastElementChild.appendChild(firstName);
-	const lastName = document.createTextNode(getProfileLastName());
-	profileLastName.lastElementChild.appendChild(lastName);
-	const school = document.createTextNode(getProfileSchool());
-	profileSchool.lastElementChild.appendChild(school);
-	const teacher = document.createTextNode(getProfileTeacher());
-	profileTeacher.lastElementChild.appendChild(teacher);
-	const email = document.createTextNode(getProfileEmail());
-	profileEmail.lastElementChild.appendChild(email);
-	const province = document.createTextNode(getProfileProvince());
-	profileProvince.lastElementChild.appendChild(province);
+	const url = '/student-profile/student';
+
+    fetch(url)
+    .then((res) => { 
+        if (res.status === 200) {
+           return res.json() 
+       } else {
+            alert('Could not get students')
+       }                
+    })
+    .then((json) => {
+        student = json.result;
+		profilePic.firstElementChild.setAttribute('src', getProfilePicURL());
+		const firstName = document.createTextNode(getProfileFirstName());
+		profileFirstName.lastElementChild.appendChild(firstName);
+		const lastName = document.createTextNode(getProfileLastName());
+		profileLastName.lastElementChild.appendChild(lastName);
+		const school = document.createTextNode(getProfileSchool());
+		profileSchool.lastElementChild.appendChild(school);
+		const teacher = document.createTextNode(getProfileTeacher());
+		profileTeacher.lastElementChild.appendChild(teacher);
+		const email = document.createTextNode(getProfileEmail());
+		profileEmail.lastElementChild.appendChild(email);
+		const province = document.createTextNode(getProfileProvince());
+		profileProvince.lastElementChild.appendChild(province);
+    }).catch((error) => {
+        console.log(error)
+    })
 })
 
 
 //change an attribute in the profile
 function editAttribute(e){
+	console.log(student);
 	if(e.target.classList.contains('editButton')){
 		attribute = e.target.parentElement.parentElement.firstElementChild;
 		textToChange = attribute.lastElementChild;
@@ -177,15 +193,15 @@ function makeLean(str){
 
 //Code below requires server calls
 function getProfilePicURL(){
-	return student.pictureURL;
+	return student.path;
 }
 
 function getProfileFirstName(){
-	return student.firstName;
+	return student.first_name;
 }
 
 function getProfileLastName(){
-	return student.lastName;
+	return student.last_name;
 }
 
 function getProfileSchool(){
@@ -193,11 +209,29 @@ function getProfileSchool(){
 }
 
 function getProfileTeacher(){
-	for (let teacher of teachers){
-		if(teacher.id === student.teacherId){
-			return teacher.firstName + ' ' + teacher.lastName;
+	const url = '/student-profile/teachers';
+
+    fetch(url)
+    .then((res) => { 
+        if (res.status === 200) {
+           return res.json() 
+       } else {
+            alert('Could not get students')
+       }                
+    })
+    .then((json) => {
+		console.log(json);
+        for(teacher of json){
+			if(teacher._id === student.teacher_id){
+				return teacher.first_name + ' ' + teacher.last_name;
+			}
+			else{
+				console.log(teacher.first_name + ' ' + teacher._id)
+			}
 		}
-	}
+    }).catch((error) => {
+        console.log(error)
+    })
 }
 
 function getProfileEmail(){
@@ -209,7 +243,7 @@ function getProfileProvince(){
 }
 
 function setProfilePicURL(picURL){
-	student.pictureURL = picURL;
+	student.path = picURL;
 }
 
 function setProfileFirstName(firstName){
@@ -217,11 +251,11 @@ function setProfileFirstName(firstName){
 }
 
 function setProfileLastName(lastName){
-	student.lastName = firstName;
+	student.lastName = lastName;
 }
 
 function setProfileSchool(school){
-	student.school = firstName;
+	student.school = school;
 }
 
 function setProfileTeacher(teacherName){
