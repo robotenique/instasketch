@@ -1,7 +1,7 @@
 'use strict';
 
 //the submissions and the corresponding drawings and students - to be retrieved from server
-let studentSubmissions = [
+let submissions = [
 	{submission_id: '123',
 	 drawing_id: '123',
      session_id: "a4f5j6k7",
@@ -57,52 +57,143 @@ let student = {
 	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png"
 }
 
-const allSubmissions = document.querySelector("#submissions");
-for(let submission of studentSubmissions){
-	const drawing = getDrawing(submission.drawing_id);
-	
-	const submissionTitle = document.createElement("h5");
-	submissionTitle.className = "card-title";
-	submissionTitle.appendChild(document.createTextNode(drawing.title));
-	
-	const submissionSession = document.createElement("p");
-	const sessionName = getSession(submission.session_id).title;
-	submissionSession.appendChild(document.createTextNode(sessionName));
-	
-	const textArea = document.createElement("textarea");
-	textArea.className = "commentText";
-	textArea.setAttribute("name", "comment");
-	textArea.setAttribute("rows", "4");
-	textArea.setAttribute("cols", "23");
-	textArea.value = submission.comments;
-	textArea.disabled = true;
-	
-	const cardBody = document.createElement("div");
-	cardBody.className = "card-body";
-	cardBody.appendChild(submissionTitle);
-	cardBody.appendChild(submissionSession);
-	cardBody.appendChild(textArea);
-	
-	const cardImage = document.createElement("img");
-	cardImage.className = "card-img-top border-bottom";
-	cardImage.setAttribute("src", drawing.path);
-	cardImage.setAttribute("alt", "Image")
-	
-	const cardLink = document.createElement("a");
-	cardLink.setAttribute("target", "_blank");
-	cardLink.setAttribute("href", drawing.path);
-	cardLink.appendChild(cardImage);
-	
-	const card = document.createElement("div");
-	card.className = "card";
-	card.appendChild(cardLink);
-	card.appendChild(cardBody);
-	allSubmissions.appendChild(card);
+document.addEventListener('DOMContentLoaded', function() {
+	const url = '/student-profile/student';
+
+    fetch(url)
+    .then((res) => { 
+        if (res.status === 200) {
+           return res.json() 
+       } else {
+            alert('Could not get student')
+       }                
+    })
+    .then((json) => {
+        student = json.result;
+		
+		const url2 = '/student-submissions/for/' + student._id;
+		fetch(url2)
+		.then((res) => { 
+			if (res.status === 200) {
+			   return res.json() 
+		   } else {
+				alert('Could not get submissions')
+		   }                
+		})
+		.then((json) => {
+			submissions = json.result
+			let sessions_ids = []
+			for(let submission of submissions){
+				session_ids.push(submission.session_id);
+			}
+			
+			const url3 = '/sessions/all';
+			const request = new Request(url3, {
+				method: 'get', 
+				body: JSON.stringify({ session_ids }),
+				headers: {
+					'Accept': 'application/json, text/plain, */*',
+					'Content-Type': 'application/json'
+				},
+			});
+			fetch(request)
+			.then((res) => { 
+				if (res.status === 200) {
+				   return res.json() 
+			   } else {
+					alert('Could not get sessions')
+			   }                
+			})
+			.then((json) => {
+				sessions = json.result;
+				
+				let drawing_ids = []
+				for(let submission of submissions){
+					drawing_ids.push(submission.drawing_id);
+				}
+				
+				const url4 = '/sessions/all';
+				const request2 = new Request(url4, {
+					method: 'get', 
+					body: JSON.stringify({ drawing_ids }),
+					headers: {
+						'Accept': 'application/json, text/plain, */*',
+						'Content-Type': 'application/json'
+					},
+				});
+				fetch(request2)
+				.then((res) => { 
+					if (res.status === 200) {
+					   return res.json() 
+				   } else {
+						alert('Could not get drawings')
+				   }                
+				})
+				.then((json) => {
+					drawings = json.result;
+					makeCards();
+				}).catch((error) => {
+					console.log(error)
+				});
+			}).catch((error) => {
+				console.log(error)
+			});
+		}).catch((error) => {
+			console.log(error)
+		});	
+    }).catch((error) => {
+        console.log(error)
+    })
+})
+
+function makeCards(){
+	const allSubmissions = document.querySelector("#submissions");
+	for(let submission of submissions){
+		const drawing = getDrawing(submission.drawing_id);
+		
+		const submissionTitle = document.createElement("h5");
+		submissionTitle.className = "card-title";
+		submissionTitle.appendChild(document.createTextNode(drawing.title));
+		
+		const submissionSession = document.createElement("p");
+		const sessionName = getSession(submission.session_id).title;
+		submissionSession.appendChild(document.createTextNode(sessionName));
+		
+		const textArea = document.createElement("textarea");
+		textArea.className = "commentText";
+		textArea.setAttribute("name", "comment");
+		textArea.setAttribute("rows", "4");
+		textArea.setAttribute("cols", "23");
+		textArea.value = submission.comments;
+		textArea.disabled = true;
+		
+		const cardBody = document.createElement("div");
+		cardBody.className = "card-body";
+		cardBody.appendChild(submissionTitle);
+		cardBody.appendChild(submissionSession);
+		cardBody.appendChild(textArea);
+		
+		const cardImage = document.createElement("img");
+		cardImage.className = "card-img-top border-bottom";
+		cardImage.setAttribute("src", drawing.path);
+		cardImage.setAttribute("alt", "Image")
+		
+		const cardLink = document.createElement("a");
+		cardLink.setAttribute("target", "_blank");
+		cardLink.setAttribute("href", drawing.path);
+		cardLink.appendChild(cardImage);
+		
+		const card = document.createElement("div");
+		card.className = "card";
+		card.appendChild(cardLink);
+		card.appendChild(cardBody);
+		allSubmissions.appendChild(card);
+	}
 }
 
 function getDrawing(id){
 	for(let drawing of drawings){
-		if(drawing.drawing_id === id){
+		if(drawing._id === id){
 			return drawing;
 		}
 	}
@@ -110,7 +201,7 @@ function getDrawing(id){
 
 function getSession(id){
 	for(let session of sessions){
-		if(session.session_id === id){
+		if(session._id === id){
 			return session;
 		}
 	}

@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 // Import the models
 const { Submission } = require('../models/submission');
+const { Drawing } = require('../models/drawing');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
 
@@ -14,6 +15,30 @@ router.get('/', (req, res) => {
 router.get('/submissions', (req, res) => {
 	Submission.find().then((result) => {
 		res.send({ result })
+	}, (error) => {
+		res.status(400).send(error)
+	}).catch((error) => {
+		res.status(400).send(error)
+	})
+})
+
+//submissions for a given student id
+router.get('/for/:id', (req, res) => {
+	const id = req.params.id;
+	
+	Drawing.find({student_id: id}).then((result) => {
+		let drawing_ids = [];
+		for(let drawing of result.data){
+			drawing_ids.push(drawing._id);
+		}
+		
+		Submission.find({"_id": {$in: drawing_ids}}).then((result) => {
+			res.send({ result });
+		}, (error) => {
+			res.status(400).send(error)
+		}).catch((error) => {
+			res.status(400).send(error)
+		})
 	}, (error) => {
 		res.status(400).send(error)
 	}).catch((error) => {
