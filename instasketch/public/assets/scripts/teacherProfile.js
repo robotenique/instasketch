@@ -45,30 +45,36 @@ let textToChange;
 profile.addEventListener('click', editAttribute);
 
 //the teacher object for the profile - supposed to be populated from the server
-let teacher = {
-    id: "albus1",
-    firstName: "Albus",
-    lastName: "Dumbledore",
-    email: "albus.dumbledore@utoronto.ca",
-    school: "Hogwarts",
-    province: "REDACTED",
-	pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png",
-	password: "blah"
-}
+let teacher = {}
 
 //load in initial values
 document.addEventListener('DOMContentLoaded', function() {
-	profilePic.firstElementChild.setAttribute('src', getProfilePicURL());
-	const firstName = document.createTextNode(getProfileFirstName());
-	profileFirstName.lastElementChild.appendChild(firstName);
-	const lastName = document.createTextNode(getProfileLastName());
-	profileLastName.lastElementChild.appendChild(lastName);
-	const school = document.createTextNode(getProfileSchool());
-	profileSchool.lastElementChild.appendChild(school);
-	const email = document.createTextNode(getProfileEmail());
-	profileEmail.lastElementChild.appendChild(email);
-	const province = document.createTextNode(getProfileProvince());
-	profileProvince.lastElementChild.appendChild(province);
+	const url = '/teacher-profile/teacher';
+
+    fetch(url)
+    .then((res) => { 
+        if (res.status === 200) {
+           return res.json() 
+       } else {
+            alert('Could not get students')
+       }                
+    })
+    .then((json) => {
+        teacher = json.result;
+		profilePic.firstElementChild.setAttribute('src', getProfilePicURL());
+		const firstName = document.createTextNode(getProfileFirstName());
+		profileFirstName.lastElementChild.appendChild(firstName);
+		const lastName = document.createTextNode(getProfileLastName());
+		profileLastName.lastElementChild.appendChild(lastName);
+		const school = document.createTextNode(getProfileSchool());
+		profileSchool.lastElementChild.appendChild(school);
+		const email = document.createTextNode(getProfileEmail());
+		profileEmail.lastElementChild.appendChild(email);
+		const province = document.createTextNode(getProfileProvince());
+		profileProvince.lastElementChild.appendChild(province);
+    }).catch((error) => {
+        console.log(error)
+    })
 })
 
 
@@ -95,6 +101,7 @@ function changePicture(e){
 		profilePic.firstElementChild.src = imgURL;
 		setProfilePicURL(imgURL);
     }
+	confirmNewAttributes();
 }
 
 //confirm the change of an attribute and manipulate the DOM accordingly
@@ -123,20 +130,46 @@ function confirmChange(e){
 	
 	profile.removeChild(profile.lastChild);
 	inputField.value = '';
+	confirmNewAttributes();
 }
 
+//sends the updated teacher to the server
+function confirmNewAttributes(){
+	const url = '/teacher-profile/' + teacher._id;
+    // Create our request constructor with all the parameters we need
+    const request = new Request(url, {
+        method: 'post', 
+        body: JSON.stringify(teacher),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+    // Fetch AJAX call
+    fetch(request)
+    .then(function(res) {
+        // Handle response we get from the API
+        // Usually check the error codes to see what happened
+        if (res.status === 200) {
+            console.log('Changed teacher');  
+        }
+        console.log(res)
+    }).catch((error) => {
+        console.log(error)
+    })
+}
 
-//Code below requires server calls
+//Getter and setters for the teacher object
 function getProfilePicURL(){
-	return teacher.pictureURL;
+	return teacher.path;
 }
 
 function getProfileFirstName(){
-	return teacher.firstName;
+	return teacher.first_name;
 }
 
 function getProfileLastName(){
-	return teacher.lastName;
+	return teacher.last_name;
 }
 
 function getProfileSchool(){
@@ -152,19 +185,19 @@ function getProfileProvince(){
 }
 
 function setProfilePicURL(picURL){
-	teacher.pictureURL = picURL;
+	teacher.path = picURL;
 }
 
 function setProfileFirstName(firstName){
-	teacher.firstName = firstName;
+	teacher.first_name = firstName;
 }
 
 function setProfileLastName(lastName){
-	teacher.lastName = firstName;
+	teacher.last_name = lastName;
 }
 
 function setProfileSchool(school){
-	teacher.school = firstName;
+	teacher.school = school;
 }
 
 function setProfileEmail(email){

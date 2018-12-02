@@ -63,6 +63,7 @@ const adminRoutes = require('./routes/admin');
 const registrationRoutes = require('./routes/registration');
 const sketchbookRoutes = require('./routes/sketchbookRoutes');
 const studentProfileRoutes = require('./routes/student_profile');
+const teacherProfileRoutes = require('./routes/teacher_profile');
 
 // static assets directory
 app.use("/assets", express.static(__dirname + '/public/assets'));
@@ -74,6 +75,7 @@ app.use('/admin', adminRoutes);
 app.use('/registration', registrationRoutes);
 app.use('/sketchbook', sketchbookRoutes);
 app.use('/student-profile', studentProfileRoutes);
+app.use('/teacher-profile', teacherProfileRoutes);
 
 /* TODO: 
 *  Remove duplicate code from teacher/student submissions

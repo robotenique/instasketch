@@ -1,4 +1,5 @@
 const express = require('express');
+const log = console.log;
 const authenticateTeacher = require('./sessionAuth').authenticateTeacher;
 // Import the models
 const { Teacher } = require('../models/teacher');
@@ -34,6 +35,7 @@ router.get('/teacher/:id', authenticateTeacher, (req, res) => {
 			res.send({ result })
 		}
 	}).catch((error) => {
+		log(id)
 		res.status(400).send(error)
 	})
 })
