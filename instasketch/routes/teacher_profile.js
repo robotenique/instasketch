@@ -13,11 +13,11 @@ router.get('/', authenticateTeacher, (req, res) => {
 //get currently logged in teacher
 router.get('/teacher/', authenticateTeacher, (req, res) => {
 	const teacherId = req.session.user;
-	res.redirect('/' + teacherId);
+	res.redirect(teacherId);
 })
 
 //find a teacher by its id
-router.get('/:id', authenticateTeacher, (req, res) => {
+router.get('/teacher/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 
 	// Good practise is to validate the id
