@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		})
 		.then((json) => {
 			submissions = json.result
-			let sessions_ids = []
+			let session_ids = []
 			for(let submission of submissions){
 				session_ids.push(submission.session_id);
 			}
