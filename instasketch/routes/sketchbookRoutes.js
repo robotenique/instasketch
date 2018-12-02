@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { Drawing } = require('../models/drawing');
 const { Student } = require('../models/student');
 const { Session } = require('../models/session');
+const { Submission } = require('../models/submission');
 const authenticateStudent = require('./sessionAuth').authenticateStudent;
 const path = require('path');
 const log = console.log;
@@ -48,22 +49,33 @@ router.post('/', authenticateStudent, (req, res) => {
             min_since_edit: 0, // 0 minutes because the drawing will be saved now
             svg: req.body.svg
         });
-        // If a session was selected
-        // TODO: Test this here with real session data
-        if(req.session_id !== "None"){
-            drawing.session_id = req.body.session_id;
-        }
+        
         // Save drawing to the database
         drawing.save().then((result) => {
-            res.send(drawing);
-        }, (error) => {
-            log(error);
-            res.status(500).send(error);
+            // If a session was selected
+            // TODO: Test this here with real session data
+            if(req.body.session_id !== "None") {
+                const sub = new Submission({
+                    session_id: req.body.session_id,
+                    drawing_id: result._id,
+                    comments: ""
+                });
+                // Need to update the total_submission from the session
+                sub.save().then((result) => {
+                    res.send(drawing);
+
+                }, (error) => {
+                    log(error);
+                    res.status(500).send();
+                });
+            }
+            else {
+                res.send(drawing);
+            }
+        }).catch((error) => {
+            log("ERROR:", error);
+            res.status(400).send();
         });
-    }, (error) => {
-        log("Error searching for student :(");
-        res.status(500).send(error);
     });
 });
-
 module.exports = router;

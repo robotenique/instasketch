@@ -17,9 +17,6 @@ const Drawing = mongoose.model('Drawing', {
 	svg: {
 		type: String,
 		required: true
-	},
-	session_id: {
-		type: mongoose.Schema.Types.ObjectId
 	}
 })
 
