@@ -2,6 +2,7 @@ const express = require('express');
 const log = console.log;
 const authenticateTeacher = require('./sessionAuth').authenticateTeacher;
 // Import the models
+const { Student } = require('../models/student');
 const { Teacher } = require('../models/teacher');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
@@ -9,6 +10,17 @@ router = express.Router();
 // Add a binding to handle '/teacher-profile'
 router.get('/', authenticateTeacher, (req, res) => {
 	res.render("teacherProfile", {layout: 'teacherProfileLayout'});
+})
+
+//get all the students
+router.get('/students', (req, res) => {
+	Student.find().then((result) => {
+		res.send({ result })
+	}, (error) => {
+		res.status(400).send(error)
+	}).catch((error) => {
+		res.status(400).send(error)
+	})
 })
 
 //get currently logged in teacher
