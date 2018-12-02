@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator');
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 // TODO: Add the validators, and mark whenever an attribute is required or must be unique
 
 const StudentSchema = new mongoose.Schema({
