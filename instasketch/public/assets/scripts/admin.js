@@ -13,13 +13,6 @@ class Student {
   }
 }
 
-/** Default data for students
-  * Supposed to retrieve Student data from the server
-  */
-const student1 = new Student("ab1", "Amrit", "Aujla");
-const student2 = new Student("cd2", "Dorothy", "Mckenzie");
-const student3 = new Student("ef3", "Joe", "Smith");
-
 /** StudentTable represents the student database from the server.
   * Supposed to retrieve Student database from the server
   */
@@ -54,11 +47,39 @@ function init() {
   tableRow.appendChild(headFirstName);
   tableRow.appendChild(headButton);
   studentTable.appendChild(tableRow);
-  addStudentToTable(student1);
-  addStudentToTable(student2);
-  addStudentToTable(student3);
 }
 init();
+$.getJSON('../teacher-profile/students', function(students_list) {
+  const studentList = [];
+  if (students_list !== 0) {
+    for (const student of students_list.result) {
+      studentList.push({
+        first_name: student.first_name,
+        last_name: student.last_name,
+        school: student.school,
+        student_id: student._id,
+        teacher_id: student.teacher_id,
+        email: student.email,
+        password: student.password,
+        province: student.province,
+        path: student.path,
+      });
+    }
+  }
+  console.log(studentList);
+  // Put students onto the table on the admin page.
+  for (const [idx, s] of studentList.entries()) {
+    const currStudent = $("<tr>").append(
+      $("<td>").text(s.student_id),
+      $("<td>").text(s.last_name),
+      $("<td>").text(s.first_name),
+      $("<td>").append(
+        $("<button>").text('Add'),
+        $("<button>").text('Modify'),
+        $("<button>").text('Remove')
+      )).appendTo(studentTable);
+  }
+});
 
 function addStudent(e) {
   e.preventDefault();
