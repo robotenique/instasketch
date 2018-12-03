@@ -86,7 +86,14 @@ app.use('/teacher-profile', teacherProfileRoutes);
 app.use('/student-submissions', studentSubmissionRoutes);
 app.use('/teacher-submissions', teacherSubmissionRoutes);
 
-/* TODO: 
+// About us
+app.get('/about', (req, res) => {
+    res.render("about", {layout: false, title: "Instasketch - About Us"});
+});
+
+
+
+/* TODO:
 *  Remove duplicate code from teacher/student submissions
 *  Partition collection get routes into their own files
 */
