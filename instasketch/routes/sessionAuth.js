@@ -19,6 +19,15 @@ module.exports.sessionChecker = (req, res, next) => {
     }
 }
 
+module.exports.authenticateAnyUser = (req, res, next) => {
+    if(!req.session.user){
+        return Promise.reject();
+    }
+    else{
+        next();
+    }
+}
+
 // Make sure we have an authenticated student
 module.exports.authenticateStudent = (req, res, next) => {
     if (req.session.user && !req.session.isTeacher) {
