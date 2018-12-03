@@ -11,6 +11,9 @@ const Submission = mongoose.model('Submission', {
 	},
 	comments: {
 		type: String
+	},
+	marked: {
+		type: Boolean
 	}
 })
 

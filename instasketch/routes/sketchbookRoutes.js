@@ -57,7 +57,8 @@ router.post('/', authenticateStudent, (req, res) => {
                 const sub = new Submission({
                     session_id: req.body.session_id,
                     drawing_id: result._id,
-                    comments: ""
+                    comments: "",
+					marked: false
                 });
                 // Need to update the total_submission from the session
                 sub.save().then((sub) => {

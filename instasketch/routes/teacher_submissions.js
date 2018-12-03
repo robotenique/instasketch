@@ -8,7 +8,7 @@ const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
 
 // Add a binding to handle '/teacher-submissions'
-router.get('/', (req, res) => {
+router.get('/', authenticateTeacher, (req, res) => {
 	res.render("teacherSubmissions", {layout: 'teacherSubmissionsLayout'});
 })
 
@@ -28,7 +28,6 @@ router.get('/for/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	
 	Session.find({"teacher_id": id}).then((result) => {
-		console.log(result[0]);
 		if(result.length === 0){
 			res.send({result});
 			return;
@@ -37,10 +36,8 @@ router.get('/for/:id', authenticateTeacher, (req, res) => {
 		for(let session of result){
 			session_ids.push(session._id);
 		}
-		console.log(session_ids);
 		
-		Submission.find({"session_id": {$in: session_ids}}).then((result) => {
-			console.log("submissions found: " + result);
+		Submission.find({"session_id": {$in: session_ids}, "marked": false}).then((result) => {
 			res.send({ result });
 		}, (error) => {
 			res.status(400).send(error)
@@ -57,7 +54,7 @@ router.get('/for/:id', authenticateTeacher, (req, res) => {
 })
 
 //find a submission by its id
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 
 	// Good practise is to validate the id
@@ -78,7 +75,7 @@ router.get('/:id', (req, res) => {
 })
 
 //change a specific submission using its id
-router.post('/:id', (req, res) => {
+router.post('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	const submission = req.body;
 
@@ -91,14 +88,14 @@ router.post('/:id', (req, res) => {
 	Submission.findByIdAndUpdate(id, {$set: {
 		session_id: submission.session_id,
 		drawing_id: submission.drawing_id,
-		comments: submission.comments
+		comments: submission.comments,
+		marked: submission.marked
 	}}).then((result) => {
 		if (!result) {
 			res.status(404).send()
 		} else {
 			res.send({ result })
 		}
-
 	}).catch((error) => {
 		res.status(400).send(error)
 	})

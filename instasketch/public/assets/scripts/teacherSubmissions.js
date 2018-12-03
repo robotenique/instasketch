@@ -1,61 +1,10 @@
 'use strict';
 
-//the submissions and the corresponding drawings and students - to be retrieved from server and stored in server
-let submissions = [
-	{drawing_id: '123',
-     session_id: "a4f5j6k7",
-     comments: ""},
-	{drawing_id: '456',
-     session_id: "a4f5j6k7",
-     comments: ""},
-	{drawing_id: '789',
-     session_id: "a4f5j6k7",
-     comments: "Great job!"}
-]
-let drawings = [
-	{drawing_id: '123',
-     student_id: '123',
-     title: 'Beaver',
-     path: 'assets/images/beaver.jpeg',
-     submitted: true,
-     min_since_edit: 35},
-	{drawing_id: '456',
-     student_id: '123',
-     title: 'Eagle',
-     path: 'assets/images/eagle.jpg',
-     submitted: true,
-     min_since_edit: 55},
-	{drawing_id: '789',
-     student_id: '456',
-     title: 'Horse',
-     path: 'assets/images/horse.jpg',
-     submitted: true,
-     min_since_edit: 12}
-]
-let students = [
-	{id: "123",
-	 firstName: "Amritpal",
-	 lastName: "Aujla",
-	 school: "UofT",
-	 teacherId: "albus1",
-	 email: "amritpal.aujla@mail.utoronto.ca",
-	 password: "blah",
-	 province: "Ontario",
-	 pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png"
-	},
-	{id: "456",
-	 firstName: "Max",
-	 lastName: "Boyko",
-	 school: "UofT",
-	 teacherId: "albus1",
-	 email: "max.boyko@mail.utoronto.ca",
-	 password: "blahblah",
-	 province: "Ontario",
-	 pictureURL: "https://dummyimage.com/323x200/ffc163/040838.png"
-	}
-]
-
-const teacher = {};
+//the submissions and the corresponding objects - to be retrieved from server and stored in server
+let submissions = []
+let drawings = []
+let students = []
+let teacher = {};
 
 document.addEventListener('DOMContentLoaded', function() {
 	const url = '/teacher-profile/teacher';
@@ -89,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			const url3 = '/drawings/specificlist';
 			const request = new Request(url3, {
-				method: 'get', 
+				method: 'post', 
 				body: JSON.stringify({ drawing_ids }),
 				headers: {
 					'Accept': 'application/json, text/plain, */*',
@@ -147,7 +96,7 @@ function makeCards(){
 
 		const submissionId = document.createElement("small");
 		submissionId.className = "hiddenId";
-		submissionId.appendChild(document.createTextNode(drawing.drawing_id));
+		submissionId.appendChild(document.createTextNode(submission._id));
 
 		const submissionAuthor = document.createElement("p");
 		const authorName = student.first_name + " " + student.last_name;
@@ -158,6 +107,7 @@ function makeCards(){
 		textArea.setAttribute("name", "comment");
 		textArea.setAttribute("rows", "4");
 		textArea.setAttribute("cols", "23");
+		textArea.innerText = submission.comments;
 
 		const submitButton = document.createElement("button");
 		submitButton.appendChild(document.createTextNode("Submit Comment"));
@@ -173,15 +123,14 @@ function makeCards(){
 		cardBody.appendChild(submitButton);
 
 		//the image and link to image for the submission
-		const cardImage = document.createElement("img");
-		cardImage.className = "card-img-top border-bottom";
-		cardImage.setAttribute("src", drawing.path);
-		cardImage.setAttribute("alt", "Image")
-
+		const cardImg = document.createElement("div");
+		cardImg.innerHTML = drawing.svg;
+		
 		const cardLink = document.createElement("a");
 		cardLink.setAttribute("target", "_blank");
-		cardLink.setAttribute("href", drawing.path);
-		cardLink.appendChild(cardImage);
+		cardLink.setAttribute("href", "javascript:void(0)");
+		cardLink.appendChild(cardImg);
+		cardLink.addEventListener("click", function(){ window.open().document.body.innerHTML = drawing.svg; });
 
 		const card = document.createElement("div");
 		card.className = "card";
@@ -222,8 +171,29 @@ function getDrawing(id){
 //Code below requires server calls - modifying the data retrieved from the server
 function setSubmissionComments(id, comments){
 	for(let submission of submissions){
-		if(submission.drawing_id === id){
+		if(submission._id === id){
 			submission.comments = comments;
+			submission.marked = true;
+			const url = '/teacher-submissions/' + id;
+			const request = new Request(url, {
+				method: 'post', 
+				body: JSON.stringify(submission),
+				headers: {
+					'Accept': 'application/json, text/plain, */*',
+					'Content-Type': 'application/json'
+				},
+			});
+			fetch(request)
+			.then((res) => { 
+				if (res.status === 200) {
+				   return res.json() 
+			   } else {
+					alert('Could not set submission commentss')
+			   }                
+			})
+			.catch((error) => {
+				console.log(error)
+			});
 		}
 	}
 }
