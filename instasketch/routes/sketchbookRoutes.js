@@ -52,7 +52,6 @@ router.post('/', authenticateStudent, (req, res) => {
         // Save drawing to the database
         drawing.save().then((result) => {
             // If a session was selected
-            // TODO: Test this here with real session data
             if(req.body.session_id !== "None") {
                 const sub = new Submission({
                     session_id: req.body.session_id,

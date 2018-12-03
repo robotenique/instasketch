@@ -13,7 +13,8 @@ const Submission = mongoose.model('Submission', {
 		type: String
 	},
 	marked: {
-		type: Boolean
+		type: Boolean,
+		required: true
 	}
 })
 
