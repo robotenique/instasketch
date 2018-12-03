@@ -60,6 +60,7 @@ const { Teacher } = require('./models/teacher');
 // Import the routes
 const loginRoutes = require('./routes/login');
 const adminRoutes = require('./routes/admin');
+const mysessionsRoutes = requre('./routes/mysessionsRoutes');
 const registrationRoutes = require('./routes/registration');
 const sketchbookRoutes = require('./routes/sketchbookRoutes');
 const studentProfileRoutes = require('./routes/student_profile');
@@ -74,6 +75,7 @@ app.use("/assets", express.static(__dirname + '/public/assets'));
 // Import my test routes into the path '/test' (https://stackoverflow.com/questions/6059246/how-to-include-route-handlers-in-multiple-files-in-express/37309212#37309212)
 app.use('/login', loginRoutes);
 app.use('/admin', adminRoutes);
+app.use('/sessions', mysessionsRoutes);
 app.use('/registration', registrationRoutes);
 app.use('/sketchbook', sketchbookRoutes);
 app.use('/student-profile', studentProfileRoutes);
