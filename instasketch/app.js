@@ -6,11 +6,11 @@ const port = process.env.PORT || 3000;
 const session = require('express-session'); // To store user sessions
 const bodyParser = require('body-parser'); // middleware for parsing HTTP body from client
 const exphbs = require('express-handlebars'); // Handle the views
-const { ObjectID } = require('mongodb');
 
 // Import our mongoose connection
 // Currently inside /models folder
 const { mongoose } = require('./models/mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 const app = express();
 // body-parser middleware setup.  Will parse the JSON and convert to object
@@ -56,6 +56,7 @@ const sessionChecker = (req, res, next) => {
 // Import the models
 const { Student } = require('./models/student');
 const { Teacher } = require('./models/teacher');
+const { Session } = require('./models/session');
 
 // Import the routes
 const loginRoutes = require('./routes/login');
@@ -121,6 +122,22 @@ app.use("/newteacher", (req, res) => {
         path: "",
     });
     sampleTeacher.save().then((result) => {
+        res.send(result);
+    }, (error) => {
+        res.status(400).send(error);
+    });
+});
+
+app.use("/newsession", (req, res) => {
+    const sampleSession = new Session({
+        teacher_id: new ObjectId(),
+		title: "new sesh",
+		date: new Date(),
+		marked_submissions: 5,
+		total_submissions: 10,
+		open: true
+    });
+    sampleSession.save().then((result) => {
         res.send(result);
     }, (error) => {
         res.status(400).send(error);

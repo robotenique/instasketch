@@ -28,22 +28,24 @@ router.get('/for/:id', authenticateStudent, (req, res) => {
 	const id = req.params.id;
 	
 	Drawing.find({"student_id": id}).then((result) => {
+		console.log(result[0]);
 		if(result.length === 0){
 			res.send({result});
 			return;
 		}
 		let drawing_ids = [];
-		for(let drawing of result.data){
+		for(let drawing of result){
 			drawing_ids.push(drawing._id);
 		}
 		console.log(drawing_ids);
 		
-		Submission.find({"_id": {$in: drawing_ids}}).then((result) => {
+		Submission.find({"drawing_id": {$in: drawing_ids}}).then((result) => {
 			console.log("submissions found: " + result);
 			res.send({ result });
 		}, (error) => {
 			res.status(400).send(error)
 		}).catch((error) => {
+			console.log(error)
 			res.status(400).send(error)
 		})
 	}, (error) => {
