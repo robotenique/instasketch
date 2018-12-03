@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //change an attribute in the profile
 function editAttribute(e){
-	console.log(student);
 	if(e.target.classList.contains('editButton')){
 		attribute = e.target.parentElement.parentElement.firstElementChild;
 		textToChange = attribute.lastElementChild;

@@ -23,6 +23,19 @@ router.get('/students', (req, res) => {
 	})
 })
 
+//get all students for a given teacher
+router.get('/students/:id', authenticateTeacher, (req, res) => {
+	const teacherId = req.params.id;
+	
+	Student.find({"teacher_id": teacherId}).then((result) => {
+		res.send({ result })
+	}, (error) => {
+		res.status(400).send(error)
+	}).catch((error) => {
+		res.status(400).send(error)
+	})
+})
+
 //get currently logged in teacher
 router.get('/teacher/', authenticateTeacher, (req, res) => {
 	const teacherId = req.session.user;

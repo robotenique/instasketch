@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				session_ids.push(submission.session_id);
 			}
 			
-			const url3 = '/sessions/all';
+			const url3 = '/sessions/specificlist';
 			const request = new Request(url3, {
 				method: 'get', 
 				body: JSON.stringify({ session_ids }),
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					drawing_ids.push(submission.drawing_id);
 				}
 				
-				const url4 = '/sessions/all';
+				const url4 = '/drawings/specificlist';
 				const request2 = new Request(url4, {
 					method: 'get', 
 					body: JSON.stringify({ drawing_ids }),

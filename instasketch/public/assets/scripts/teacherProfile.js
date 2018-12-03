@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (res.status === 200) {
            return res.json() 
        } else {
-            alert('Could not get students')
+            alert('Could not get teacher')
        }                
     })
     .then((json) => {

@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
+const authenticateTeacher = require('./sessionAuth').authenticateTeacher;
 // Import the models
 const { Submission } = require('../models/submission');
+const { Session } = require('../models/session');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
 
@@ -11,12 +13,45 @@ router.get('/', (req, res) => {
 })
 
 //get all the submissions
-router.get('/submissions', (req, res) => {
+router.get('/submissions', authenticateTeacher, (req, res) => {
 	Submission.find().then((result) => {
 		res.send({ result })
 	}, (error) => {
 		res.status(400).send(error)
 	}).catch((error) => {
+		res.status(400).send(error)
+	})
+})
+
+//submissions for a given teacher id
+router.get('/for/:id', authenticateTeacher, (req, res) => {
+	const id = req.params.id;
+	
+	Session.find({"teacher_id": id}).then((result) => {
+		console.log(result[0]);
+		if(result.length === 0){
+			res.send({result});
+			return;
+		}
+		let session_ids = [];
+		for(let session of result){
+			session_ids.push(session._id);
+		}
+		console.log(session_ids);
+		
+		Submission.find({"session_id": {$in: session_ids}}).then((result) => {
+			console.log("submissions found: " + result);
+			res.send({ result });
+		}, (error) => {
+			res.status(400).send(error)
+		}).catch((error) => {
+			console.log(error)
+			res.status(400).send(error)
+		})
+	}, (error) => {
+		res.status(400).send(error)
+	}).catch((error) => {
+		console.log(error);
 		res.status(400).send(error)
 	})
 })
