@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const authenticateAnyUser = require('./sessionAuth').authenticateAnyUser;
 const authenticateTeacher = require('./sessionAuth').authenticateTeacher;
 // Import the models
 const { Session } = require('../models/session');
@@ -45,7 +46,7 @@ router.post('/new', authenticateTeacher, (req, res) => {
 })
 
 // Given list of session IDs, return session objects with those IDs
-router.get('/specificlist', authenticateTeacher, (req, res) => {
+router.get('/specificlist', authenticateAnyUser, (req, res) => {
     // Retrieve and validate IDs
     const ids = req.body.session_ids;
     ids.forEach((id) => {
