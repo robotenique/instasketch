@@ -60,7 +60,7 @@ const { Teacher } = require('./models/teacher');
 // Import the routes
 const loginRoutes = require('./routes/login');
 const adminRoutes = require('./routes/admin');
-const mysessionsRoutes = requre('./routes/mysessionsRoutes');
+const mysessionsRoutes = require('./routes/mysessionsRoutes');
 const registrationRoutes = require('./routes/registration');
 const sketchbookRoutes = require('./routes/sketchbookRoutes');
 const studentProfileRoutes = require('./routes/student_profile');
