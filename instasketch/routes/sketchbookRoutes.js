@@ -49,7 +49,6 @@ router.post('/', authenticateStudent, (req, res) => {
             min_since_edit: 0, // 0 minutes because the drawing will be saved now
             svg: req.body.svg
         });
-        
         // Save drawing to the database
         drawing.save().then((result) => {
             // If a session was selected
@@ -61,21 +60,30 @@ router.post('/', authenticateStudent, (req, res) => {
                     comments: ""
                 });
                 // Need to update the total_submission from the session
-                sub.save().then((result) => {
-                    res.send(drawing);
-
-                }, (error) => {
+                sub.save().then((sub) => {
+                    increaseSessionCounter(sub.session_id);
+                }).catch((error) => {
                     log(error);
                     res.status(500).send();
                 });
             }
-            else {
-                res.send(drawing);
-            }
+            res.send(drawing);
         }).catch((error) => {
             log("ERROR:", error);
             res.status(400).send();
         });
     });
 });
+
+function increaseSessionCounter(session_id) {
+    Session.findById(session_id).then((currSession) => {
+        if(currSession) {
+            currSession.total_submissions += 1;
+            currSession.save();
+        }
+    }, (error) => {
+        log("Error: ", error);
+    });
+}
+
 module.exports = router;
