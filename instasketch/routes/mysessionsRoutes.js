@@ -46,7 +46,7 @@ router.post('/new', authenticateTeacher, (req, res) => {
 })
 
 // Given list of session IDs, return session objects with those IDs
-router.get('/specificlist', authenticateAnyUser, (req, res) => {
+router.post('/specificlist', authenticateAnyUser, (req, res) => {
     // Retrieve and validate IDs
     const ids = req.body.session_ids;
     ids.forEach((id) => {
