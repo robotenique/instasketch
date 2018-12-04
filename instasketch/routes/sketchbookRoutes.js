@@ -12,21 +12,28 @@ router = express.Router();
 /* Login: test@test.com , pw: 123123
  */
 
-// Serving open sessions
-router.get('/opensessions', (req, res) => {
+// Serving open sessions which teacher_id is the same teacher as the current student
+router.get('/opensessions', authenticateStudent, (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    Session.find().then((result) => {
-        let openSessions = [];
-        for (const s of result) {
-            openSessions.push({
-                session_id: s._id,
-                session_name: s.title
-            });
-        }
-        res.send(JSON.stringify(openSessions));
-    }, (error) => {
+    Student.findById(req.session.user).then((student) => {
+        Session.find({teacher_id: student.teacher_id, open: true}).then((result) => {
+            let openSessions = [];
+            for (const s of result) {
+                openSessions.push({
+                    session_id: s._id,
+                    session_name: s.title
+                });
+            }
+            res.send(JSON.stringify(openSessions));
+        }, (error) => {
+            log(error);
+            res.status(404).send();
+        });
+    }).catch((error) => {
         log(error);
+        res.status(404).send();
     });
+       
 });
 
 // Add a binding to handle '/sketchbook'
