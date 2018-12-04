@@ -75,7 +75,7 @@ router.get('/:id', authenticateTeacher, (req, res) => {
 })
 
 //change a specific submission using its id
-router.patch('/:id', authenticateTeacher, (req, res) => {
+router.post('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	const submission = req.body;
 

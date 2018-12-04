@@ -1,11 +1,46 @@
 const express = require('express');
 const path = require('path');
 const authenticateStudent = require('./sessionAuth').authenticateStudent;
+
 // Import the models
 const { Student } = require('../models/student');
 const { Teacher } = require('../models/teacher');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
+
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+
+//set up multer and cloudinary for image storage
+cloudinary.config({
+	cloud_name: "team-07-instasketch",
+	api_key: "253678613255651",
+	api_secret: "i7WkBoYmFbfpSrYixliWEmaXNsY"
+});
+const storage = cloudinaryStorage({
+	cloudinary: cloudinary,
+	folder: "profiles",
+	allowedFormats: ["jpg", "png"],
+	transformation: [{ width: 500, height: 500, crop: "limit" }]
+});
+const parser = multer({ storage: storage });
+
+router.post('/upload', parser.single("image"), (req, res) => {
+	console.log(req.file) // to see what is returned to you
+	const image = {};
+	image.url = req.file.url;
+	image.id = req.file.public_id;
+	console.log(image);
+	Student.findByIdAndUpdate(req.session.user, {$set: {
+		path: req.file.url
+	}}).then((result) => {
+		res.redirect('back');
+	}).catch((error) => {
+		console.log(error)
+		res.status(400).send(error)
+	})
+});
 
 // Add a binding to handle '/student-profile'
 router.get('/', authenticateStudent, (req, res) => {
@@ -51,7 +86,7 @@ router.get('/student/:id', authenticateStudent, (req, res) => {
 })
 
 //change a specific student using its id
-router.patch('/:id', authenticateStudent, (req, res) => {
+router.post('/:id', authenticateStudent, (req, res) => {
 	const id = req.params.id;
 	const student = req.body;
 
@@ -72,12 +107,15 @@ router.patch('/:id', authenticateStudent, (req, res) => {
 		path: student.path
 	}}).then((result) => {
 		if (!result) {
+			console.log("wtf");
 			res.status(404).send()
 		} else {
+			console.log("yo" + result)
 			res.send({ result })
 		}
 
 	}).catch((error) => {
+		console.log(error)
 		res.status(400).send(error)
 	})
 })

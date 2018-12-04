@@ -176,7 +176,7 @@ function setSubmissionComments(id, comments){
 			submission.marked = true;
 			const url = '/teacher-submissions/' + id;
 			const request = new Request(url, {
-				method: 'patch', 
+				method: 'post', 
 				body: JSON.stringify(submission),
 				headers: {
 					'Accept': 'application/json, text/plain, */*',
@@ -206,7 +206,6 @@ function setSubmissionComments(id, comments){
 					.catch((error) => {
 						console.log(error)
 					});
-					//return res.json() 
 			   } else {
 					alert('Could not set submission commentss')
 			   }                

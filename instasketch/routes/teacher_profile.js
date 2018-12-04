@@ -7,6 +7,42 @@ const { Teacher } = require('../models/teacher');
 const ObjectID = require('mongodb').ObjectID;
 router = express.Router();
 
+//for image submission on cloudinary
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+
+//set up multer and cloudinary for image storage
+cloudinary.config({
+	cloud_name: "team-07-instasketch",
+	api_key: "253678613255651",
+	api_secret: "i7WkBoYmFbfpSrYixliWEmaXNsY"
+});
+const storage = cloudinaryStorage({
+	cloudinary: cloudinary,
+	folder: "profiles",
+	allowedFormats: ["jpg", "png"],
+	transformation: [{ width: 500, height: 500, crop: "limit" }]
+});
+const parser = multer({ storage: storage });
+
+//submits an image on cloudinary and stores its url
+router.post('/upload', authenticateTeacher, parser.single("image"), (req, res) => {
+	console.log(req.file) // to see what is returned to you
+	const image = {};
+	image.url = req.file.url;
+	image.id = req.file.public_id;
+	console.log(image);
+	Teacher.findByIdAndUpdate(req.session.user, {$set: {
+		path: req.file.secure_url
+	}}).then((result) => {
+		res.redirect('back');
+	}).catch((error) => {
+		console.log(error)
+		res.status(400).send(error)
+	})
+});
+
 // Add a binding to handle '/teacher-profile'
 router.get('/', authenticateTeacher, (req, res) => {
 	res.render("teacherProfile", {layout: 'teacherProfileLayout'});
@@ -66,7 +102,7 @@ router.get('/teacher/:id', authenticateTeacher, (req, res) => {
 })
 
 //change a specific teacher using its id
-router.patch('/:id', authenticateTeacher, (req, res) => {
+router.post('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	const teacher = req.body;
 

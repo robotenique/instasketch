@@ -36,8 +36,21 @@ editForm.addEventListener('submit', confirmChange);
 //make the input object for changing picture
 const pictureUpload = document.createElement("input");
 pictureUpload.setAttribute("type", "file");
+pictureUpload.setAttribute("name", "image");
 pictureUpload.id = "upload";
 pictureUpload.addEventListener('change', changePicture)
+const pictureSubmit = document.createElement("input");
+pictureSubmit.setAttribute("type", "submit");
+pictureSubmit.setAttribute("id", "pictureSubmit");
+pictureSubmit.setAttribute("name", "pictureSubmit");
+const uploadForm = document.createElement("form");
+uploadForm.setAttribute("action", "/student-profile/upload");
+uploadForm.setAttribute("method", "post");
+uploadForm.setAttribute("enctype", "multipart/form-data");
+uploadForm.appendChild(pictureUpload);
+uploadForm.appendChild(pictureSubmit);
+uploadForm.style.display = "none";
+document.body.appendChild(uploadForm)
 
 //variables for the profile elements to change
 let attribute;
@@ -105,7 +118,7 @@ function changePicture(e){
 		profilePic.firstElementChild.src = imgURL;
 		setProfilePicURL(imgURL);
     }
-	confirmNewAttributes();
+	uploadForm.submit();
 }
 
 //confirm the change of an attribute and manipulate the DOM accordingly
@@ -149,13 +162,16 @@ function confirmNewAttributes(){
 	const url = '/student-profile/' + student._id;
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
-        method: 'patch', 
+        method: 'post', 
         body: JSON.stringify(student),
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
     });
+	console.log(url);
+	console.log(student);
+	console.log(request);
     // Fetch AJAX call
     fetch(request)
     .then(function(res) {
