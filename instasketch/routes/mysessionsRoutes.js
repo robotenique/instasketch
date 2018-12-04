@@ -110,4 +110,50 @@ router.patch('/:id', authenticateTeacher, (req, res) => {
     })
 })
 
+// Increment the total number of submissions for the session with the given id
+router.patch('/increment-total/:id', authenticateTeacher, (req, res) => {
+    // Retrieve and validate id
+    const id = req.params.id;
+    if (!ObjectID.isValid(id))
+        return res.status(404).send();
+
+    Session.findById(id).then((session) => {
+        if (!session) {
+            res.status(404).send();
+        } else {
+            session['marked_submissions']++;
+            session.save().then((result) => {
+                res.send({result});
+            }, (error) => {
+                res.status(400).send(error);
+            })
+        }
+    }).catch((error) => {
+        res.status(400).send(error);
+    })
+})
+
+// Increment the number of marked submissions for the session with the given id
+router.patch('/increment-marked/:id', authenticateTeacher, (req, res) => {
+    // Retrieve and validate id
+    const id = req.params.id;
+    if (!ObjectID.isValid(id))
+        return res.status(404).send();
+
+    Session.findById(id).then((session) => {
+        if (!session) {
+            res.status(404).send();
+        } else {
+            session['total_submissions']++;
+            session.save().then((result) => {
+                res.send({result});
+            }, (error) => {
+                res.status(400).send(error);
+            })
+        }
+    }).catch((error) => {
+        res.status(400).send(error);
+    })
+})
+
 module.exports = router;
