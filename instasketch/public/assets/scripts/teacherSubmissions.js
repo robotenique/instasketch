@@ -176,7 +176,7 @@ function setSubmissionComments(id, comments){
 			submission.marked = true;
 			const url = '/teacher-submissions/' + id;
 			const request = new Request(url, {
-				method: 'post', 
+				method: 'patch', 
 				body: JSON.stringify(submission),
 				headers: {
 					'Accept': 'application/json, text/plain, */*',
@@ -186,7 +186,27 @@ function setSubmissionComments(id, comments){
 			fetch(request)
 			.then((res) => { 
 				if (res.status === 200) {
-				   return res.json() 
+					const url = '/sessions/incremenet-marked/' + submission.session_id;
+					const request = new Request(url, {
+						method: 'patch', 
+						body: JSON.stringify({}),
+						headers: {
+							'Accept': 'application/json, text/plain, */*',
+							'Content-Type': 'application/json'
+						},
+					});
+					fetch(request)
+					.then((res) => { 
+						if (res.status === 200) {
+							return res.json() 
+					   } else {
+							alert('Could not set session marked submissions')
+					   }                
+					})
+					.catch((error) => {
+						console.log(error)
+					});
+					//return res.json() 
 			   } else {
 					alert('Could not set submission commentss')
 			   }                

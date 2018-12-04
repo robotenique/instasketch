@@ -66,7 +66,7 @@ router.get('/teacher/:id', authenticateTeacher, (req, res) => {
 })
 
 //change a specific teacher using its id
-router.post('/:id', authenticateTeacher, (req, res) => {
+router.patch('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	const teacher = req.body;
 

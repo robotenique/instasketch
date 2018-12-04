@@ -138,7 +138,7 @@ function confirmNewAttributes(){
 	const url = '/teacher-profile/' + teacher._id;
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
-        method: 'post', 
+        method: 'patch', 
         body: JSON.stringify(teacher),
         headers: {
             'Accept': 'application/json, text/plain, */*',
