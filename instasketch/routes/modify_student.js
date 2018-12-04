@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
-const authenticateStudent = require('./sessionAuth').authenticateStudent;
-const authenticateUser = require('./sessionAuth').authenticateAnyUser;
+const authenticateTeacher = require('./sessionAuth').authenticateTeacher;
 
 // Import the models
 const { Student } = require('../models/student');
@@ -29,13 +28,13 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage: storage });
 
 //submits an image on cloudinary and stores its url
-router.post('/upload', authenticateStudent, parser.single("image"), (req, res) => {
+router.post('/upload', authenticateTeacher, parser.single("image"), (req, res) => {
 	console.log(req.file) // to see what is returned to you
 	const image = {};
 	image.url = req.file.url;
 	image.id = req.file.public_id;
 	console.log(image);
-	Student.findByIdAndUpdate(req.session.user, {$set: {
+	Student.findByIdAndUpdate(req.session.modified, {$set: {
 		path: req.file.url
 	}}).then((result) => {
 		res.redirect('back');
@@ -45,30 +44,19 @@ router.post('/upload', authenticateStudent, parser.single("image"), (req, res) =
 	})
 });
 
-// Add a binding to handle '/student-profile'
-router.get('/', authenticateStudent, (req, res) => {
-	res.render("studentProfile", {layout: 'studentProfileLayout'});
+// Add a binding to handle '/modify-student'
+router.get('/', authenticateTeacher, (req, res) => {
+	res.render("modifyStudent", {layout: 'modifyStudentLayout'});
 })
 
-//get all the teachers
-router.get('/teachers', authenticateUser, (req, res) => {
-	Teacher.find().then((result) => {
-		res.send({ result })
-	}, (error) => {
-		res.status(400).send(error)
-	}).catch((error) => {
-		res.status(400).send(error)
-	})
-})
-
-//get currently logged in student
-router.get('/student/', authenticateStudent, (req, res) => {
-	const studentID = req.session.user;
+//get currently selected student
+router.get('/student/', authenticateTeacher, (req, res) => {
+	const studentID = req.session.modified;
 	res.redirect('student/'+studentID);
 })
 
 //find a student by its id
-router.get('/student/:id', authenticateStudent, (req, res) => {
+router.get('/student/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 
 	// Good practise is to validate the id
@@ -89,7 +77,7 @@ router.get('/student/:id', authenticateStudent, (req, res) => {
 })
 
 //change a specific student using its id
-router.post('/:id', authenticateStudent, (req, res) => {
+router.post('/:id', authenticateTeacher, (req, res) => {
 	const id = req.params.id;
 	const student = req.body;
 

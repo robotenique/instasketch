@@ -56,6 +56,7 @@ const studentProfileRoutes = require('./routes/student_profile');
 const teacherProfileRoutes = require('./routes/teacher_profile');
 const studentSubmissionRoutes = require('./routes/student_submissions');
 const teacherSubmissionRoutes = require('./routes/teacher_submissions');
+const modifyStudentRoutes = require('./routes/modify_student');
 
 // static assets directory
 app.use("/assets", express.static(__dirname + '/public/assets'));
@@ -72,6 +73,7 @@ app.use('/student-profile', studentProfileRoutes);
 app.use('/teacher-profile', teacherProfileRoutes);
 app.use('/student-submissions', studentSubmissionRoutes);
 app.use('/teacher-submissions', teacherSubmissionRoutes);
+app.use('/modify-student', modifyStudentRoutes);
 
 // About us
 app.get('/about', (req, res) => {
