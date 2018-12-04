@@ -16,9 +16,11 @@ const app = express();
 // body-parser middleware setup.  Will parse the JSON and convert to object
 app.use(bodyParser.urlencoded({
     extended: true,
-    limit: '200mb' // Let us send the cool drawings :)
+    limit: '200mb' // Let us send the cool drawings to the database :)
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit: '200mb' // Let us send the cool drawings to the frontend :)
+}));
 // Add express sesssion middleware
 app.use(session({
     secret: 'oursecret',
