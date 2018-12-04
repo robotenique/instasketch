@@ -105,6 +105,12 @@ function editAttribute(e){
 		if(!profile.lastElementChild.classList.contains('newForm')){
 			profile.appendChild(formRow);
 		}
+		if(attribute.id === "email"){
+			inputField.setAttribute("type", "email");
+		}
+		else{
+			inputField.setAttribute("type", "text");
+		}
 	}
 	else if(e.target.classList.contains('pImg')){
 		pictureUpload.click();
@@ -125,6 +131,10 @@ function changePicture(e){
 function confirmChange(e){
 	e.preventDefault();
 	const changedValue = document.querySelector("#entryInput").value;
+	if(changedValue.trim() === ""){
+		alert("Cannot set attributes to be nothing");
+		return;
+	}
 	
 	switch(attribute.firstElementChild.id){
 		case 'firstNameText':
@@ -162,7 +172,7 @@ function confirmNewAttributes(){
 	const url = '/student-profile/' + student._id;
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
-        method: 'post', 
+        method: 'PATCH', 
         body: JSON.stringify(student),
         headers: {
             'Accept': 'application/json, text/plain, */*',

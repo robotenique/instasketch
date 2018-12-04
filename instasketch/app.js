@@ -50,12 +50,14 @@ const loginRoutes = require('./routes/login');
 const adminRoutes = require('./routes/admin');
 const mydrawingsRoutes = require('./routes/mydrawingsRoutes');
 const mysessionsRoutes = require('./routes/mysessionsRoutes');
+const newsessionRoutes = require('./routes/newsessionRoutes');
 const registrationRoutes = require('./routes/registration');
 const sketchbookRoutes = require('./routes/sketchbookRoutes');
 const studentProfileRoutes = require('./routes/student_profile');
 const teacherProfileRoutes = require('./routes/teacher_profile');
 const studentSubmissionRoutes = require('./routes/student_submissions');
 const teacherSubmissionRoutes = require('./routes/teacher_submissions');
+const modifyStudentRoutes = require('./routes/modify_student');
 
 // static assets directory
 app.use("/assets", express.static(__dirname + '/public/assets'));
@@ -66,12 +68,14 @@ app.use('/login', loginRoutes);
 app.use('/admin', adminRoutes);
 app.use('/drawings', mydrawingsRoutes);
 app.use('/sessions', mysessionsRoutes);
+app.use('/newsession', newsessionRoutes);
 app.use('/registration', registrationRoutes);
 app.use('/sketchbook', sketchbookRoutes);
 app.use('/student-profile', studentProfileRoutes);
 app.use('/teacher-profile', teacherProfileRoutes);
 app.use('/student-submissions', studentSubmissionRoutes);
 app.use('/teacher-submissions', teacherSubmissionRoutes);
+app.use('/modify-student', modifyStudentRoutes);
 
 // About us
 app.get('/about', (req, res) => {

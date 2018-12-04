@@ -156,4 +156,27 @@ router.patch('/increment-marked/:id', authenticateTeacher, (req, res) => {
     })
 })
 
+// Set the given session's status to closed
+router.patch('/close-session/:id', authenticateTeacher, (req, res) => {
+    // Retrieve and validate id
+    const id = req.params.id;
+    if (!ObjectID.isValid(id))
+        return res.status(404).send();
+
+    Session.findById(id).then((session) => {
+        if (!session) {
+            res.status(404).send();
+        } else {
+            session['open'] = false;
+            session.save().then((result) => {
+                res.send({result});
+            }, (error) => {
+                res.status(400).send(error);
+            })
+        }
+    }).catch((error) => {
+        res.status(400).send(error);
+    })
+})
+
 module.exports = router;
