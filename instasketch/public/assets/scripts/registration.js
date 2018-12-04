@@ -7,11 +7,11 @@ const tcode_display = tcode.style.display;
 const teachersList = document.querySelector("#teachers");
 const teachersList_display = teachersList.style.display;
 
-$.getJSON('../student-profile/teachers', function(teachers_list) {
+$.getJSON('/student-profile/teachers', function(teachers_list) {
   const teacherList = [];
   if (teachers_list.length !== 0) {
     for (const teacher of teachers_list.result) {
-      // console.log(teacher);
+      console.log(teacher);
       teacherList.push({
         first_name: teacher.first_name,
         last_name: teacher.last_name,

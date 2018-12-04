@@ -51,14 +51,12 @@ router.get('/', authenticateStudent, (req, res) => {
 })
 
 //get all the teachers
-router.get('/teachers', authenticateUser, (req, res) => {
+router.get('/teachers', (req, res) => {
 	Teacher.find().then((result) => {
 		res.send({ result })
 	}, (error) => {
 		res.status(400).send(error)
-	}).catch((error) => {
-		res.status(400).send(error)
-	})
+	});
 })
 
 //get currently logged in student
