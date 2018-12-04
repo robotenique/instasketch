@@ -43,3 +43,7 @@
 .status-bar button {
     float: right;
 }
+
+.hiddenId {
+    display: none;
+}
