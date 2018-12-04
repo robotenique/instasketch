@@ -121,7 +121,7 @@ router.patch('/increment-total/:id', authenticateTeacher, (req, res) => {
         if (!session) {
             res.status(404).send();
         } else {
-            session['marked_submissions']++;
+            session['total_submissions']++;
             session.save().then((result) => {
                 res.send({result});
             }, (error) => {
@@ -144,7 +144,7 @@ router.patch('/increment-marked/:id', authenticateTeacher, (req, res) => {
         if (!session) {
             res.status(404).send();
         } else {
-            session['total_submissions']++;
+            session['marked_submissions']++;
             session.save().then((result) => {
                 res.send({result});
             }, (error) => {
