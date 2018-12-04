@@ -176,7 +176,7 @@ function setSubmissionComments(id, comments){
 			submission.marked = true;
 			const url = '/teacher-submissions/' + id;
 			const request = new Request(url, {
-				method: 'post', 
+				method: 'PATCH', 
 				body: JSON.stringify(submission),
 				headers: {
 					'Accept': 'application/json, text/plain, */*',
@@ -186,9 +186,9 @@ function setSubmissionComments(id, comments){
 			fetch(request)
 			.then((res) => { 
 				if (res.status === 200) {
-					const url = '/sessions/incremenet-marked/' + submission.session_id;
+					const url = '/sessions/increment-marked/' + submission.session_id;
 					const request = new Request(url, {
-						method: 'patch', 
+						method: 'PATCH', 
 						body: JSON.stringify({}),
 						headers: {
 							'Accept': 'application/json, text/plain, */*',

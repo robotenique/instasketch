@@ -53,7 +53,7 @@ router.post('/', authenticateStudent, (req, res) => {
             student_id: student._id,
             title: req.body.title,
             submitted: req.body.session_id !== "None", // If it's none, then it wasn't submitted to a session
-            min_since_edit: 0, // 0 minutes because the drawing will be saved now
+            creation_date: new Date(),
             svg: req.body.svg
         });
         // Save drawing to the database

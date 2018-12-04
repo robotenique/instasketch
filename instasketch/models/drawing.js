@@ -11,8 +11,9 @@ const Drawing = mongoose.model('Drawing', {
 	submitted: {
 		type: Boolean
 	},
-	min_since_edit: {
-		type: Number
+	creation_date: { // Be aware of this: https://mongoosejs.com/docs/schematypes.html#dates
+		type: Date,
+		required: true
 	},
 	svg: {
 		type: String,
