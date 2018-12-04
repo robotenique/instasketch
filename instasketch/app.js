@@ -15,7 +15,8 @@ const ObjectId = mongoose.Types.ObjectId;
 const app = express();
 // body-parser middleware setup.  Will parse the JSON and convert to object
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '200mb' // Let us send the cool drawings :)
 }));
 app.use(bodyParser.json());
 // Add express sesssion middleware
@@ -36,22 +37,6 @@ app.engine('hbs', exphbs({
 }));
 // Use Handlebars view engine
 app.set('view engine', 'hbs');
-
-
-
-// Add middleware to check for logged-in users
-const sessionChecker = (req, res, next) => {
-    /*   if (req.session.user) {
-        res.redirect('/dashboard')
-    } else {
-        next();
-    }
-    */
-    // TODO: currently I'm allowing all users (for testing purposes :D)
-    next();
-}
-
-
 
 // Import the models
 const { Student } = require('./models/student');
