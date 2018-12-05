@@ -37,7 +37,8 @@ router.post('/upload', authenticateTeacher, parser.single("image"), (req, res) =
 	Student.findByIdAndUpdate(req.session.modified, {$set: {
 		path: req.file.url
 	}}).then((result) => {
-		res.redirect('back');
+		console.log("redirecting to modify student page");
+		res.redirect('/modify-student');
 	}).catch((error) => {
 		console.log(error)
 		res.status(400).send(error)

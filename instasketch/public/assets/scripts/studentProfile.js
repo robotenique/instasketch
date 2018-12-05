@@ -199,7 +199,7 @@ function confirmNewAttributes(){
 //checks if the name entered in teacher space is valid
 function isTeacherValid(newName){
 	for(let teacher of teachers){
-		if(makeLean(teacher.firstName + teacher.lastName) === makeLean(newName)){
+		if(makeLean(teacher.first_name + teacher.last_name) === makeLean(newName)){
 			return true;
 		}
 	}
@@ -278,7 +278,7 @@ function setProfileSchool(school){
 
 function setProfileTeacher(teacherName){
 	for (let teacher of teachers){
-		if(makeLean(teacher.firstName + teacher.lastName) === makeLean(teacherName)){
+		if(makeLean(teacher.first_name + teacher.last_name) === makeLean(teacherName)){
 			student.teacher_id = teacher._id;
 		}
 	}
