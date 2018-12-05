@@ -13,8 +13,9 @@
       <input id="lastName" type="text" placeholder="Last Name" name="lastName" required>
       <br>
       <!-- Choose province -->
-      <select id="province">
+      <select id="province" name="province">
         <option value="#">Choose your province</option>
+        <option value="Unknown">Unknown</option>
         <option value="Alberta">Alberta</option>
         <option value="British Columbia">British Columbia</option>
         <option value="Manitoba">Manitoba</option>
@@ -30,8 +31,9 @@
         <option value="Yukon">Yukon</option>
       </select>
       <!-- Choose school -->
-      <select id="school">
+      <select id="school" name="school">
         <option value="#">Choose your school</option>
+        <option value="Hogwarts">Hogwarts</option>
         <option value="UofT">UofT Primary School</option>
         <option value="Ryerson">Ryerson Primary School</option>
         <option value="York">York Primary School</option>
@@ -40,12 +42,8 @@
       </select>
       <br>
       <!-- If the new user is a student -->
-      <select id="teachers">
+      <select class="teacherList" id="teachers" name="teacher">
         <option value="#">Choose your teacher</option>
-        <option value="Mark_Kazakevich">Mark Kazakevich</option>
-        <option value="Albus_Dumbledore">Albus Dumbledore</option>
-        <option value="Minerva_McGonagall">Minerva McGonagall</option>
-        <option value="Severus_Snape">Severus Snape</option>
       </select>
       <br>
       <!-- Submit button -->
