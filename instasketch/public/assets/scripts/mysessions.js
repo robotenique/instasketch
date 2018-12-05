@@ -8,9 +8,6 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 // Variable to access sessions row
 const sessionsRow = document.querySelector('main').querySelector('.row');
 
-// Variable storing session object info
-let sessions = [];
-
 // Retrieve list of sessions for currently logged in teacher
 const allSessionsRequest = new Request('/sessions/completelist', { method: 'get' });
 
@@ -21,7 +18,7 @@ fetch(allSessionsRequest).then((res) => {
         alert('Could not retrieve sessions for current user');
     }
 }).then((json) => {
-    sessions = json.result;
+    const sessions = json.result;
 
     // Sort list of sessions in increasing order of date
     sessions.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -48,8 +45,6 @@ function addSession() {
             }
         });
 
-        let newSession = null;
-
         fetch(newSessionRequest).then((res) => {
             if (res.status === 200) {
                 return res.json();
@@ -57,7 +52,7 @@ function addSession() {
                 alert('Could not create new session');
             }
         }).then((json) => {
-            newSession = json.result;
+            const newSession = json.result;
             addSessionToDOM(newSession);
 
             // Pass the id to the New Session page via the URL.
