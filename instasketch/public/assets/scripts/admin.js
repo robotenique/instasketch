@@ -75,11 +75,6 @@ $.getJSON('../teacher-profile/students', function(students_list) {
       $("<td>").text(s.first_name),
       $("<td>").append(
         $("<button>", {
-          click: addStudent,
-          text: 'Add',
-          class: 'add',
-        }),
-        $("<button>", {
           click: modifyStudent,
           text: 'Modify',
           class: 'modify',
@@ -107,10 +102,22 @@ function addStudent(e) {
 /* Direct admin to the modifyStudent.html */
 function modifyStudent(e) {
   e.preventDefault();
+  const currentRow = e.target.parentElement.parentElement;
+  const modifyingID = currentRow.firstChild.textContent;
   if (e.target.className === "modify") {
-    console.log("modify");
-    // Directs to the page where admin can modify student.
-    window.location.href = "/modify-student";
+    $.ajax({
+      type: "post",
+      url: "/admin/modify",
+      data: { modifying_id: modifyingID },
+      'content-type': 'application/json',
+      success: function(response) {
+        console.log("Success loading student modify page");
+        window.location.href = "/modify-student";
+      },
+      error: function(response) {
+        alert("Error loading student modify page");
+      }
+    });
   }
 }
 
