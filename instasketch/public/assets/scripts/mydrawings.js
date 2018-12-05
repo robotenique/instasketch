@@ -88,7 +88,8 @@ function addDrawing(drawing) {
 
 function getTimeDiffText(drawing) {
     const currentTime = new Date();
-    const timeDiff = currentTime.getTime() - drawing.creation_date.getTime();
+    const creationTime = new Date(drawing.creation_date);
+    const timeDiff = currentTime.getTime() - creationTime.getTime();
 
     const timeDiffInMinutes = Math.floor(timeDiff / 60000);
     if (timeDiffInMinutes < 60)
