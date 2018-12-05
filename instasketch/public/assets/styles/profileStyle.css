@@ -25,3 +25,13 @@
 	margin-right: 10px;
 	color: gray;
 }
+
+#entryButton {
+	background-color: #fc7d7c;
+	border-radius: 8px;
+}
+
+.editButton {
+	background-color: #fff5e4;
+	border-radius: 8px;
+}

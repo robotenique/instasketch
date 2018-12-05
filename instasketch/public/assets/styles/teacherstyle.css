@@ -26,4 +26,13 @@
     color: #FB5C5B !important;
 }
 
+#entryButton {
+	background-color: #fc7d7c;
+	border-radius: 8px;
+}
+
+.editButton {
+	background-color: #Dbffdb;
+	border-radius: 8px;
+}
 
