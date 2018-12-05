@@ -6,7 +6,6 @@ const windowURL = new URL(window.location.href);
 const sessionId = windowURL.searchParams.get('id');
 
 /* Use the ID to retrieve the title of the session */
-let sessionTitle = '';
 const request = new Request('/sessions/' + sessionId, { method: 'get' });
 
 fetch(request).then((res) => {
@@ -16,7 +15,7 @@ fetch(request).then((res) => {
         alert(`Could not retrieve session with id ${sessionId}`);
     }
 }).then((json) => {
-    sessionTitle = json.result['title'];
+    const sessionTitle = json.result['title'];
 
     /* Variable to access session info container */
     const sessionInfo = document.querySelector('#sessionInfo');
@@ -28,22 +27,15 @@ fetch(request).then((res) => {
     titleHeader.appendChild(titleStrong);
     titleHeader.appendChild(document.createTextNode(sessionTitle));
 
-    const idHeader = document.createElement('h2');
-    const idStrong = document.createElement('strong');
-    idStrong.appendChild(document.createTextNode('ID: '))
-    idHeader.appendChild(idStrong);
-    idHeader.appendChild(document.createTextNode(sessionId));
-
     const instructionsDiv = document.createElement('div');
     instructionsDiv.id = 'instructions';
     const instructions = document.createElement('p');
-    const instructionsText = 'Use this ID to submit your drawings to this session!';
+    const instructionsText = 'Make sure you submit to this session from the sketchbook menu!';
     instructions.appendChild(document.createTextNode(instructionsText));
     instructionsDiv.appendChild(instructions);
 
     /* Add session info elements */
     sessionInfo.appendChild(titleHeader);
-    sessionInfo.appendChild(idHeader);
     sessionInfo.appendChild(instructionsDiv);
 
 }).catch((error) => {
