@@ -100,7 +100,7 @@ function addStudent(e) {
     // Find the row that the button is existing.
     console.log("new student");
     // addStudent page.
-    window.location.href="addStudent.html";
+    window.location.href="/admin/addStudent";
   }
 }
 
@@ -110,7 +110,7 @@ function modifyStudent(e) {
   if (e.target.className === "modify") {
     console.log("modify");
     // Directs to the page where admin can modify student.
-    window.location.href = "/student-profile";
+    window.location.href = "/modify-student";
   }
 }
 
