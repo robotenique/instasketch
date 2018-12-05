@@ -6,42 +6,84 @@ let studentOnRecord = [];
 
 /* Student object */
 class Student {
-  constructor(email, password, firstName, lastName, school, province, teacher) {
+  constructor(email, password, firstName, lastName, school, province, teacher_id) {
     this.email = email;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.school = school;
     this.province = province;
-    this.teacher = teacher;
+    this.position = "student";
+    this.teacher_id = teacher_id;
   }
 }
 
-const button = document.querySelector("#btn1");
+const teachersList = document.querySelector("#teachers");
 
-button.addEventListener("click", register);
-
-/** Register function that adds a new student object
-  * to the database on the server. This is a mock example.
-  * For phase 1, admin_after_add.html will reflect
-  * the newly added student object on the table by hardcoded data.
+/** Retrieve all teachesr from the database.
+  * Admin (teacher) can add student of any teacher.
   */
-function register(e) {
-  e.preventDefault;
-  if (e.target.id === "btn1") {
-    const username = document.querySelector("#email").value;
-    const studentPw = document.querySelector("#pw").value;
-    const firstName = document.querySelector("#firstName").value;
-    const lastName = document.querySelector("#lastName").value;
-    const school = document.querySelector("#school").value;
-    const province = document.querySelector("#province").value;
-    const teacher = document.querySelector("#teachers").value;
-    const newStudent = new Student(username, studentPw, firstName, lastName, school, province, teacher);
-    numOfStudents += 1;
-    /* Add new student onto the database */
-    studentOnRecord[numOfStudents] = newStudent;
-    console.log(studentOnRecord[numOfStudents]);
-    // window.location.href="admin.html";
-    window.location.href = "admin_after_add.html";
+$.getJSON('/student-profile/teachers', function(teachers_list) {
+  const teacherList = [];
+  console.log(teachers_list);
+  if (teachers_list.length !== 0) {
+    for (const teacher of teachers_list.result) {
+      console.log(teacher);
+      teacherList.push({
+        first_name: teacher.first_name,
+        last_name: teacher.last_name,
+        school: teacher.school,
+        teacher_id: teacher._id,
+        teacher_code: teacher.teacher_code,
+        email: teacher.email,
+        password: teacher.password,
+        province: teacher.province,
+        path: teacher.path
+      });
+    }
   }
-}
+  console.log(teacherList);
+  for (const [idx, t] of teacherList.entries()) {
+    const currOption = $("<option>", {
+      'value': t.first_name + ' ' + t.last_name,
+      'id': t.teacher_id,
+    }).append(t.first_name + ' ' + t.last_name);
+    currOption.appendTo(teachersList);
+  }
+});
+
+/* AJAX */
+$(document).ready(function() {
+  $("#btn1").click(function(e) {
+    e.preventDefault();
+    const email = $("#email").val();
+    const password = $("#pw").val();
+    const firstName = $("#firstName").val();
+    const lastName = $("#lastName").val();
+    const province = $("#province").val();
+    const school = $("#school").val();
+    const position = "student";
+    const teacher_id = $("#teachers").children(":selected").attr("id");
+
+    // new Student account
+    const account = new Student(email, password, firstName, lastName, school, province, teacher_id);
+
+    console.log('teachers list', $("#teachers").children());
+    account.teacher_id = teacher_id;
+    console.log(teacher_id)
+    $.ajax({
+      type: "post",
+      url: "/admin/addStudent",
+      data: account,
+      'content-type': 'application/json',
+      success: function(response) {
+        console.log("Success creating a student object");
+        window.location.href = "/admin";
+      },
+      error: function(response) {
+        alert("Error creating the student");
+      }
+    });
+  });
+  // Here we would send the new account to the server
+});
