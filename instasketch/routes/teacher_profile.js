@@ -48,22 +48,9 @@ router.get('/', authenticateTeacher, (req, res) => {
 	res.render("teacherProfile", {layout: 'teacherProfileLayout'});
 })
 
-//get all the students
+//get all the students for the logged in teacher
 router.get('/students', (req, res) => {
-	Student.find().then((result) => {
-		res.send({ result })
-	}, (error) => {
-		res.status(400).send(error)
-	}).catch((error) => {
-		res.status(400).send(error)
-	})
-})
-
-//get all students for a given teacher
-router.get('/students/:id', authenticateTeacher, (req, res) => {
-	const teacherId = req.params.id;
-	
-	Student.find({"teacher_id": teacherId}).then((result) => {
+	Student.find({"teacher_id": req.session.user}).then((result) => {
 		res.send({ result })
 	}, (error) => {
 		res.status(400).send(error)
