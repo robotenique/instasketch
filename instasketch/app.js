@@ -79,7 +79,11 @@ app.use('/modify-student', modifyStudentRoutes);
 
 // About us
 app.get('/about', (req, res) => {
-    res.render("about", {layout: false, title: "Instasketch - About Us"});
+    res.render("about", {
+        layout: false,
+        title: "Instasketch - About Us",
+        authenticated: req.session.user ? true : false
+    });
 });
 
 
