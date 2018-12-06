@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
       email: req.body.email,
       password: req.body.password,
       province: req.body.province,
-      path: "",
+      path: "https://res.cloudinary.com/team-07-instasketch/image/upload/v1544069990/profiles/bttv1dhxi17s6dn2ld7r.png",
     });
 
     // Save newStudent to the database
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
       email: req.body.email,
       password: req.body.password,
       province: req.body.province,
-      path: "",
+      path: "https://res.cloudinary.com/team-07-instasketch/image/upload/v1544069990/profiles/bttv1dhxi17s6dn2ld7r.png",
     });
 
     // Save user to the database
