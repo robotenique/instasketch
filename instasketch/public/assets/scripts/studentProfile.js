@@ -120,9 +120,11 @@ function editAttribute(e){
 //change the profile picture
 function changePicture(e){
 	if (this.files && this.files[0]) {
-		const imgURL = URL.createObjectURL(this.files[0]);
-		profilePic.firstElementChild.src = imgURL;
-		setProfilePicURL(imgURL);
+		const fullType = this.files[0].type;
+		if(fullType !== "image/jpeg" && fullType !== "image/png"){
+			alert("Only jpeg and png images are allowed!");
+			return;
+		}
     }
 	uploadForm.submit();
 }

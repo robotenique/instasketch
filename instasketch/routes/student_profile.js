@@ -38,7 +38,7 @@ router.post('/upload', authenticateStudent, parser.single("image"), (req, res) =
 	Student.findByIdAndUpdate(req.session.user, {$set: {
 		path: req.file.url
 	}}).then((result) => {
-		res.redirect('back');
+		res.redirect('/student-profile');
 	}).catch((error) => {
 		console.log(error)
 		res.status(400).send(error)
