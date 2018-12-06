@@ -63,6 +63,7 @@ $.getJSON('../teacher-profile/students', function(students_list) {
         password: student.password,
         province: student.province,
         path: student.path,
+        broken_account: student.broken_account
       });
     }
   }
@@ -84,7 +85,10 @@ $.getJSON('../teacher-profile/students', function(students_list) {
           text: 'Remove',
           class: 'remove'
         })
-      )).appendTo(studentTable);
+      ));
+      if(s.broken_account)
+        currStudent.css('background-color', ' #ff5050');
+      currStudent.appendTo(studentTable);
   }
 });
 
