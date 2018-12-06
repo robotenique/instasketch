@@ -46,6 +46,10 @@ const StudentSchema = new mongoose.Schema({
 	},
 	path: {
 		type: String
+	},
+	broken_account: { // Marks if a student forgot his account
+		type: Boolean,
+		default: false
 	}
 });
 
