@@ -5,14 +5,16 @@ const { Teacher } = require('../models/teacher');
 
 // Registration page to create an account
 router.get('/', (req, res) => {
-    res.render("registration", {layout: 'registrationLayout'});
+    res.render("registration", {
+        layout: 'registrationLayout'
+    });
 });
 
 // After User registers his/her account
 router.post('/', (req, res) => {
     // Create new User
     console.log(req.body);
-    
+
     if (req.body.position === "student") {
         const newStudent = new Student({
             first_name: req.body.firstName,
@@ -23,9 +25,9 @@ router.post('/', (req, res) => {
             email: req.body.email,
             password: req.body.password,
             province: req.body.province,
-            path: "",
+            path: "https://res.cloudinary.com/team-07-instasketch/image/upload/v1544069990/profiles/bttv1dhxi17s6dn2ld7r.png",
         });
-        
+
         // Save newStudent to the database
         newStudent.save().then((newstudent) => {
             res.redirect("/login");
@@ -41,9 +43,9 @@ router.post('/', (req, res) => {
             email: req.body.email,
             password: req.body.password,
             province: req.body.province,
-            path: "",
+            path: "https://res.cloudinary.com/team-07-instasketch/image/upload/v1544069990/profiles/bttv1dhxi17s6dn2ld7r.png",
         });
-        
+
         // Save user to the database
         newTeacher.save().then((newteacher) => {
             res.redirect("/login");
@@ -51,7 +53,7 @@ router.post('/', (req, res) => {
             res.status(400).send(error); // 400 for bad request
         });
     }
-    
+
 });
 
 // Render the 'findaccount' page

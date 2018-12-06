@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			.then((json) => {
 				drawings = json.result;
 				
-				const url4 = '/teacher-profile/students/' + teacher._id;
+				const url4 = '/teacher-profile/students';
 				fetch(url4)
 				.then((res) => { 
 					if (res.status === 200) {
