@@ -1,22 +1,15 @@
 
 table, td, th {
 	border-collapse: collapse;
-	border: 1px solid black;
+	border: 1px solid #ddd;
 }
 
 td, th {
 	min-width: 200px;
+	padding: 15px;
 }
 
-
-#bookInfo p {
-	font-weight: bold;
-}
-
-#bookInfo span {
-	font-weight: normal;
-	color: black;
-}
+tr:hover {background-color:#f5f5f5;}
 
 h1 {
   text-align: center;
@@ -34,12 +27,23 @@ h1 {
 }
 
 button {
-	background-color: #FFD700;
+	border: 2px solid  #90EE90;
+	border-radius: 15px;
 	color: black;
-	padding: 5px 5px;
-	margin: 0 2px;
-	text-align: center;
-	font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:  #90EE90;
+  color: white;
 }
 
 #legendDiv {
