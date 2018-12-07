@@ -1,16 +1,16 @@
 # team07 phase2.txt
 
-### Login credentials (after creating accounts)
+### Login credentials
 
 - For the student, the login credentials are:
 
-    - Email: juliano.garcia@mail.utoronto.ca
-    - Password: blahblah
+    - Email: stud@stud.stud
+    - Password: 123123
 
 - For the teacher (admin) the login credentials are:
 
-    - Email: horace.slughorn@utoronto.ca
-    - Password: horace123
+    - Email: prof@prof.prof
+    - Password: 123123
 
 
 ### Instructions and Functionality
@@ -21,10 +21,16 @@ The first page you'll see after opening the application is the login page. This 
 the credentials above to log in as a student or teacher. The page also has a create account and forgot
 password link for students.
 
-First you'll need to create the accounts, one for a student and one for a teacher (the admin). 
+
+You can log in with the accounts provided in the first section, which are already filled with some test data.
+Instasketch is intentended to be a teaching aid for teachers and students, not a drawing/sketch management
+tool, so there's no need to put a lot of data.
+
+**If you want** to create an account, you can do it like this:
+
 Clicking 'Create an account' takes you to the registration page. This page has the space for you to register
-on InstaSketch. You can input the following values to create your accounts. Create the teacher account first,
-then the student.
+on InstaSketch. You can input the following values to create your accounts, for example, or whatever valid value you want.
+Create the teacher account first, then the student, as a student needs to select his teacher.
 
 Teacher:
     - First Name: Horace
@@ -46,7 +52,8 @@ Student:
 Clicking the submit button registers the user and takes you back to the login page.
 
 For students, clicking on the 'Forgot password' link takes you to a page where you can enter your e-mail, which will
-notify the student's teacher that this student has requested a new account, which the teacher can then create.
+notify the student's teacher that this student has requested a new account, which the teacher can then create. We currently
+don't have an email sending service, so in this way a student can mark his account for the teacher to manage it.
 
 
 #### Student
