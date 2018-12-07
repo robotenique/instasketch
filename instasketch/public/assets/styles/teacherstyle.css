@@ -1,0 +1,38 @@
+/* Definition of specific styles for the teacher */
+
+/* This names can be very misleading... :D */
+
+/*light-orange-bg is actually the background of the navbar and the footer >:D */
+.light-orange-bg {
+    background-color: #Dbffdb;
+;
+}
+
+.light-orange {
+    color: #Dbffdb;
+}
+
+
+.navbar .nav-link {
+    color: black;
+    font-weight: bold;
+    font-size: 1.7em !important;
+}
+.navbar .nav-link:hover {
+    color: #FB5C5B;
+}
+
+.active-link {
+    color: #FB5C5B !important;
+}
+
+#entryButton {
+	background-color: #fc7d7c;
+	border-radius: 8px;
+}
+
+.editButton {
+	background-color: #Dbffdb;
+	border-radius: 8px;
+}
+

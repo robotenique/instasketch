@@ -1,0 +1,54 @@
+<!--  The main content goes here -->
+<main role="main" class="container gray-bg">
+  <form action="">
+    <div class="container">
+      <h1>Add a <span class="footer-logo light-rose reset-size">Student</span></h1>
+      <hr>
+      <!-- Email address and password -->
+      <input id="email" type="text" placeholder="Email Address" name="email" required>
+      <input id="pw" type="password" placeholder="Password" name="pw" required>
+      <br>
+      <!-- First and last names -->
+      <input id="firstName" type="text" placeholder="First Name" name="firstName" required>
+      <input id="lastName" type="text" placeholder="Last Name" name="lastName" required>
+      <br>
+      <!-- Choose province -->
+      <select id="province" name="province">
+        <option value="#">Choose your province</option>
+        <option value="Unknown">Unknown</option>
+        <option value="Alberta">Alberta</option>
+        <option value="British Columbia">British Columbia</option>
+        <option value="Manitoba">Manitoba</option>
+        <option value="New Brunswick">New Brunswick</option>
+        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+        <option value="Northwest Territories">Northwest Territories</option>
+        <option value="Nova Scotia">Nova Scotia</option>
+        <option value="Nunavut">Nunavut</option>
+        <option value="Ontario">Ontario</option>
+        <option value="Prince Edward Island">Prince Edward Island</option>
+        <option value="Quebec">Quebec</option>
+        <option value="Saskatchewan">Saskatchewan</option>
+        <option value="Yukon">Yukon</option>
+      </select>
+      <!-- Choose school -->
+      <select id="school" name="school">
+        <option value="#">Choose your school</option>
+        <option value="Hogwarts">Hogwarts</option>
+        <option value="UofT">UofT Primary School</option>
+        <option value="Ryerson">Ryerson Primary School</option>
+        <option value="York">York Primary School</option>
+        <option value="GeorgeBrown">George Brown Primary School</option>
+        <option value="OntArt">Ontario Art Primary School</option>
+      </select>
+      <br>
+      <!-- If the new user is a student -->
+      <select class="teacherList" id="teachers" name="teacher">
+        <option value="#">Choose your teacher</option>
+      </select>
+      <br>
+      <!-- Submit button -->
+      <button id="btn1" class="btn-light btn-lg" type="reset">Submit</button>
+    </div>
+  </form>
+</main>
+<!-- End of main content -->

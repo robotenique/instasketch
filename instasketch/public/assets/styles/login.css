@@ -1,0 +1,21 @@
+form {
+  margin-top: 200px;
+  text-align: center;
+}
+
+span {
+  display: inline-block;
+}
+
+.login {
+  margin-bottom: 10px;
+  
+}
+
+.login input {
+  margin: auto 10px;
+}
+
+.pw {
+  padding-left: 100px;
+}
