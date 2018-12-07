@@ -1,0 +1,225 @@
+# team07 phase2.txt
+
+### Login credentials (after creating accounts)
+
+- For the student, the login credentials are:
+
+    - Email: juliano.garcia@mail.utoronto.ca
+    - Password: blahblah
+
+- For the teacher (admin) the login credentials are:
+
+    - Email: horace.slughorn@utoronto.ca
+    - Password: horace123
+
+
+### Instructions and Functionality
+
+HEROKU URL: http://fierce-beach-87457.herokuapp.com/
+
+The first page you'll see after opening the application is the login page. This page is where you can use
+the credentials above to log in as a student or teacher. The page also has a create account and forgot
+password link for students.
+
+First you'll need to create the accounts, one for a student and one for a teacher (the admin). 
+Clicking 'Create an account' takes you to the registration page. This page has the space for you to register
+on InstaSketch. You can input the following values to create your accounts. Create the teacher account first,
+then the student.
+
+Teacher:
+    - First Name: Horace
+    - Last Name: Slughorn
+    - E-mail: horace.slughorn@utoronto.ca
+    - Password: horace123
+    - School: UofT Primary School
+    - Province: Ontario
+    - Teacher Code: horaceteach
+Student:
+    - First Name: Juliano
+    - Last Name: Garcia
+    - E-mail: juliano.garcia@mail.utoronto.ca
+    - Password: blahblah
+    - School: UofT Primary School
+    - Province: Ontario
+    - Teacher: Horace Slughorn
+
+Clicking the submit button registers the user and takes you back to the login page.
+
+For students, clicking on the 'Forgot password' link takes you to a page where you can enter your e-mail, which will
+notify the student's teacher that this student has requested a new account, which the teacher can then create.
+
+
+#### Student
+
+- Sketchbook (/sketchbook):
+
+This is the first view a student will see after logging in. The sketchbook is the basis of our
+application, where the student can do his/her sketches. You can choose between 8 predefined colors, 
+4 different thickness settings for the brush, an eraser, undo, redo and clearing the sketch (all done in the javascript). 
+Each item can be clicked on to be selected. The sketchpad is the white canvas where you can click and drag to use
+the currently selected brush to draw.
+
+The student can give a title to the sketch in a text box below the sketchpad. They can choose a
+session from a drop down list if he/she wants to, and click on submit, which will prompt
+a confirmation to save the new drawing. The drawing is saved as an SVG image and the sketchpad is
+cleared so the student can start again.
+
+The pages have a navigation bar at the top with a few options. The final one at the far right
+is the one currently active (sketchbook). You can click on the others to go to the relevant pages. Click on
+the profile on the navbar to view the student's profile.
+
+- Profile (/student-profile):
+
+The profile page for the student gives the student the option to check his own profile, as well
+as modify his own info. By clicking the edit button beside each attribute, the student can edit the
+information stored about themselves. They can modify all attributes freely except for their teacher. Since their
+teacher has to be one from the school, the new teacher can only be one that already exists. The profile picture can also
+be changed by clicking on the picture and selecting a new one locally.
+
+You can click then click on the My Drawings link on the navigation bar to see the drawings this student has made in
+the sketchbook.
+
+- My Drawings (/drawings):
+
+This page shows the drawings the student has made, with the most recent ones appearing first. You can click on the drawing 
+to open the full size image in a new tab. This page also shows whether the drawing was submitted to a specific session or
+is a free drawing (not submitted). It also tells you when the drawing was created.
+
+You can then click on the Submissions link on the navigation bar to see the submissions from this student.
+
+- Submissions (/student-submissions):
+
+The submissions page has all of the submissions made by this student. It contains the submitted drawings, the name
+of the session that the student submitted the drawing to, and the teacher's comments on the drawings. If the
+teacher commented something, the text is there. If they did not, there is an empty box.
+
+That's the web experience from the student side. Click Logout in the footer of the page and log in as a teacher using
+the credentials given above.
+
+
+#### Teacher
+
+- My Sessions (/sessions):
+
+This page shows a list of the sessions that the teacher opened. The session boxes show whether a session is currently open, as well
+as how many of the submissions to that session that the teacher has graded so far. If the session is open, the teacher has the ability 
+to close it, preventing students from making further submissions to it. 
+
+There is also a button to create a new session (the blue + on the bottom-right). You can click it and enter a new session name of Planes to 
+create a new open session. The new session can be seen in a new tab as well as in the My Sessions page.
+
+- New Session (/newsession)
+
+This is the page that automatically opens in a new tab when the teacher creates a new session. The purpose of this page is to display
+the name of the new session in large text, to show the students which session they should submit their drawings to.
+
+Click the submissions page to see any submissions from students and mark them.
+
+- Submissions (/teacher-submissions)
+
+The submissions page has all the submissions from this teacher's students that the teacher has not yet graded. The teacher can click 
+on each image to view the drawings. The submissions show the name of the student that submitted the drawing and a text box for the 
+teacher to give feedback. The teacher can simply write in the boxes and press the submit button to record their changes to the student's 
+submissions. Feel free to write as you will in the submissions boxes.
+
+Click on the Profile link in the navigation bar to see the teacher's profile.
+
+- My Profile (/teacher-profile):
+
+The profile page for the teacher shows their own profile, and lets them modify their own info, in the same way a student can.
+The teacher does not have the 'teacher' field that a student profile does and thus no restrictions on how they are able to modify
+their attributes.
+
+Finally, the teacher can click on the Administration link in the navigation bar to manage their students.
+
+- Administration (/admin):
+
+This is the page that a teacher starts off at after logging in.
+
+It shows the teacher's current students registered in a table, with their basic information. The teacher can then:
+    - Delete a student: Click on the option 'Remove' in the respective student
+    - Modify a student: This opens a new page (/modify-student), where the teacher can modify the attributes
+                        of the selected student just as if it were the student itself doing so. Click the Modify button on 
+                        the first student. It takes you to his profile where you can change information.
+    - Add a new student: The teacher can add new students directly too. After clicking on the Add button, it opens a page
+                         like the registration page (/admin/addStudent) where you can enter the following information:
+                         First Name: Harry       Last Name: Potter           Rest of the information: Any possible values
+                         Click the Finish button to redirect back to the main admin page to see the new student on the list.
+
+You can click the About Us link in the footer to see a summary of what InstaSketch can do for both students and teachers.
+
+
+### Overview of Routes
+
+All files referenced below are in the instasketch/routes folder.
+
+- Admin (admin.js)
+
+This page has routes for rendering the main admin page (which requires retrieving all students for the currently 
+logged in teacher using GET), as well as for adding (GET request renders the addStudent page, POST adds the student 
+to the database), modifying and deleting students.
+
+- Login (login.js)
+
+This page has routes for rendering the login page, logging in the user and logging out.
+
+- Modify Student (modify_student.js)
+
+This page has routes for setting the student's profile picture, rendering the Modify Student page, 
+retrieving the currently selected student object, and finding and modifying a student's info given their ID.
+
+- My Drawings (mydrawingsRoutes.js)
+
+This page has routes for rendering the My Drawings page, getting all drawings by the currently logged in student, 
+getting a list of drawing objects given a specific list of drawing IDs (used when rendering the Submissions pages), 
+and finding and modifying the properties of a drawing given its ID.
+
+- My Sessions (mysessionsRoutes.js)
+
+This page has routes for rendering the My Sessions page, getting all sessions for the currently logged in teacher,
+getting a list of session objects given a specific list of session IDs (used when rendering the Submissions pages), 
+finding and modifying the properties of a session given its ID, incrementing the total number and number of marked 
+submissions for that session (used when a student submits something or the teacher grades a submission), and 
+closing a session.
+
+- New Session (newsessionRoutes.js)
+
+This page just has a route for rendering the New Session page.
+
+- Registration (registration.js)
+
+This page has a route for rendering the main registration page, adding a newly registered user object to the database, 
+rendering the Find Account page, and marking a student account as "broken" to notify the teacher to create a new account
+for that student.
+
+- Session Authentication (sessionAuth.js)
+
+This page contains authentication middleware for the routes, with one for redirecting to the proper starting page for
+the currently logged in user (depending on whether they are a student or teacher), as well as three more for authenticating
+any user in general, as well as for a student or teacher specifically.
+
+- Sketchbook (sketchbookRoutes.js)
+
+This page has routes for retrieving a list of the currently open sessions that the student can submit their drawings to,
+as well as for rendering the page and saving a drawing to the database.
+
+- Student Profile (student_profile.js)
+
+This page has routes for setting the profile picture, rendering the page, retrieving the list of all possible teachers that
+the student can select, retrieving the currently logged in student object, as well as finding and modifying a student given
+their ID.
+
+- Student Submissions (student_submissions.js)
+
+This page has routes for rendering the page, retrieving all submissions, retrieving all submissions for a particular student,
+or finding a particular submission given its ID.
+
+- Teacher Profile (teacher_profile.js)
+
+This page has routes for setting the profile picture, rendering the page, getting all students for the currently logged in 
+teacher, getting the currently logged in teacher object, as well as finding and modifying a teacher given its ID.
+
+- Teacher Submissions (teacher_submissions.js)
+
+This page has routes for rendering the page, getting all submissions, getting all submissions for a particular teacher,
+as well as finding or modifying a submission given its ID.

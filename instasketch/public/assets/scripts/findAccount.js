@@ -18,7 +18,7 @@ $(function () {
                 'content-type': 'application/json',
                 data: {email: email}, // DON'T JSON.stringfy >:(
                 success: function (response) {
-                    alert("Your email account was sucessfully marked for maintenance, please inform you teacher!");
+                    alert("Your email account was sucessfully marked for maintenance, please inform your teacher!");
                 },
                 error: function (response) {
                     if(response.status === 404)
