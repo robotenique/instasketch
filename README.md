@@ -7,9 +7,9 @@ This project was made in Node.js using the [Express](https://expressjs.com) web 
 # Contributors
 
 * **Juliano Garcia** - [@robotenique](https://github.com/robotenique)
-* **Sunmin** - [@Adam5i](https://github.com/kmsunmin)
-* **Amritpal Aujla** - [@tjflorashi](https://github.com/Spyguy001)
-* **Max Boyko** - [@tjflorashi](https://github.com/maxboyko1)
+* **Sunmin** - [@kmsunmin](https://github.com/kmsunmin)
+* **Amritpal Aujla** - [@Spyguy001](https://github.com/Spyguy001)
+* **Max Boyko** - [@maxboyko1](https://github.com/maxboyko1)
 
 # Screenshots
 
