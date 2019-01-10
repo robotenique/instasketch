@@ -2,6 +2,8 @@
 
 InstaSketch is a web application created to facilitate primary/elementary school teachers and students by creating an environment to submit and access drawings!
 
+This project was made in Node.js using the [Express](https://expressjs.com) web framework with MongoDB (mongoose), and using the [Fabric.js](http://fabricjs.com) library in the front-end.
+
 # Contributors
 
 * **Juliano Garcia** - [@robotenique](https://github.com/robotenique)
@@ -11,27 +13,31 @@ InstaSketch is a web application created to facilitate primary/elementary school
 
 # Screenshots
 
-<p align="center"> <img width="700" height="auto" src=""/></p>
+<p align="center"> <img width="650" height="auto" src="instasketch/assets/images/screenshots/demo_sketch.png"></p>
 
+<p align="center"> <img width="650" height="auto" src="instasketch/assets/images/screenshots/demo_sub.png"></p>
+
+<p align="center"> <img width="650" height="auto" src="instasketch/assets/images/screenshots/demo_drawings.png"></p>
+
+Check more screenshots [here](https://github.com/robotenique/instasketch/tree/master/instasketch/assets/images/screenshots).
 
 # Setup
 
-1. **Install Required libraries**
+In the **instasketch** folder (the one with *package.json* file) run (in the terminal):
 
+```bash
+$ npm install
+```
 
-2. **Create database**
+The mongodatabase is located in the cloud, so if you want to change the code or the project to what you want, it's recommended to use a local mongo database.
 
 
 
 ### Run the application
 
-You can run the application inside PyCharm, by clicking on the 'Run' button, or using `shift + F10`.
-
-You can also run the application with debug mode on terminal, by using (on linux):
+Make sure that you have the required packages, then run the following command in the *instasketch* folder.
 
 ```bash
-$ cd snacker/flaskr
-$ export FLASK_APP='app.py' FLASK_ENV=debug
-$ flask run
+$ node app.js
 ```
 
