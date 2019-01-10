@@ -1,17 +1,5 @@
 # team07 phase2.txt
 
-### Login credentials
-
-- For the student, the login credentials are:
-
-    - Email: stud@stud.stud
-    - Password: 123123
-
-- For the teacher (admin) the login credentials are:
-
-    - Email: prof@prof.prof
-    - Password: 123123
-
 
 ### Instructions and Functionality
 
