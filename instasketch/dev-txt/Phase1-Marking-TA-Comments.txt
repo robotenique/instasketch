@@ -1,1 +1,0 @@
-Many of the pages have a large amount of negative (background) space to them. I think this is an area that could use some more refinement. Similarly some places like the profile page could use some styling touch ups on the default buttons and text.
